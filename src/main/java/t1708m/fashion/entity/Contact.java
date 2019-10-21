@@ -1,25 +1,30 @@
 package t1708m.fashion.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Contact {
-    private int contectId;
+    @Id
+    private int contactId;
     private String content;
     private int status;
-
-    public Contact(int contectId, String content, int status) {
-        this.contectId = contectId;
-        this.content = content;
-        this.status = status;
-    }
 
     public Contact() {
     }
 
-    public int getContectId() {
-        return contectId;
+    public Contact(int contactId, String content, int status) {
+        this.contactId = contactId;
+        this.content = content;
+        this.status = status;
     }
 
-    public void setContectId(int contectId) {
-        this.contectId = contectId;
+    public int getContactId() {
+        return contactId;
+    }
+
+    public void setContactId(int contactId) {
+        this.contactId = contactId;
     }
 
     public String getContent() {

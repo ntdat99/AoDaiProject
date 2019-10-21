@@ -1,27 +1,31 @@
 package t1708m.fashion.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Role {
+    @javax.persistence.Id
     private int Id;
     private String name;
-    private long uodatedAt;
+
     private long createdAt;
     private long deletedAt;
-    private long uodatedBy;
+    private long updatedBy;
     private long createdBy;
     private int status;
 
-    public Role(int id, String name, long uodatedAt, long createdAt, long deletedAt, long uodatedBy, long createdBy, int status) {
-        Id = id;
-        this.name = name;
-        this.uodatedAt = uodatedAt;
-        this.createdAt = createdAt;
-        this.deletedAt = deletedAt;
-        this.uodatedBy = uodatedBy;
-        this.createdBy = createdBy;
-        this.status = status;
+    public Role() {
     }
 
-    public Role() {
+    public Role(int id, String name, long createdAt, long deletedAt, long updatedBy, long createdBy, int status) {
+        Id = id;
+        this.name = name;
+        this.createdAt = createdAt;
+        this.deletedAt = deletedAt;
+        this.updatedBy = updatedBy;
+        this.createdBy = createdBy;
+        this.status = status;
     }
 
     public int getId() {
@@ -40,14 +44,6 @@ public class Role {
         this.name = name;
     }
 
-    public long getUodatedAt() {
-        return uodatedAt;
-    }
-
-    public void setUodatedAt(long uodatedAt) {
-        this.uodatedAt = uodatedAt;
-    }
-
     public long getCreatedAt() {
         return createdAt;
     }
@@ -64,12 +60,12 @@ public class Role {
         this.deletedAt = deletedAt;
     }
 
-    public long getUodatedBy() {
-        return uodatedBy;
+    public long getUpdatedBy() {
+        return updatedBy;
     }
 
-    public void setUodatedBy(long uodatedBy) {
-        this.uodatedBy = uodatedBy;
+    public void setUpdatedBy(long updatedBy) {
+        this.updatedBy = updatedBy;
     }
 
     public long getCreatedBy() {

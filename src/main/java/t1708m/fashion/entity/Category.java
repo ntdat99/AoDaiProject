@@ -1,21 +1,26 @@
 package t1708m.fashion.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Category {
+    @Id
     private int categoryId;
     private int productId;
     private String name;
-    private long uodatedAt;
+    private long updatedAt;
     private long createdAt;
     private long deletedAt;
 
     public Category() {
     }
 
-    public Category(int categoryId, int productId, String name, long uodatedAt, long createdAt, long deletedAt) {
+    public Category(int categoryId, int productId, String name, long updatedAt, long createdAt, long deletedAt) {
         this.categoryId = categoryId;
         this.productId = productId;
         this.name = name;
-        this.uodatedAt = uodatedAt;
+        this.updatedAt = updatedAt;
         this.createdAt = createdAt;
         this.deletedAt = deletedAt;
     }
@@ -44,12 +49,12 @@ public class Category {
         this.name = name;
     }
 
-    public long getUodatedAt() {
-        return uodatedAt;
+    public long getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setUodatedAt(long uodatedAt) {
-        this.uodatedAt = uodatedAt;
+    public void setUpdatedAt(long updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
     public long getCreatedAt() {

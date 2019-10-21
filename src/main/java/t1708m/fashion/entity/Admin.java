@@ -1,25 +1,30 @@
 package t1708m.fashion.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Admin {
+    @Id
     private int adminId;
     private String username;
     private String password;
     private String email;
     private String phone;
-    private long uodatedAt;
+    private long updatedAt;
     private long createdAt;
     private long deletedAt;
 
     public Admin() {
     }
 
-    public Admin(int adminId, String username, String password, String email, String phone, long uodatedAt, long createdAt, long deletedAt) {
+    public Admin(int adminId, String username, String password, String email, String phone, long updatedAt, long createdAt, long deletedAt) {
         this.adminId = adminId;
         this.username = username;
         this.password = password;
         this.email = email;
         this.phone = phone;
-        this.uodatedAt = uodatedAt;
+        this.updatedAt = updatedAt;
         this.createdAt = createdAt;
         this.deletedAt = deletedAt;
     }
@@ -64,12 +69,12 @@ public class Admin {
         this.phone = phone;
     }
 
-    public long getUodatedAt() {
-        return uodatedAt;
+    public long getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setUodatedAt(long uodatedAt) {
-        this.uodatedAt = uodatedAt;
+    public void setUpdatedAt(long updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
     public long getCreatedAt() {

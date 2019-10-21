@@ -1,15 +1,20 @@
 package t1708m.fashion.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class OrderDetail {
-    private int producId;
+    @Id
+    private int productId;
     private int quantity;
     private String price;
     private String phone;
     private String email;
     private String address;
 
-    public OrderDetail(int producId, int quantity, String price, String phone, String email, String address) {
-        this.producId = producId;
+    public OrderDetail(int productId, int quantity, String price, String phone, String email, String address) {
+        this.productId = productId;
         this.quantity = quantity;
         this.price = price;
         this.phone = phone;
@@ -20,12 +25,12 @@ public class OrderDetail {
     public OrderDetail() {
     }
 
-    public int getProducId() {
-        return producId;
+    public int getProductId() {
+        return productId;
     }
 
-    public void setProducId(int producId) {
-        this.producId = producId;
+    public void setProductId(int producId) {
+        this.productId = producId;
     }
 
     public int getQuantity() {

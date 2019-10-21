@@ -1,31 +1,36 @@
 package t1708m.fashion.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Customer {
+    @Id
     private int customerId;
     private String username;
     private String password;
     private String email;
     private String address;
     private String phone;
-    private long uodatedAt;
+    private long updatedAt;
     private long createdAt;
     private long deletedAt;
     private int status;
 
-    public Customer(int customerId, String username, String password, String email, String address, String phone, long uodatedAt, long createdAt, long deletedAt, int status) {
+    public Customer() {
+    }
+
+    public Customer(int customerId, String username, String password, String email, String address, String phone, long updatedAt, long createdAt, long deletedAt, int status) {
         this.customerId = customerId;
         this.username = username;
         this.password = password;
         this.email = email;
         this.address = address;
         this.phone = phone;
-        this.uodatedAt = uodatedAt;
+        this.updatedAt = updatedAt;
         this.createdAt = createdAt;
         this.deletedAt = deletedAt;
         this.status = status;
-    }
-
-    public Customer() {
     }
 
     public int getCustomerId() {
@@ -76,12 +81,12 @@ public class Customer {
         this.phone = phone;
     }
 
-    public long getUodatedAt() {
-        return uodatedAt;
+    public long getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setUodatedAt(long uodatedAt) {
-        this.uodatedAt = uodatedAt;
+    public void setUpdatedAt(long updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
     public long getCreatedAt() {
