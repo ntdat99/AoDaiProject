@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
-import t1708m.fashion.entity.Product;
 import t1708m.fashion.repository.ProductRepository;
 
 import java.util.Calendar;
