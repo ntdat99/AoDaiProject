@@ -1,35 +1,40 @@
 package t1708m.fashion.entity;
 
-public class Atical {
-    private int articalId;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
+public class Article {
+    @Id
+    private int articleId;
     private String title;
     private String content;
     private String image;
-    private long uodatedAt;
+    private long updatedAt;
     private long createdAt;
     private long deletedAt;
     private int status;
 
-    public Atical(int articalId, String title, String content, String image, long uodatedAt, long createdAt, long deletedAt, int status) {
-        this.articalId = articalId;
+    public Article() {
+    }
+
+    public Article(int articleId, String title, String content, String image, long updatedAt, long createdAt, long deletedAt, int status) {
+        this.articleId = articleId;
         this.title = title;
         this.content = content;
         this.image = image;
-        this.uodatedAt = uodatedAt;
+        this.updatedAt = updatedAt;
         this.createdAt = createdAt;
         this.deletedAt = deletedAt;
         this.status = status;
     }
 
-    public Atical() {
+    public int getArticleId() {
+        return articleId;
     }
 
-    public int getArticalId() {
-        return articalId;
-    }
-
-    public void setArticalId(int articalId) {
-        this.articalId = articalId;
+    public void setArticleId(int articleId) {
+        this.articleId = articleId;
     }
 
     public String getTitle() {
@@ -56,12 +61,12 @@ public class Atical {
         this.image = image;
     }
 
-    public long getUodatedAt() {
-        return uodatedAt;
+    public long getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setUodatedAt(long uodatedAt) {
-        this.uodatedAt = uodatedAt;
+    public void setUpdatedAt(long updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
     public long getCreatedAt() {
