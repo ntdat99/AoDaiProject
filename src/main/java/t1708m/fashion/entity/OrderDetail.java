@@ -5,48 +5,47 @@ import javax.persistence.Id;
 
 @Entity
 public class OrderDetail {
-    @Id
-    private int productId;
-    private int quantity;
-    private String price;
-    private String phone;
-    private String email;
+    private int id;
+    private String quantity;
     private String address;
+    private String phone;
+    private long createdAt;
+    private long createdBy;
 
-    public OrderDetail(int productId, int quantity, String price, String phone, String email, String address) {
-        this.productId = productId;
+    public OrderDetail(int id, String quantity, String address, String phone, long createdAt, long createdBy) {
+        this.id = id;
         this.quantity = quantity;
-        this.price = price;
-        this.phone = phone;
-        this.email = email;
         this.address = address;
+        this.phone = phone;
+        this.createdAt = createdAt;
+        this.createdBy = createdBy;
     }
 
     public OrderDetail() {
     }
 
-    public int getProductId() {
-        return productId;
+    public int getId() {
+        return id;
     }
 
-    public void setProductId(int producId) {
-        this.productId = producId;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public int getQuantity() {
+    public String getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(String quantity) {
         this.quantity = quantity;
     }
 
-    public String getPrice() {
-        return price;
+    public String getAddress() {
+        return address;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getPhone() {
@@ -57,19 +56,19 @@ public class OrderDetail {
         this.phone = phone;
     }
 
-    public String getEmail() {
-        return email;
+    public long getCreatedAt() {
+        return createdAt;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setCreatedAt(long createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public String getAddress() {
-        return address;
+    public long getCreatedBy() {
+        return createdBy;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setCreatedBy(long createdBy) {
+        this.createdBy = createdBy;
     }
 }

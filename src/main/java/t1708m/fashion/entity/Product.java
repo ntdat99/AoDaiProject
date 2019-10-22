@@ -6,36 +6,50 @@ import javax.persistence.Id;
 @Entity
 public class Product {
     @Id
-    private int Id;
-    private String name;
+    private int id;
     private int categoryId;
-    private String price;
-    private String description;
-    private String size;
-    private String color;
-    private String quantity;
-    private String gender;
-    private String delivery;
-    private String image;
-    private long createdAt;
+    private String proName;
+    private String proCode;
+    private String proColor;
+    private String proSize;
+    private String proCateFab;
+    private String proPrice;
+    private String proPriceFab;
+    private String proDescription;
+    private String proQuantity;
+    private String proImage;
+    private String proGender;
+    private String proShoulderSize;
+    private String proStomachSize;
+    private String proArmSize;
     private long updatedAt;
+    private long updatedBy;
+    private long createdAt;
+    private long createdBy;
     private long deletedAt;
     private int status;
 
-    public Product(int id, String name, int categoryId, String price, String description, String size, String color, String quantity, String gender, String delivery, String image, long createdAt, long updatedAt, long deletedAt, int status) {
-        Id = id;
-        this.name = name;
+    public Product(int id, int categoryId, String proName, String proCode, String proColor, String proSize, String proCateFab, String proPrice, String proPriceFab, String proDescription, String proQuantity, String proImage, String proGender, String proShoulderSize, String proStomachSize, String proArmSize, String pro, long updatedAt, long updatedBy, long createdAt, long createdBy, long deletedAt, int status) {
+        this.id = id;
         this.categoryId = categoryId;
-        this.price = price;
-        this.description = description;
-        this.size = size;
-        this.color = color;
-        this.quantity = quantity;
-        this.gender = gender;
-        this.delivery = delivery;
-        this.image = image;
-        this.createdAt = createdAt;
+        this.proName = proName;
+        this.proCode = proCode;
+        this.proColor = proColor;
+        this.proSize = proSize;
+        this.proCateFab = proCateFab;
+        this.proPrice = proPrice;
+        this.proPriceFab = proPriceFab;
+        this.proDescription = proDescription;
+        this.proQuantity = proQuantity;
+        this.proImage = proImage;
+        this.proGender = proGender;
+        this.proShoulderSize = proShoulderSize;
+        this.proStomachSize = proStomachSize;
+        this.proArmSize = proArmSize;
         this.updatedAt = updatedAt;
+        this.updatedBy = updatedBy;
+        this.createdAt = createdAt;
+        this.createdBy = createdBy;
         this.deletedAt = deletedAt;
         this.status = status;
     }
@@ -44,19 +58,11 @@ public class Product {
     }
 
     public int getId() {
-        return Id;
+        return id;
     }
 
     public void setId(int id) {
-        Id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+        this.id = id;
     }
 
     public int getCategoryId() {
@@ -67,68 +73,131 @@ public class Product {
         this.categoryId = categoryId;
     }
 
-    public String getPrice() {
-        return price;
+    public String getProName() {
+        return proName;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
+    public void setProName(String proName) {
+        this.proName = proName;
     }
 
-    public String getDescription() {
-        return description;
+    public String getProCode() {
+        return proCode;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setProCode(String proCode) {
+        this.proCode = proCode;
     }
 
-    public String getSize() {
-        return size;
+    public String getProColor() {
+        return proColor;
     }
 
-    public void setSize(String size) {
-        this.size = size;
+    public void setProColor(String proColor) {
+        this.proColor = proColor;
     }
 
-    public String getColor() {
-        return color;
+    public String getProSize() {
+        return proSize;
     }
 
-    public void setColor(String color) {
-        this.color = color;
+    public void setProSize(String proSize) {
+        this.proSize = proSize;
     }
 
-    public String getQuantity() {
-        return quantity;
+    public String getProCateFab() {
+        return proCateFab;
     }
 
-    public void setQuantity(String quantity) {
-        this.quantity = quantity;
+    public void setProCateFab(String proCateFab) {
+        this.proCateFab = proCateFab;
     }
 
-    public String getGender() {
-        return gender;
+    public String getProPrice() {
+        return proPrice;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
+    public void setProPrice(String proPrice) {
+        this.proPrice = proPrice;
     }
 
-    public String getDelivery() {
-        return delivery;
+    public String getProPriceFab() {
+        return proPriceFab;
     }
 
-    public void setDelivery(String delivery) {
-        this.delivery = delivery;
+    public void setProPriceFab(String proPriceFab) {
+        this.proPriceFab = proPriceFab;
     }
 
-    public String getImage() {
-        return image;
+    public String getProDescription() {
+        return proDescription;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setProDescription(String proDescription) {
+        this.proDescription = proDescription;
+    }
+
+    public String getProQuantity() {
+        return proQuantity;
+    }
+
+    public void setProQuantity(String proQuantity) {
+        this.proQuantity = proQuantity;
+    }
+
+    public String getProImage() {
+        return proImage;
+    }
+
+    public void setProImage(String proImage) {
+        this.proImage = proImage;
+    }
+
+    public String getProGender() {
+        return proGender;
+    }
+
+    public void setProGender(String proGender) {
+        this.proGender = proGender;
+    }
+
+    public String getProShoulderSize() {
+        return proShoulderSize;
+    }
+
+    public void setProShoulderSize(String proShoulderSize) {
+        this.proShoulderSize = proShoulderSize;
+    }
+
+    public String getProStomachSize() {
+        return proStomachSize;
+    }
+
+    public void setProStomachSize(String proStomachSize) {
+        this.proStomachSize = proStomachSize;
+    }
+
+    public String getProArmSize() {
+        return proArmSize;
+    }
+
+    public void setProArmSize(String proArmSize) {
+        this.proArmSize = proArmSize;
+    }
+    public long getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(long updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public long getUpdatedBy() {
+        return updatedBy;
+    }
+
+    public void setUpdatedBy(long updatedBy) {
+        this.updatedBy = updatedBy;
     }
 
     public long getCreatedAt() {
@@ -139,12 +208,12 @@ public class Product {
         this.createdAt = createdAt;
     }
 
-    public long getUpdatedAt() {
-        return updatedAt;
+    public long getCreatedBy() {
+        return createdBy;
     }
 
-    public void setUpdatedAt(long updatedAt) {
-        this.updatedAt = updatedAt;
+    public void setCreatedBy(long createdBy) {
+        this.createdBy = createdBy;
     }
 
     public long getDeletedAt() {
@@ -162,5 +231,4 @@ public class Product {
     public void setStatus(int status) {
         this.status = status;
     }
-
 }

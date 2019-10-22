@@ -4,41 +4,59 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class Customer {
+public class Account {
     @Id
-    private int customerId;
+    private int id;
+    private String fullName;
     private String username;
     private String password;
     private String email;
-    private String address;
     private String phone;
+    private String address;
+    private String dob;
     private long updatedAt;
+    private long updatedBy;
     private long createdAt;
+    private long createdBy;
     private long deletedAt;
+    private int role;
     private int status;
 
-    public Customer() {
+    public Account() {
     }
 
-    public Customer(int customerId, String username, String password, String email, String address, String phone, long updatedAt, long createdAt, long deletedAt, int status) {
-        this.customerId = customerId;
+    public Account(int id, String fullName, String username, String password, String email, String phone, String address, String dob, long updatedAt, long updatedBy, long createdAt, long createdBy, long deletedAt, int role, int status) {
+        this.id = id;
+        this.fullName = fullName;
         this.username = username;
         this.password = password;
         this.email = email;
-        this.address = address;
         this.phone = phone;
+        this.address = address;
+        this.dob = dob;
         this.updatedAt = updatedAt;
+        this.updatedBy = updatedBy;
         this.createdAt = createdAt;
+        this.createdBy = createdBy;
         this.deletedAt = deletedAt;
+        this.role = role;
         this.status = status;
     }
 
-    public int getCustomerId() {
-        return customerId;
+    public int getId() {
+        return id;
     }
 
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public String getUsername() {
@@ -65,6 +83,14 @@ public class Customer {
         this.email = email;
     }
 
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
     public String getAddress() {
         return address;
     }
@@ -73,12 +99,12 @@ public class Customer {
         this.address = address;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getDob() {
+        return dob;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setDob(String dob) {
+        this.dob = dob;
     }
 
     public long getUpdatedAt() {
@@ -89,6 +115,14 @@ public class Customer {
         this.updatedAt = updatedAt;
     }
 
+    public long getUpdatedBy() {
+        return updatedBy;
+    }
+
+    public void setUpdatedBy(long updatedBy) {
+        this.updatedBy = updatedBy;
+    }
+
     public long getCreatedAt() {
         return createdAt;
     }
@@ -97,12 +131,28 @@ public class Customer {
         this.createdAt = createdAt;
     }
 
+    public long getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(long createdBy) {
+        this.createdBy = createdBy;
+    }
+
     public long getDeletedAt() {
         return deletedAt;
     }
 
     public void setDeletedAt(long deletedAt) {
         this.deletedAt = deletedAt;
+    }
+
+    public int getRole() {
+        return role;
+    }
+
+    public void setRole(int role) {
+        this.role = role;
     }
 
     public int getStatus() {
