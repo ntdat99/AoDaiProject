@@ -5,48 +5,53 @@ import javax.persistence.Id;
 
 @Entity
 public class Category {
-    @Id
-    private int categoryId;
-    private int productId;
-    private String name;
+    private int id;
+    private String cateName;
+    private String catePrice;
     private long updatedAt;
+    private long updatedBy;
     private long createdAt;
+    private long createdBy;
     private long deletedAt;
+    private int status;
+
+    public Category(int id, String cateName, String catePrice, long updatedAt, long updatedBy, long createdAt, long createdBy, long deletedAt, int status) {
+        this.id = id;
+        this.cateName = cateName;
+        this.catePrice = catePrice;
+        this.updatedAt = updatedAt;
+        this.updatedBy = updatedBy;
+        this.createdAt = createdAt;
+        this.createdBy = createdBy;
+        this.deletedAt = deletedAt;
+        this.status = status;
+    }
 
     public Category() {
     }
 
-    public Category(int categoryId, int productId, String name, long updatedAt, long createdAt, long deletedAt) {
-        this.categoryId = categoryId;
-        this.productId = productId;
-        this.name = name;
-        this.updatedAt = updatedAt;
-        this.createdAt = createdAt;
-        this.deletedAt = deletedAt;
+    public int getId() {
+        return id;
     }
 
-    public int getCategoryId() {
-        return categoryId;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setCategoryId(int categoryId) {
-        this.categoryId = categoryId;
+    public String getCateName() {
+        return cateName;
     }
 
-    public int getProductId() {
-        return productId;
+    public void setCateName(String cateName) {
+        this.cateName = cateName;
     }
 
-    public void setProductId(int productId) {
-        this.productId = productId;
+    public String getCatePrice() {
+        return catePrice;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setCatePrice(String catePrice) {
+        this.catePrice = catePrice;
     }
 
     public long getUpdatedAt() {
@@ -57,6 +62,14 @@ public class Category {
         this.updatedAt = updatedAt;
     }
 
+    public long getUpdatedBy() {
+        return updatedBy;
+    }
+
+    public void setUpdatedBy(long updatedBy) {
+        this.updatedBy = updatedBy;
+    }
+
     public long getCreatedAt() {
         return createdAt;
     }
@@ -65,11 +78,27 @@ public class Category {
         this.createdAt = createdAt;
     }
 
+    public long getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(long createdBy) {
+        this.createdBy = createdBy;
+    }
+
     public long getDeletedAt() {
         return deletedAt;
     }
 
     public void setDeletedAt(long deletedAt) {
         this.deletedAt = deletedAt;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

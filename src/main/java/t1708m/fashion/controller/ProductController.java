@@ -44,5 +44,4 @@ public class ProductController {
         productService.create(product);
         return "redirect:/admin/aodai";
     }
-
 }
