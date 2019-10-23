@@ -4,10 +4,8 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 
 @Data
 @Getter
@@ -25,12 +23,16 @@ public class Account {
     private String phone;
     private String address;
     private String dob;
+
     private long updatedAt;
     private long updatedBy;
     private long createdAt;
     private long createdBy;
     private long deletedAt;
-    private int role;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roless;
     private int status;
 
     public Account() {
