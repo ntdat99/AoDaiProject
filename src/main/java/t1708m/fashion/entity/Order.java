@@ -18,14 +18,14 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
-    private int accountId;
     private int productId;
+    private int customerId;
+    private long totalPrice;
+    private String quantity;
     private long orderDate;
-    private String address;
-    private String phone;
     private long createdAt;
-    private long createdBy;
-    private String totalPrice;
+    private int status;
+
+
 
 }

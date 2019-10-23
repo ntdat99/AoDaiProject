@@ -19,29 +19,19 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private int categoryId;
-    private String proName;
-    private String proCode;
-    private String proColor;
-    private String proSize;
-    private String proCateFab;
-    private String proPrice;
-    private String proPriceFab;
-    private String proDescription;
-    private String proQuantity;
-    private String proImage;
-    private String proGender;
-    private String proShoulderSize;
-    private String proStomachSize;
-    private String proArmSize;
-    private long updatedAt;
-    private long updatedBy;
-    private long createdAt;
-    private long createdBy;
-    private long deletedAt;
+    private String name;
+    private String price;
+    private String description;
+    private String image;
+    private String size;
+    private String color;
+    private String updatedAt;
+    private String createdAt;
+    private String deletedAt;
     private int status;
 
 
-    public Product() {
-    }
+
+
 
 }

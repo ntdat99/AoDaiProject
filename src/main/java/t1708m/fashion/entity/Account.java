@@ -18,13 +18,11 @@ public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String fullName;
     private String username;
     private String password;
     private String email;
     private String phone;
     private String address;
-    private String dob;
     private long updatedAt;
     private long updatedBy;
     private long createdAt;
@@ -32,8 +30,5 @@ public class Account {
     private long deletedAt;
     private int role;
     private int status;
-
-    public Account() {
-    }
 
 }
