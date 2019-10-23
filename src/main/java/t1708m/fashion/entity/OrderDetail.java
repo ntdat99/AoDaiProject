@@ -18,13 +18,14 @@ public class OrderDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    private int orderId;
+    private int productId;
+    private String deliAdress;
     private String quantity;
-    private String address;
     private String phone;
+    private String totalPrice;
     private long createdAt;
-    private long createdBy;
+    private int status;
 
-    public OrderDetail() {
-    }
 
 }
