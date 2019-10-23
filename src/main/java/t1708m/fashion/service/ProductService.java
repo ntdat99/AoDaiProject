@@ -42,10 +42,10 @@ public class ProductService {
         if (existProduct == null) {
             return null;
         }
-        existProduct.setProName(product.getProName());
-        existProduct.setProCode(product.getProCode());
-        existProduct.setProPrice(product.getProPrice());
-        existProduct.setUpdatedAt(Calendar.getInstance().getTimeInMillis());
+        existProduct.setName(product.getName());
+        existProduct.setColor(product.getColor());
+        existProduct.setPrice(product.getPrice());
+//        existProduct.setUpdatedAt(Calendar.getInstance().getTimeInMillis());
         return productRepository.save(product);
     }
     public Page<Product> getList(int page, int limit) {
