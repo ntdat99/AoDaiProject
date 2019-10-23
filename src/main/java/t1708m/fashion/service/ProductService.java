@@ -42,9 +42,9 @@ public class ProductService {
         if (existProduct == null) {
             return null;
         }
-        existProduct.setName(product.getName());
-        existProduct.setDescription(product.getDescription());
-        existProduct.setPrice(product.getPrice());
+        existProduct.setProName(product.getProName());
+        existProduct.setProCode(product.getProCode());
+        existProduct.setProPrice(product.getProPrice());
         existProduct.setUpdatedAt(Calendar.getInstance().getTimeInMillis());
         return productRepository.save(product);
     }
