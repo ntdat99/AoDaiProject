@@ -1,8 +1,16 @@
 package t1708m.fashion.entity;
 
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+
+@Data
+@Getter
+@Setter
 @Entity
 public class Customer {
     @Id
@@ -12,9 +20,9 @@ public class Customer {
     private String email;
     private String address;
     private String phone;
-    private String updatedAt;
-    private String createdAt;
-    private String deletedAt;
+    private long updatedAt;
+    private long createdAt;
+    private long deletedAt;
     private int status;
 
 }

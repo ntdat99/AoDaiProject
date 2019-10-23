@@ -25,9 +25,9 @@ public class Product {
     private String image;
     private String size;
     private String color;
-    private String updatedAt;
-    private String createdAt;
-    private String deletedAt;
+    private long updatedAt;
+    private long createdAt;
+    private long deletedAt;
     private int status;
 
 
