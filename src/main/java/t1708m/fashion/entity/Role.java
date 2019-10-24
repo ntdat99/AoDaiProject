@@ -23,5 +23,5 @@ public class Role {
 }
 
 enum RoleName {
-    CUSTOMER, ADMIN
+    CUSTOMER, ADMIN,USER
 }
