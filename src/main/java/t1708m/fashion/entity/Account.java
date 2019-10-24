@@ -7,10 +7,10 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.Email;
+import java.util.Set;
+
 @Data
 @Getter
 @Setter
@@ -21,8 +21,11 @@ public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String username;
+    private String userName;
     private String password;
+    private String fullName;
+
+    @Email
     private String email;
     private String phone;
     private String address;
@@ -31,7 +34,19 @@ public class Account {
     private long createdAt;
     private long createdBy;
     private long deletedAt;
-    private int role;
+    private Role role;
+    @OneToMany(fetch = FetchType.LAZY,
+            cascade = {CascadeType.DETACH,
+                    CascadeType.PERSIST,
+                    CascadeType.REFRESH,
+                    CascadeType.MERGE})
+    private Set<Order> orders;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "account_role", joinColumns = @JoinColumn(name = "account_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles;
+
+    public Account() {
+    }
     private int status;
 
 
