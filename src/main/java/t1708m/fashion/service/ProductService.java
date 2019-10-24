@@ -17,38 +17,30 @@ public class ProductService {
     ProductRepository productRepository;
 
 
+    public List<Product> heroes() {
+        productRepository.findAll(PageRequest.of(1, 3));
+        return productRepository.findActiveProduct(1);
+    }
+    public Product getById(int id) {
+        return productRepository.findById(id).orElse(null);
+    }
     public Product create(Product product) {
         product.setStatus(1);
         product.setCreatedAt(Calendar.getInstance().getTimeInMillis());
         product.setUpdatedAt(Calendar.getInstance().getTimeInMillis());
         return productRepository.save(product);
     }
-    public List<Product> products(){
-        return productRepository.findActiveProduct(1);
-    }
-    public Product getDetail(int id) {
-        return productRepository.findById(id).orElse(null);
-    }
-    public boolean deleted(int id) {
-        Product existProduct = productRepository.findById(id).orElse(null);
-        if (existProduct == null) {
-            return false;
-        }
-        productRepository.delete(existProduct);
-        return true;
-    }
-    public Product update(int id, Product product) {
-        Product existProduct = productRepository.findById(id).orElse(null);
-        if (existProduct == null) {
-            return null;
-        }
-        existProduct.setName(product.getName());
-        existProduct.setColor(product.getColor());
-        existProduct.setPrice(product.getPrice());
-//        existProduct.setUpdatedAt(Calendar.getInstance().getTimeInMillis());
+    public Product update(Product product) {
+        product.setUpdatedAt(Calendar.getInstance().getTimeInMillis());
         return productRepository.save(product);
     }
-    public Page<Product> getList(int page, int limit) {
-        return productRepository.findAll(PageRequest.of(page - 1, limit));
+
+    public boolean delete(Product product) {
+        product.setDeletedAt(Calendar.getInstance().getTimeInMillis());
+        product.setStatus(-1);
+        productRepository.save(product);
+        return true;
     }
+
+
 }
