@@ -18,8 +18,8 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private int productId;
-    private int customerId;
+    private Product product;
+    private Customer customer;
     private long totalPrice;
     private String quantity;
     private long orderDate;

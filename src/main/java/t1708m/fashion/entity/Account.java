@@ -18,7 +18,8 @@ public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String username;
+    private String userName;
+    private String fullName;
     private String password;
     private String email;
     private String phone;
@@ -28,7 +29,7 @@ public class Account {
     private long createdAt;
     private long createdBy;
     private long deletedAt;
-    private int role;
+    private Role role;
     private int status;
 
 }
