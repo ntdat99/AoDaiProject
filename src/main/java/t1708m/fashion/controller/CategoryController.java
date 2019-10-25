@@ -41,6 +41,10 @@ public class CategoryController {
                     HttpStatus.NOT_FOUND);
         }
         existCategory.setName(updateCategory.getName());
+        existCategory.setImage(updateCategory.getImage());
+        existCategory.setGender(updateCategory.getGender());
+        existCategory.setPrice(updateCategory.getPrice());
+
         return new ResponseEntity<>(new RESTResponse.Success()
                 .setStatus(HttpStatus.OK.value())
                 .setMessage("Success")
