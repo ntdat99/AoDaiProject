@@ -1,13 +1,12 @@
 package t1708m.fashion.entity;
 
+
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 
 
 @Data
@@ -17,6 +16,7 @@ import javax.persistence.Id;
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "category_id")
     private int id;
     private int productId;
     private String name;
@@ -30,5 +30,18 @@ public class Category {
     private long deletedAt;
     private int status;
 
+//    @OneToMany(fetch = FetchType.LAZY,
+//            cascade = {CascadeType.DETACH,
+//                    CascadeType.PERSIST,
+//                    CascadeType.REFRESH,
+//                    CascadeType.MERGE}, mappedBy = "category")
+//    private Set<Product> products;
+//
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "design_id", referencedColumnName = "id")
+//    private Design design;
+
+    public Category() {
+    }
 
 }
