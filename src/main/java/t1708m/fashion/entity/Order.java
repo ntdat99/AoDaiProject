@@ -17,16 +17,16 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @ManyToOne
-    @JoinColumn(name = "account_id")
-    private Account account;
-
-    @OneToMany(fetch = FetchType.LAZY,
-            cascade = {CascadeType.DETACH,
-                    CascadeType.PERSIST,
-                    CascadeType.REFRESH,
-                    CascadeType.MERGE})
-    private Set<OrderDetail> orderDetails;
+//    @ManyToOne
+//    @JoinColumn(name = "account_id")
+//    private Account account;
+//
+//    @OneToMany(fetch = FetchType.LAZY,
+//            cascade = {CascadeType.DETACH,
+//                    CascadeType.PERSIST,
+//                    CascadeType.REFRESH,
+//                    CascadeType.MERGE})
+//    private Set<OrderDetail> orderDetails;
     private int productId;
     private int customerId;
     private long totalPrice;

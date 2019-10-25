@@ -32,27 +32,14 @@ public class ProductDTO {
         this.size = "";
         this.color = "";
         ObjectUtil.cloneObject(this, product);
-//        this.createdAt = DateTimeUtil.formatDateFromLong(product.getCreatedAt());
-//        this.updatedAt = DateTimeUtil.formatDateFromLong(product.getUpdatedAt());
-//        this.deletedAt = DateTimeUtil.formatDateFromLong(product.getDeletedAt());
-//        this.status = product.getStatus() == 1 ? "Active" : "Deactive";
+        this.createdAt = Long.parseLong(DateTimeUtil.formatDateFromLong(product.getCreatedAt()));
+        this.updatedAt = Long.parseLong(DateTimeUtil.formatDateFromLong(product.getUpdatedAt()));
+        this.deletedAt = Long.parseLong(DateTimeUtil.formatDateFromLong(product.getDeletedAt()));
+        this.status = Integer.parseInt(product.getStatus() == 1 ? "Active" : "Deactive");
 
     }
 
-    public ProductDTO(int id, int categoryId, String name, String price, String description, String image, String size, String color, long updatedAt, long createdAt, long deletedAt, int status) {
-        this.id = id;
-        this.categoryId = categoryId;
-        this.name = name;
-        this.price = price;
-        this.description = description;
-        this.image = image;
-        this.size = size;
-        this.color = color;
-        this.updatedAt = updatedAt;
-        this.createdAt = createdAt;
-        this.deletedAt = deletedAt;
-        this.status = status;
-    }
+
 
     public int getId() {
         return id;

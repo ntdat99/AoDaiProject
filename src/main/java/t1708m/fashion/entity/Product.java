@@ -29,9 +29,9 @@ public class Product {
     private long deletedAt;
     private int status;
 
-    @ManyToOne
-    @JoinColumn(name = "category_id")
-    private Category category;
+//    @ManyToOne
+//    @JoinColumn(name = "category_id")
+//    private Category category;
 
     public Product() {
     }

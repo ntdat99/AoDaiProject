@@ -17,7 +17,7 @@ public class ProductService {
     ProductRepository productRepository;
 
 
-    public List<Product> heroes() {
+    public List<Product> products() {
         productRepository.findAll(PageRequest.of(1, 3));
         return productRepository.findActiveProduct(1);
     }

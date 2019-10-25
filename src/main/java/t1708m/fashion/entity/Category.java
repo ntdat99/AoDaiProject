@@ -30,16 +30,16 @@ public class Category {
     private long deletedAt;
     private int status;
 
-    @OneToMany(fetch = FetchType.LAZY,
-            cascade = {CascadeType.DETACH,
-                    CascadeType.PERSIST,
-                    CascadeType.REFRESH,
-                    CascadeType.MERGE}, mappedBy = "category")
-    private Set<Product> products;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "design_id", referencedColumnName = "id")
-    private Design design;
+//    @OneToMany(fetch = FetchType.LAZY,
+//            cascade = {CascadeType.DETACH,
+//                    CascadeType.PERSIST,
+//                    CascadeType.REFRESH,
+//                    CascadeType.MERGE}, mappedBy = "category")
+//    private Set<Product> products;
+//
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "design_id", referencedColumnName = "id")
+//    private Design design;
 
     public Category() {
     }

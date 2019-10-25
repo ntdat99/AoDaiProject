@@ -33,8 +33,8 @@ public class Design {
     private long createdAt;
     private long deletedAt;
     private int status;
-
-    @OneToOne(mappedBy = "design")
-    private Category category;
+//
+//    @OneToOne(mappedBy = "design")
+//    private Category category;
 
 }

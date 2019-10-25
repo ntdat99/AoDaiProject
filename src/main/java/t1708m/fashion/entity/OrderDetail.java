@@ -24,7 +24,7 @@ public class OrderDetail {
     private long createdAt;
     private int status;
 
-    @ManyToOne
-    @JoinColumn(name = "order_id")
-    private OrderDetail orderDetail;
+//    @ManyToOne
+//    @JoinColumn(name = "order_id")
+//    private OrderDetail orderDetail;
 }
