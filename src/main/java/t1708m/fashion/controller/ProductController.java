@@ -44,6 +44,11 @@ public class ProductController {
                     HttpStatus.NOT_FOUND);
         }
         existProduct.setName(updateProduct.getName());
+        existProduct.setPrice(updateProduct.getPrice());
+        existProduct.setDescription(updateProduct.getDescription());
+        existProduct.setImage(updateProduct.getImage());
+        existProduct.setSize(updateProduct.getSize());
+        existProduct.setColor(updateProduct.getColor());
         return new ResponseEntity<>(new RESTResponse.Success()
                 .setStatus(HttpStatus.OK.value())
                 .setMessage("Success")
