@@ -31,10 +31,10 @@ public class CategoryDTO {
         this.gender = "";
         this.price = "";
         ObjectUtil.cloneObject(this, category);
-        this.createdAt = Long.parseLong(DateTimeUtil.formatDateFromLong(category.getCreatedAt()));
-        this.updatedAt = Long.parseLong(DateTimeUtil.formatDateFromLong(category.getUpdatedAt()));
-        this.deletedAt = Long.parseLong(DateTimeUtil.formatDateFromLong(category.getDeletedAt()));
-        this.status = Integer.parseInt(category.getStatus() == 1 ? "Active" : "Deactive");
+//        this.createdAt = Long.parseLong(DateTimeUtil.formatDateFromLong(category.getCreatedAt()));
+//        this.updatedAt = Long.parseLong(DateTimeUtil.formatDateFromLong(category.getUpdatedAt()));
+//        this.deletedAt = Long.parseLong(DateTimeUtil.formatDateFromLong(category.getDeletedAt()));
+//        this.status = Integer.parseInt(category.getStatus() == 1 ? "Active" : "Deactive");
 
     }
 
