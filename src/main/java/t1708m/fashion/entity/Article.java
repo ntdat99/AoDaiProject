@@ -14,7 +14,7 @@ import javax.persistence.Id;
 public class Article {
     @Id
     private int id;
-    private int title;
+    private String title;
     private String description;
     private String image;
     private int status;
