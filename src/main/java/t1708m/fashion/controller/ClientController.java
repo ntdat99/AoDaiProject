@@ -15,6 +15,17 @@ public class ClientController {
         return "client/index";
     }
 
+    @GetMapping("/product")
+    public String product() {
+        return "client/product";
+    }
+
+    @GetMapping("/contact")
+    public String contact() {
+        return "client/contact";
+    }
+
+
     @GetMapping("/login")
     public String login(Model model) {
         return "login";
