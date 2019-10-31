@@ -39,7 +39,6 @@ public class AccountRegisterController {
         if (existing != null){
             result.rejectValue("email", null, "There is already an account registered with that email");
         }
-
         if (result.hasErrors()){
             return "register";
         }
