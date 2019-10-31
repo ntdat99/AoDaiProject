@@ -22,6 +22,10 @@ public class ProductController {
     @Autowired
     ProductService productService;
 
+    @RequestMapping(method = RequestMethod.GET,value = "/product")
+    public String product() {
+        return "/product";
+    }
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Object> store(@RequestBody Product product) {
