@@ -25,7 +25,35 @@ public class ClientController {
         return "client/contact";
     }
 
+    @GetMapping("/about")
+    public String about() {
+        return "client/about";
+    }
+    @GetMapping("/blog")
+    public String blog() {
+        return "client/blog";
+    }
 
+    @GetMapping("/blog-detail")
+    public String blogDetail() {
+        return "client/blog-detail";
+    }
+    @GetMapping("/home-03")
+    public String home3() {
+        return "client/home-03";
+    }
+    @GetMapping("/home-02")
+    public String home2() {
+        return "client/home-02";
+    }
+    @GetMapping("/product-detail")
+    public String productDetail() {
+        return "client/product-detail";
+    }
+    @GetMapping("/shoping-cart")
+    public String shoppingCart() {
+        return "client/shoping-cart";
+    }
     @GetMapping("/login")
     public String login(Model model) {
         return "login";
