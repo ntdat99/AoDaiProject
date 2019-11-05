@@ -1,7 +1,9 @@
 package t1708m.fashion.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import t1708m.fashion.entity.Category;
 import t1708m.fashion.entity.Product;
@@ -16,8 +18,12 @@ public class CategoryService {
     @Autowired
     CategoryRepository categoryRepository;
     public List<Category> categories() {
-        categoryRepository.findAll(PageRequest.of(1, 3));
+        //heroRepository.findAll(PageRequest.of(1, 3));
         return categoryRepository.findActiveCategory(1);
+    }
+
+    public Page<Category> categories(Specification specification, int page, int limit) {
+        return categoryRepository.findAll(specification, PageRequest.of(page - 1, limit));
     }
     public Category getById(int id) {
         return categoryRepository.findById(id).orElse(null);
