@@ -17,10 +17,11 @@ public class ProductService {
     ProductRepository productRepository;
 
 
-    public List<Product> products() {
-        productRepository.findAll(PageRequest.of(1, 3));
-        return productRepository.findActiveProduct(1);
+    public List<Product> findAll() {
+       return  productRepository.findAll();
+//        return productRepository.findActiveProduct(1);
     }
+
     public Product getById(int id) {
         return productRepository.findById(id).orElse(null);
     }

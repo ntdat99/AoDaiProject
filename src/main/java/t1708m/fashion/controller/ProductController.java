@@ -14,6 +14,7 @@ import t1708m.fashion.service.ProductService;
 
 import javax.validation.Valid;
 import java.util.Calendar;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/admin/aodai/products")
@@ -22,10 +23,6 @@ public class ProductController {
     @Autowired
     ProductService productService;
 
-    @RequestMapping(method = RequestMethod.GET,value = "/product")
-    public String product() {
-        return "/product";
-    }
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Object> store(@RequestBody Product product) {
