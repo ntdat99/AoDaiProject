@@ -3,6 +3,7 @@ package t1708m.fashion.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import t1708m.fashion.entity.Product;
 import t1708m.fashion.repository.ProductRepository;
@@ -18,8 +19,11 @@ public class ProductService {
 
 
     public List<Product> products() {
-        productRepository.findAll(PageRequest.of(1, 3));
+//        productRepository.findAll(PageRequest.of(1, 3));
         return productRepository.findActiveProduct(1);
+    }
+    public Page<Product> products(Specification specification, int page, int limit) {
+        return productRepository.findAll(specification, PageRequest.of(page - 1, limit));
     }
     public Product getById(int id) {
         return productRepository.findById(id).orElse(null);
