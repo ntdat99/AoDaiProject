@@ -19,6 +19,7 @@ public class Article {
     private String image;
     private int status;
     private long createdAt;
+    private long updateAt;
 
 
 }

@@ -14,14 +14,14 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-@Table(name = "category")
-public class Category {
+//@Table(name = "productcategories")
+public class ProductCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "category_id")
     private int id;
     private String name;
     private String image;
+    private String description;
     private String gender;
     private String price;
 
@@ -29,26 +29,17 @@ public class Category {
     private long updatedAt;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
-    private long updatedBy;
-
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
     private long createdAt;
-
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
-    private long createdBy;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
     private long deletedAt;
     private int status;
 
-    @OneToMany(fetch = FetchType.LAZY,
-            cascade = {CascadeType.DETACH,
-                    CascadeType.PERSIST,
-                    CascadeType.REFRESH,
-                    CascadeType.MERGE}, mappedBy = "category")
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE}, mappedBy = "category")
     private Set<Product> products;
 
-    public Category() {
+
+    public ProductCategory() {
     }
 
 }

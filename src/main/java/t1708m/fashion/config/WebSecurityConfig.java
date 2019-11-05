@@ -19,6 +19,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     AccountService accountService;
 
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public DaoAuthenticationProvider authenticationProvider() {
+        DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
+        auth.setUserDetailsService(accountService);
+        auth.setPasswordEncoder(passwordEncoder());
+        return auth;
+    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -27,14 +40,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/register**",
                         "/js/**",
                         "/css/**",
-                     "/webjars/**",
-                        "/customer/**",
-
-                        "/adminn/**",
-                        "client/product",
-
-                        "templates/**"
-                        ).permitAll()
+                        "/img/**",
+                        "/webjars/**",
+                        "/").permitAll()
+                .antMatchers("/admin**").hasAnyRole("ADMIN")
+                .antMatchers("/customer*").hasAnyRole("CUSTOMER")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -47,19 +57,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/login?logout")
                 .permitAll();
-    }
-
-    @Bean
-    public BCryptPasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
-    @Bean
-    public DaoAuthenticationProvider authenticationProvider() {
-        DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
-        auth.setUserDetailsService(accountService);
-        auth.setPasswordEncoder(passwordEncoder());
-        return auth;
     }
 
     @Override

@@ -1,11 +1,9 @@
 package t1708m.fashion.DTO;
 
-import t1708m.fashion.entity.Category;
-import t1708m.fashion.entity.Product;
-import t1708m.fashion.util.DateTimeUtil;
+import t1708m.fashion.entity.ProductCategory;
 import t1708m.fashion.util.ObjectUtil;
 
-public class CategoryDTO {
+public class ProductCategoryDTO {
     private int id;
     private int productId;
     private String name;
@@ -19,17 +17,16 @@ public class CategoryDTO {
     private long deletedAt;
     private int status;
 
-    public CategoryDTO() {
-    }
-
-    public CategoryDTO(int id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-    public CategoryDTO(Category category) {
-        this.image = "";
-        this.gender = "";
-        this.price = "";
+    public ProductCategoryDTO() {
+        }
+    public ProductCategoryDTO(int id, String name) {
+                this.id = id;
+                this.name = name;
+            }
+    public ProductCategoryDTO(ProductCategory category) {
+                    this.image = "";
+                    this.gender = "";
+                    this.price = "";
         ObjectUtil.cloneObject(this, category);
 //        this.createdAt = Long.parseLong(DateTimeUtil.formatDateFromLong(category.getCreatedAt()));
 //        this.updatedAt = Long.parseLong(DateTimeUtil.formatDateFromLong(category.getUpdatedAt()));
