@@ -6,90 +6,93 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
-import t1708m.fashion.DTO.ProductDTO;
-import t1708m.fashion.REST.RESTResponse;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import t1708m.fashion.entity.Product;
 import t1708m.fashion.service.ProductService;
 
+import javax.swing.*;
 import javax.validation.Valid;
-import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 
-@RestController
-@RequestMapping(value = "/admin/aodai/products")
-
+@Controller
+@RequestMapping(value = "/admin/products")
 public class ProductController {
     @Autowired
     ProductService productService;
 
-
-    @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Object> store(@RequestBody Product product) {
-        // validate.
-        return new ResponseEntity<>(new RESTResponse.Success()
-                .setStatus(HttpStatus.CREATED.value())
-                .setMessage("Action Success")
-                .addData(new ProductDTO(productService.create(product)))
-                .build(),
-                HttpStatus.CREATED);
-    }
-    @RequestMapping(method = RequestMethod.PUT, value = "/{id}")
-    public ResponseEntity<Object> update(@PathVariable int id, @RequestBody Product updateProduct) {
-        Product existProduct = productService.getById(id);
-        if (existProduct == null) {
-            return new ResponseEntity<>(new RESTResponse.SimpleError()
-                    .setCode(HttpStatus.NOT_FOUND.value())
-                    .setMessage("Not found")
-                    .build(),
-                    HttpStatus.NOT_FOUND);
-        }
-        existProduct.setName(updateProduct.getName());
-        existProduct.setPrice(updateProduct.getPrice());
-        existProduct.setDescription(updateProduct.getDescription());
-        existProduct.setImage(updateProduct.getImage());
-        existProduct.setSize(updateProduct.getSize());
-        return new ResponseEntity<>(new RESTResponse.Success()
-                .setStatus(HttpStatus.OK.value())
-                .setMessage("Success")
-                .addData(new ProductDTO(productService.update(existProduct)))
-                .build(),
-                HttpStatus.OK);
-    }
-
-    @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
-    public ResponseEntity<Object> delete(@PathVariable int id) {
-        Product existProduct = productService.getById(id);
-        if (existProduct == null) {
-            return new ResponseEntity<>(new RESTResponse.SimpleError()
-                    .setCode(HttpStatus.NOT_FOUND.value())
-                    .setMessage("Not found")
-                    .build(),
-                    HttpStatus.NOT_FOUND);
-        }
-        productService.delete(existProduct);
-        return new ResponseEntity<>(new RESTResponse.Success()
-                .setStatus(HttpStatus.OK.value())
-                .setMessage("Simple Success")
-                .build(),
-                HttpStatus.OK);
+    @RequestMapping(method = RequestMethod.GET)
+    public String index(Model model) {
+        List<Product> products = productService.products();
+        model.addAttribute("products", products);
+        return "admin/product/index";
     }
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
-    public ResponseEntity<Object> getDetail(@PathVariable int id) {
+    public String detail(@PathVariable int id, Model model) {
         Product product = productService.getById(id);
         if (product == null) {
-            return new ResponseEntity<>(new RESTResponse.SimpleError()
-                    .setCode(HttpStatus.NOT_FOUND.value())
-                    .setMessage("Not found")
-                    .build(),
-                    HttpStatus.NOT_FOUND);
+            return "error/404";
         }
-        return new ResponseEntity<>(new RESTResponse.Success()
-                .setStatus(HttpStatus.OK.value())
-                .setMessage("Success")
-                .addData(new ProductDTO(productService.getById(id)))
-                .build(),
-                HttpStatus.OK);
+        model.addAttribute("product", product);
+        return "admin/product/detail";
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/create")
+    public String create(Model model) {
+        model.addAttribute("product", new Product());
+        return "admin/product/form";
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/create")
+    public String store(Model model, @Valid Product product, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("products", product);
+            return "/admin/product/form";
+        }
+        productService.create(product);
+        return "redirect:/products";
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/edit/{id}")
+    public String edit(@PathVariable int id, Model model) {
+        Product product = productService.getById(id);
+        if (product == null) {
+            return "error/404";
+        }
+//        model.addAttribute("product", product);
+        return "admin/product/edit";
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/edit/{id}")
+    public String update(@PathVariable int id, Model model, Product updateProduct) {
+        Product product = productService.getById(id);
+        if (product == null) {
+            return "error/404";
+        }
+        product.setName(updateProduct.getName());
+        product.setDescription(updateProduct.getDescription());
+
+        productService.update(product);
+        return "redirect:/products";
+    }
+
+    // viết ajax call.
+    @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
+    @ResponseBody
+    public ResponseEntity<Object> update(@PathVariable int id) {
+        HashMap<String, Object> mapResponse = new HashMap<>();
+        Product product = productService.getById(id);
+        if (product == null) {
+            mapResponse.put("status", HttpStatus.NOT_FOUND.value());
+            mapResponse.put("message", "Hero is not found!");
+            return new ResponseEntity<>(mapResponse, HttpStatus.NOT_FOUND);
+        }
+        productService.delete(product);
+        mapResponse.put("status", HttpStatus.OK.value());
+        mapResponse.put("message", "Delete success");
+        return new ResponseEntity<>(mapResponse, HttpStatus.OK);
+    }
 }
