@@ -47,7 +47,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "client/product",
                         "templates/**",
                         "/**"
-                        ).permitAll()
+                ).permitAll()
                 .antMatchers("/admin**").hasAnyRole("ADMIN")
                 .antMatchers("/customer*").hasAnyRole("CUSTOMER")
                 .anyRequest().authenticated()
