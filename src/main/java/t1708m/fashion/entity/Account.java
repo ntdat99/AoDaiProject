@@ -12,7 +12,7 @@ import java.util.Set;
 @Setter
 
 @Entity
-@Table(name = "accounts")
+@Table(name = "account")
 public class Account {
 
     @Id
@@ -31,24 +31,24 @@ public class Account {
 
     @OneToMany(mappedBy = "account", cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private Set<Order> orders;
-
-    public enum Role {
-
-        CUSTOMER(1), ADMIN(99);
-
-        private int value;
-
-        Role(int i) {
-            this.value = i;
-        }
-
-        public int getValue() {
-            return value;
-        }
-
-        public void setValue(int value) {
-            this.value = value;
-        }
-    }
+//
+//    public enum Role {
+//
+//        CUSTOMER(1), ADMIN(99);
+//
+//        private int value;
+//
+//        Role(int i) {
+//            this.value = i;
+//        }
+//
+//        public int getValue() {
+//            return value;
+//        }
+//
+//        public void setValue(int value) {
+//            this.value = value;
+//        }
+//    }
 
 }

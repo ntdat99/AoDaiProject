@@ -23,6 +23,35 @@ public class AccountDTO {
     @NotEmpty
     private String address;
 
+    private int role;
+
+    public enum Role {
+
+        CUSTOMER(1), ADMIN(99);
+
+        private int value;
+
+        Role(int i) {
+            this.value = i;
+        }
+
+        public int getValue() {
+            return value;
+        }
+
+        public void setValue(int value) {
+            this.value = value;
+        }
+    }
+
+    public int getRole() {
+        return role;
+    }
+
+    public void setRole(int role) {
+        this.role = role;
+    }
+
     public AccountDTO() {
     }
 

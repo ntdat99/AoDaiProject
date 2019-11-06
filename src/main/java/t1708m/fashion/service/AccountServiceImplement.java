@@ -1,5 +1,6 @@
 package t1708m.fashion.service;
 
+import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -18,7 +19,7 @@ import java.util.Collection;
 import java.util.stream.Collectors;
 
 @Service
-public class AccountServiceImplement implements AccountService {
+class AccountServiceImplement implements AccountService {
 
     @Autowired
     AccountRepository accountRepository;
@@ -32,10 +33,6 @@ public class AccountServiceImplement implements AccountService {
             if (account == null) {
                 throw new UsernameNotFoundException("Invalid username or password.");
             }
-
-        //        return new org.springframework.security.core.userdetails.User(account.getEmail(),
-//                account.getPassword(),
-//                mapRolesToAuthorities(user.getRoles()));
         UserDetails user =
                 User.builder()
                         .username(account.getEmail())
@@ -47,18 +44,13 @@ public class AccountServiceImplement implements AccountService {
     public Account findByEmail(String email) {
         return accountRepository.findByEmail(email);
     }
-
-    @Override
-    public Account save(AccountDTO register) {
-        return null;
-    }
-
-    public Account save(AccountDTO register, Account.Role role) {
+    public Account save(AccountDTO register ) {
         Account account = new Account();
         account.setUsername(register.getUsername());
         account.setEmail(register.getEmail());
         account.setPassword(passwordEncoder.encode(register.getPassword()));
-        account.setRole(role.getValue());
+        final val role = register.getRole();
+        account.setRole(role);
         return accountRepository.save(account);
     }
 

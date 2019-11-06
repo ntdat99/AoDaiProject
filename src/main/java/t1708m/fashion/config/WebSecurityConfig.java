@@ -42,7 +42,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/css/**",
                         "/img/**",
                         "/webjars/**",
-                        "/").permitAll()
+                        "/customer/**",
+                        "/adminn/**",
+                        "client/product",
+                        "templates/**",
+                        "/**"
+                        ).permitAll()
                 .antMatchers("/admin**").hasAnyRole("ADMIN")
                 .antMatchers("/customer*").hasAnyRole("CUSTOMER")
                 .anyRequest().authenticated()
