@@ -15,20 +15,31 @@ import t1708m.fashion.repository.ProductRepository;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
-        @RequestMapping(method = RequestMethod.GET)
-        public String getAdmin() {
-            return "/admin/index";
-        }
-        @GetMapping(value = "/list-product")
-    public String product(){return "/admin/product/index";}
+    @RequestMapping(method = RequestMethod.GET)
+    public String getAdmin() {
+        return "/admin/index";
+    }
+
+    @GetMapping(value = "/list-product")
+    public String product() {
+        return "/admin/product/index";
+    }
+
+    @GetMapping(value = "/create-product")
+    public String Creproduct() {
+        return "/admin/product/form";
+    }
+
     @GetMapping("/account-edit")
     public String edit() {
         return "/admin/account/edit";
     }
+
     @GetMapping("/account-list")
     public String list() {
         return "/admin/account/list";
     }
+
     @GetMapping("/account-create")
     public String create() {
         return "/admin/account/create";

@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.w3.org/1999/xhtml" layout:decorate="~{admin/admin-layout/layout}">
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"  xmlns:th="http://www.thymeleaf.org" layout:decorate="~{admin/admin-layout/layout}">
 <head>
     <title>Index</title>
     <!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
@@ -28,76 +28,21 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td></td>
-            <td>System Architect</td>
-            <td>Edinburgh</td>
-            <td>61</td>
-            <td>2011/04/25</td>
-            <td>$320,800</td>
-            <td>$320,800</td>
+        <tr th:each="pro : ${products}">
+            <td><span th:text="${pro.id}"></span></td>
+            <td><span th:text="${pro.name}"></span></td>
+            <td><span th:text="${pro.price}"></span></td>
+            <td><span th:text="${pro.description}"></span></td>
+            <td><span th:text="${pro.image}"></span></td>
+            <td><span th:text="${pro.size}"></span></td>
+            <td><span></span></td>
             <td>
                 <button type="button" class="btn btn-simple btn-success btn-icon android-search"></button>
                 <button type="button" class="btn btn-simple btn-warning btn-icon edit"></button>
                 <button type="button" class="btn btn-simple btn-danger btn-icon remove btn-delete"></button>
             </td>
         </tr>
-        <tr>
-            <td></td>
-            <td>Accountant</td>
-            <td>Tokyo</td>
-            <td>63</td>
-            <td>2011/07/25</td>
-            <td>$170,750</td>
-            <td>$320,800</td>
-            <td>
-                <button type="button" class="btn btn-simple btn-success btn-icon android-search"></button>
-                <button type="button" class="btn btn-simple btn-warning btn-icon edit"></button>
-                <button type="button" class="btn btn-simple btn-danger btn-icon remove btn-delete"></button>
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>Junior Technical Author</td>
-            <td>San Francisco</td>
-            <td>66</td>
-            <td>2009/01/12</td>
-            <td>$86,000</td>
-            <td>$320,800</td>
-            <td>
-                <button type="button" class="btn btn-simple btn-success btn-icon android-search"></button>
-                <button type="button" class="btn btn-simple btn-warning btn-icon edit"></button>
-                <button type="button" class="btn btn-simple btn-danger btn-icon remove btn-delete"></button>
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>Senior Javascript Developer</td>
-            <td>Edinburgh</td>
-            <td>22</td>
-            <td>2012/03/29</td>
-            <td>$433,060</td>
-            <td>$320,800</td>
-            <td>
-                <button type="button" class="btn btn-simple btn-success btn-icon android-search"></button>
-                <button type="button" class="btn btn-simple btn-warning btn-icon edit"></button>
-                <button type="button" class="btn btn-simple btn-danger btn-icon remove btn-delete"></button>
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>Accountant</td>
-            <td>Tokyo</td>
-            <td>33</td>
-            <td>2008/11/28</td>
-            <td>$162,700</td>
-            <td>$320,800</td>
-            <td>
-                <button type="button" class="btn btn-simple btn-success btn-icon android-search"></button>
-                <button type="button" class="btn btn-simple btn-warning btn-icon edit"></button>
-                <button type="button" class="btn btn-simple btn-danger btn-icon remove btn-delete"></button>
-            </td>
-        </tr>
+
         </tbody>
     </table>
 </div>

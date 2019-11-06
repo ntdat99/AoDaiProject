@@ -21,12 +21,10 @@ public class ClientController {
     public String product() {
         return "client/product";
     }
-
     @GetMapping("/contact")
     public String contact() {
         return "client/contact";
     }
-
     @GetMapping("/about")
     public String about() {
         return "client/about";
@@ -35,7 +33,6 @@ public class ClientController {
     public String blog() {
         return "client/blog";
     }
-
     @GetMapping("/blog-detail")
     public String blogDetail() {
         return "client/blog-detail";
