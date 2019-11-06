@@ -29,10 +29,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/css/**",
                      "/webjars/**",
                         "/customer/**",
-
                         "/adminn/**",
                         "client/product",
-
                         "templates/**"
                         ).permitAll()
                 .anyRequest().authenticated()
