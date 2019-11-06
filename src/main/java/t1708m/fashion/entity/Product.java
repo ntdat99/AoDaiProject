@@ -12,12 +12,11 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-@Table(name = "product")
+@Table(name = "products")
 public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "product_id")
     private int id;
 
     @NotNull
@@ -25,23 +24,83 @@ public class Product {
     private String price;
     private String description;
     private String image;
-    private String size;
-    private String color;
-
-    private long updatedAt;
+    private int size;
+    private int gender;
+    private int type; // 1. của cửa hàng 2. của khách hàng.    private long updatedAt;
     private long createdAt;
+    private long updatedAt;
     private long deletedAt;
     private int status;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinTable(name = "account_product", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "account_id"))
-    private Set<Account> account;
-
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
-    private Category category;
+    private ProductCategory category;
+
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY)
+    @JoinColumn(name = "fabric_id")
+    private Fabric fabric;
+    @OneToMany(mappedBy = "product",cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    private Set<OrderDetail> orderDetails;
 
     public Product() {
+    }
+
+    public enum Type {
+
+        SHOP_PRODUCT(1), CUSTOMER_PRODUCT(2);
+
+        private int value;
+
+        Type(int i) {
+            this.value = i;
+        }
+
+        public int getValue() {
+            return value;
+        }
+
+        public void setValue(int value) {
+            this.value = value;
+        }
+    }
+
+    public enum SIZE {
+
+        S(1), M(2);
+
+        private int value;
+
+        SIZE(int i) {
+            this.value = i;
+        }
+
+        public int getValue() {
+            return value;
+        }
+
+        public void setValue(int value) {
+            this.value = value;
+        }
+    }
+
+
+    public enum GENDER {
+
+        MALE(1), FEMALE(0);
+
+        private int value;
+
+        GENDER(int i) {
+            this.value = i;
+        }
+
+        public int getValue() {
+            return value;
+        }
+
+        public void setValue(int value) {
+            this.value = value;
+        }
     }
 
 }

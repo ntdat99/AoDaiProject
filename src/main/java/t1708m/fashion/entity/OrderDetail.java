@@ -10,21 +10,23 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-@Table(name = "order_detail")
+@Table(name = "order_details")
 public class OrderDetail {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "order_detail_id")
     private int id;
-    private String deliAdress;
-    private String quantity;
-    private String phone;
-    private String totalPrice;
-    private long createdAt;
-    private int status;
+    private int quantity;
+    private String shipName;
+    private String shipPhone;
+    private String shipAddress;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "order_id")
-    private OrderProduct orderProduct;
+    private Order order;
+
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinColumn(name = "product_id")
+    private Product product;
+
 }

@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping(value = "/")
 public class ClientController {
 
+
+
     @RequestMapping(method = RequestMethod.GET)
     public String getClient() {
         return "client/index";

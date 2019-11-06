@@ -47,4 +47,5 @@ public class AccountRegisterController {
         accountService.save(accountDTO);
         return "redirect:/register?success";
     }
+
 }
