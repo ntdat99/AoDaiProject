@@ -25,10 +25,11 @@ import java.util.List;
 public class CategoryController {
     @Autowired
     CategoryService categoryService;
+
     @RequestMapping(method = RequestMethod.GET)
     public String index(Model model) {
-        List<ProductCategory> productcategories= categoryService.categories();
-        model.addAttribute("categories", productcategories);
+        List<ProductCategory> categories= categoryService.categories();
+        model.addAttribute("categories", categories);
         return "admin/category/index";
     }
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")

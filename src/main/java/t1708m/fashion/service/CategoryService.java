@@ -16,7 +16,7 @@ public class CategoryService {
     @Autowired
     CategoryRepository categoryRepository;
     public List<ProductCategory> categories() {
-        categoryRepository.findAll(PageRequest.of(1, 3));
+//        categoryRepository.findAll(PageRequest.of(1, 3));
         return categoryRepository.findActiveCategory(1);
     }
 
