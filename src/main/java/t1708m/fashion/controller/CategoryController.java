@@ -21,7 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 
 @Controller
-@RequestMapping(value = "/productcategories")
+@RequestMapping(value = "/admin/category")
 public class CategoryController {
     @Autowired
     CategoryService categoryService;
@@ -29,7 +29,7 @@ public class CategoryController {
     public String index(Model model) {
         List<ProductCategory> productcategories= categoryService.categories();
         model.addAttribute("categories", productcategories);
-        return "admin/productcategory/index";
+        return "admin/category/index";
     }
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     public String detail(@PathVariable int id, Model model) {
@@ -38,23 +38,23 @@ public class CategoryController {
             return "error/404";
         }
         model.addAttribute("category", category);
-        return "admin/productcategory/detail";
+        return "admin/category/detail";
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/create")
     public String create(Model model) {
         model.addAttribute("category", new ProductCategory());
-        return "admin/productcategory/form";
+        return "admin/category/form";
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/create")
     public String store(Model model, @Valid ProductCategory category, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("category", category);
-            return "admin/productcategory/form";
+            return "admin/category/form";
         }
         categoryService.create(category);
-        return "redirect:/productcategories";
+        return "redirect:/category";
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/edit/{id}")
@@ -64,7 +64,7 @@ public class CategoryController {
             return "error/404";
         }
         model.addAttribute("category", category);
-        return "admin/productcategory/edit";
+        return "admin/category/edit";
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/edit/{id}")
@@ -77,7 +77,7 @@ public class CategoryController {
         category.setPrice(updateCategory.getPrice());
 
         categoryService.update(category);
-        return "redirect:/productcategories";
+        return "redirect:/category";
     }
 
     // viết ajax call.
