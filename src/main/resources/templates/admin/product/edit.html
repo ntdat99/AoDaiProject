@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.w3.org/1999/xhtml" layout:decorate="~{admin/admin-layout/layout}">
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org" layout:decorate="~{admin/admin-layout/layout}">
 <head>
     <title>Index</title>
     <!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
@@ -18,48 +18,43 @@
             </div>
         </div>
         <!--begin::Form-->
-        <form class="kt-form">
+        <form class="kt-form" th:action="@{/edit/{id}(id=${product.id})}"
+              th:object="${product}"
+              method="post">
             <div class="kt-portlet__body">
                 <div class="kt-form__section kt-form__section--first">
                     <div class="form-group row">
                         <label class="col-lg-2 col-form-label">Name:</label>
                         <div class="col-lg-4">
-                            <input type="email" class="form-control">
+                            <input type="text" class="form-control" th:field="*{name}">
                             <span class="form-text text-muted"></span>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-lg-2 col-form-label">Price:</label>
                         <div class="col-lg-4">
-                            <input type="email" class="form-control">
+                            <input type="text" class="form-control" th:field="*{price}">
                             <span class="form-text text-muted"></span>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-lg-2 col-form-label">Description:</label>
                         <div class="col-lg-4">
-                            <input type="email" class="form-control">
+                            <input type="text" class="form-control" th:field="*{description}">
                             <span class="form-text text-muted"></span>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-lg-2 col-form-label">Image:</label>
                         <div class="col-lg-4">
-                            <input type="email" class="form-control">
+                            <input type="text" class="form-control" th:field="*{name}">
                             <span class="form-text text-muted"></span>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-lg-2 col-form-label">Size:</label>
                         <div class="col-lg-4">
-                            <input type="email" class="form-control">
-                            <span class="form-text text-muted"></span>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-lg-2 col-form-label">Color:</label>
-                        <div class="col-lg-4">
-                            <input type="email" class="form-control">
+                            <input type="text" class="form-control" th:field="*{size}">
                             <span class="form-text text-muted"></span>
                         </div>
                     </div>
@@ -70,7 +65,7 @@
                     <div class="row">
                         <div class="col-lg-2"></div>
                         <div class="col-lg-2">
-                            <button type="reset" class="btn btn-success">Submit</button>
+                            <button type="submit" class="btn btn-success">Submit</button>
                             <button type="reset" class="btn btn-secondary">Cancel</button>
                         </div>
                     </div>

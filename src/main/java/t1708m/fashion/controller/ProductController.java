@@ -39,7 +39,6 @@ public class ProductController {
         model.addAttribute("product", product);
         return "admin/product/detail";
     }
-
     @RequestMapping(method = RequestMethod.GET, value = "/create")
     public String create(Model model) {
         model.addAttribute("product", new Product());
@@ -62,7 +61,7 @@ public class ProductController {
         if (product == null) {
             return "error/404";
         }
-//        model.addAttribute("product", product);
+        model.addAttribute("product", product);
         return "admin/product/edit";
     }
 
@@ -72,9 +71,14 @@ public class ProductController {
         if (product == null) {
             return "error/404";
         }
+        model.addAttribute("product", product);
         product.setName(updateProduct.getName());
         product.setDescription(updateProduct.getDescription());
-
+        product.setPrice(updateProduct.getPrice());
+        product.setStatus(updateProduct.getStatus());
+        product.setGender(updateProduct.getGender());
+        product.setImage(updateProduct.getImage());
+        product.setSize(updateProduct.getSize());
         productService.update(product);
         return "redirect:/products";
     }
@@ -82,12 +86,12 @@ public class ProductController {
     // viết ajax call.
     @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
     @ResponseBody
-    public ResponseEntity<Object> update(@PathVariable int id) {
+    public ResponseEntity<Object> delete(@PathVariable int id) {
         HashMap<String, Object> mapResponse = new HashMap<>();
         Product product = productService.getById(id);
         if (product == null) {
             mapResponse.put("status", HttpStatus.NOT_FOUND.value());
-            mapResponse.put("message", "Hero is not found!");
+            mapResponse.put("message", "Product is not found!");
             return new ResponseEntity<>(mapResponse, HttpStatus.NOT_FOUND);
         }
         productService.delete(product);
