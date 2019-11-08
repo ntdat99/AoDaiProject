@@ -21,6 +21,7 @@ import java.util.List;
 @Controller
 @RequestMapping(value = "/admin/products")
 public class ProductController {
+
     @Autowired
     ProductService productService;
 
@@ -30,6 +31,7 @@ public class ProductController {
         model.addAttribute("products", products);
         return "admin/product/index";
     }
+
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     public String detail(@PathVariable int id, Model model) {
         Product product = productService.getById(id);
@@ -62,7 +64,7 @@ public class ProductController {
         if (product == null) {
             return "error/404";
         }
-//        model.addAttribute("product", product);
+        model.addAttribute("product", product);
         return "admin/product/edit";
     }
 
@@ -74,7 +76,6 @@ public class ProductController {
         }
         product.setName(updateProduct.getName());
         product.setDescription(updateProduct.getDescription());
-
         productService.update(product);
         return "redirect:/products";
     }
@@ -87,7 +88,7 @@ public class ProductController {
         Product product = productService.getById(id);
         if (product == null) {
             mapResponse.put("status", HttpStatus.NOT_FOUND.value());
-            mapResponse.put("message", "Hero is not found!");
+            mapResponse.put("message", "Product is not found!");
             return new ResponseEntity<>(mapResponse, HttpStatus.NOT_FOUND);
         }
         productService.delete(product);
