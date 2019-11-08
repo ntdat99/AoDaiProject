@@ -3,6 +3,7 @@
 <head>
 	<title>Home</title>
 	<meta charset="UTF-8">
+
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--===============================================================================================-->
 	<link rel="icon" type="image/png" href="/customer/images/icons/favicon.png"/>
@@ -78,33 +79,32 @@
 
 				<!-- Menu desktop -->
 				<div class="menu-desktop">
-					<ul class="main-menu">
+					<ul class="main-menu" body="font-family">
 						<li class="active-menu">
-							<a href="index">Home</a>
+							<a href="/">Trang chủ</a>
+						</li>
+						<li class="active-menu">
+							<a href="/product">Danh mục</a>
 							<ul class="sub-menu">
-								<li><a href="index">Homepage 1</a></li>
-								<li><a href="home-02">Homepage 2</a></li>
-								<li><a href="home-03">Homepage 3</a></li>
+								<li><a href="index">Áo dài truyền thống</a></li>
+								<li><a href="home-02">Áo dài cách tân</a></li>
+								<li><a href="home-03">Áo dài trơn</a></li>
 							</ul>
 						</li>
-
 						<li>
-							<a th:href="@{/product}">Shop</a>
-						</li>
-
-						<li class="label1" data-label1="hot">
-							<a href="shoping-cart">Features</a>
-						</li>
-
-						<li>
-							<a href="blog">Blog</a>
+							<a href="">Hàng bán chạy</a>
 						</li>
 						<li>
-							<a href="about">About</a>
+							<a href="/blog">Blog</a>
 						</li>
-
+						<li class="label1"data-label1="hot">
+							<a href="">Khuyến mãi</a>
+						</li>
 						<li>
-							<a href="contact">Contact</a>
+							<a href="/contact">Liên hệ</a>
+						</li>
+						<li>
+							<a href="/about">Về chúng tôi</a>
 						</li>
 					</ul>
 				</div>
@@ -505,34 +505,34 @@
 	<div class="container">
 		<div class="p-b-10">
 			<h3 class="ltext-103 cl5">
-				Product Overview
+				Tổng quan sản phẩm
 			</h3>
 		</div>
 
 		<div class="flex-w flex-sb-m p-b-52">
 			<div class="flex-w flex-l-m filter-tope-group m-tb-10">
 				<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
-					All Products
+					Tất cả sản phẩm
 				</button>
 
 				<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".women">
-					Women
+					Áo dài cách tân
 				</button>
 
 				<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".men">
-					Men
+					Áo dài truyền thống
 				</button>
 
 				<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".bag">
-					Bag
+					Áo dài trơn
 				</button>
 
 				<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".shoes">
-					Shoes
+					Bán chạy
 				</button>
 
 				<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".watches">
-					Watches
+					Đang khuyến mãi
 				</button>
 			</div>
 
@@ -540,13 +540,13 @@
 				<div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
 					<i class="icon-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-filter-list"></i>
 					<i class="icon-close-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
-					Filter
+					Bộ lọc
 				</div>
 
 				<div class="flex-c-m stext-106 cl6 size-105 bor4 pointer hov-btn3 trans-04 m-tb-4 js-show-search">
 					<i class="icon-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-search"></i>
 					<i class="icon-close-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
-					Search
+					Tìm kiếm
 				</div>
 			</div>
 
@@ -1279,145 +1279,75 @@
 <footer class="bg3 p-t-75 p-b-32">
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-6 col-lg-3 p-b-50">
-				<h4 class="stext-301 cl0 p-b-30">
-					Categories
-				</h4>
+			<div class="col-md-8">
+				<div class="row">
 
-				<ul>
-					<li class="p-b-10">
-						<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-							Women
-						</a>
-					</li>
+					<div class="col-md-6 col-sm-6">
+						<div class="gray">
+							<h3>Sumire Store</h3>
+							<ul>
+								<li><strong>Địa chỉ: </strong>21/2 Hậu Giang, Quận Tân Bình, Tp.HCM</li>
+								<li><strong>Hotline: </strong>077 338 9574 </li>
+							</ul>
+						</div>
 
-					<li class="p-b-10">
-						<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-							Men
-						</a>
-					</li>
+						<div class="f-box">
+							<div class="social">
+								<ul>
+									<li><a target="_blank" href=""><i class="fa fa-twitter"></i></a></li>
+                                    <li><a target="_blank" href=""><i class="fa fa-pinterest"></i></a></li>-->
+									<li><a target="_blank" href="https://www.facebook.com/the.sumire.store"><i class="fa fa-facebook-square"></i> the.sumire.store</a></li>
+									<li><a target="_blank" href=""><i class="fa fa-behance"></i></a></li>
+                                    <li><a target="_blank" href=""><i class="fa fa-dribbble"></i></a></li>
+								</ul>
+							</div>
 
-					<li class="p-b-10">
-						<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-							Shoes
-						</a>
-					</li>
+						</div>
+					</div>
 
-					<li class="p-b-10">
-						<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-							Watches
-						</a>
-					</li>
-				</ul>
-			</div>
+					<div class="col-md-3 col-sm-6">
+						<div class="f-box">
+							<h3>Album Mới</h3>
+							<ul>
 
-			<div class="col-sm-6 col-lg-3 p-b-50">
-				<h4 class="stext-301 cl0 p-b-30">
-					Help
-				</h4>
+								<li><a href="/collections/ao-dai-truyen-thong">Áo Dài Truyền Thống (Update Mới Nhất)</a></li>
 
-				<ul>
-					<li class="p-b-10">
-						<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-							Track Order
-						</a>
-					</li>
+							</ul>
 
-					<li class="p-b-10">
-						<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-							Returns
-						</a>
-					</li>
+						</div>
+					</div>
 
-					<li class="p-b-10">
-						<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-							Shipping
-						</a>
-					</li>
+					<div class="col-md-3 col-sm-12">
+						<div class="f-box">
+							<h3>Mở cửa</h3>
+							<ul>
+								<li>THỨ 2 - CN</li>
+								<li>Sáng 10:00 - Chiều 8:30</li>
+							</ul>
+						</div>
+						<div class="f-box">
+							<img src='//theme.hstatic.net/1000136076/1000253238/14/clock.png?v=213' alt=''  />
+						</div>
+					</div>
+				</div>
 
-					<li class="p-b-10">
-						<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-							FAQs
-						</a>
-					</li>
-				</ul>
-			</div>
+				<div class="coppyright clearfix">
+					<div class="pull-left">
+						<ul class="links links-inline clearfix">
 
-			<div class="col-sm-6 col-lg-3 p-b-50">
-				<h4 class="stext-301 cl0 p-b-30">
-					GET IN TOUCH
-				</h4>
+							<li><a href="/search">Tìm kiếm</a></li>
 
-				<p class="stext-107 cl7 size-201">
-					Any questions? Let us know in store at 8th floor, 379 Hudson St, New York, NY 10018 or call us on (+1) 96 716 6879
-				</p>
+							<li><a href="/pages/sumire-store">Giới thiệu</a></li>
 
-				<div class="p-t-27">
-					<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-						<i class="fa fa-facebook"></i>
-					</a>
 
-					<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-						<i class="fa fa-instagram"></i>
-					</a>
-
-					<a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-						<i class="fa fa-pinterest-p"></i>
-					</a>
+						</ul>
+						<coppyright>Copyrights © 2016 All Rights Reserved by Sumire Store</coppyright>
+					</div>
+					<div class="payment pull-right">
+						<img src='//theme.hstatic.net/1000136076/1000253238/14/payment.png?v=213' alt=''  />
+					</div>
 				</div>
 			</div>
-
-			<div class="col-sm-6 col-lg-3 p-b-50">
-				<h4 class="stext-301 cl0 p-b-30">
-					Newsletter
-				</h4>
-
-				<form>
-					<div class="wrap-input1 w-full p-b-4">
-						<input class="input1 bg-none plh1 stext-107 cl7" type="text" name="email" placeholder="email@example.com">
-						<div class="focus-input1 trans-04"></div>
-					</div>
-
-					<div class="p-t-18">
-						<button class="flex-c-m stext-101 cl0 size-103 bg1 bor1 hov-btn2 p-lr-15 trans-04">
-							Subscribe
-						</button>
-					</div>
-				</form>
-			</div>
-		</div>
-
-		<div class="p-t-40">
-			<div class="flex-c-m flex-w p-b-18">
-				<a href="#" class="m-all-1">
-					<img src="/customer/images/icons/icon-pay-01.png" alt="ICON-PAY">
-				</a>
-
-				<a href="#" class="m-all-1">
-					<img src="/customer/images/icons/icon-pay-02.png" alt="ICON-PAY">
-				</a>
-
-				<a href="#" class="m-all-1">
-					<img src="/customer/images/icons/icon-pay-03.png" alt="ICON-PAY">
-				</a>
-
-				<a href="#" class="m-all-1">
-					<img src="/customer/images/icons/icon-pay-04.png" alt="ICON-PAY">
-				</a>
-
-				<a href="#" class="m-all-1">
-					<img src="/customer/images/icons/icon-pay-05.png" alt="ICON-PAY">
-				</a>
-			</div>
-
-			<p class="stext-107 cl6 txt-center">
-				<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-				Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-				<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-
-			</p>
-		</div>
-	</div>
 </footer>
 
 
