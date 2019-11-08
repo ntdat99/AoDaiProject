@@ -49,6 +49,8 @@ class AccountServiceImplement implements AccountService {
         account.setUsername(register.getUsername());
         account.setEmail(register.getEmail());
         account.setPassword(passwordEncoder.encode(register.getPassword()));
+        account.setPhone(register.getPhone());
+        account.setAddress(register.getAddress());
         final val role = register.getRole();
         account.setRole(role);
         return accountRepository.save(account);

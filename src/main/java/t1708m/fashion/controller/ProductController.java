@@ -21,6 +21,7 @@ import java.util.List;
 @Controller
 @RequestMapping(value = "/admin/products")
 public class ProductController {
+
     @Autowired
     ProductService productService;
 
@@ -30,6 +31,7 @@ public class ProductController {
         model.addAttribute("products", products);
         return "admin/product/index";
     }
+
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     public String detail(@PathVariable int id, Model model) {
         Product product = productService.getById(id);
@@ -72,13 +74,6 @@ public class ProductController {
             return "error/404";
         }
         model.addAttribute("product", product);
-        product.setName(updateProduct.getName());
-        product.setDescription(updateProduct.getDescription());
-        product.setPrice(updateProduct.getPrice());
-        product.setStatus(updateProduct.getStatus());
-        product.setGender(updateProduct.getGender());
-        product.setImage(updateProduct.getImage());
-        product.setSize(updateProduct.getSize());
         productService.update(product);
         return "redirect:/products";
     }
