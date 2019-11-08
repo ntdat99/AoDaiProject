@@ -44,6 +44,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/webjars/**",
                         "/customer/**",
                         "/adminn/**",
+                        "/loginn/**",
                         "client/product",
                         "templates/**",
                         "/**"
