@@ -2,6 +2,7 @@
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"  xmlns:th="http://www.thymeleaf.org" layout:decorate="~{admin/admin-layout/layout}">
 <head>
     <title>Index</title>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 
 </head>
 <body>
@@ -32,11 +33,10 @@
             <td><span th:text="${cate.gender}"></span></td>
             <td><span th:text="${cate.image}"></span></td>
             <td><span th:text="${cate.status}"></span></td>
-            <td><span></span></td>
             <td>
-                <button type="button" class="btn btn-simple btn-success btn-icon android-search"></button>
-                <button type="button" class="btn btn-simple btn-warning btn-icon edit"></button>
-                <button type="button" class="btn btn-simple btn-danger btn-icon remove btn-delete"></button>
+                <a th:href="@{category/{id}(id=${cate.id})}"><i style='font-size:24px' class='far fa-info-square'>&#xf044;</i></a>
+                <a th:href="@{category/edit/{id}(id=${cate.id})}"><i style='font-size:24px' class='far'>&#xf044;</i></a>
+                <a th:href="@{category/delete/{id}(id=${cate.id})}"><i class="fas fa-trash"></i></a>
             </td>
         </tr>
 

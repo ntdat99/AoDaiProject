@@ -54,7 +54,7 @@ public class ProductController {
             return "/admin/product/form";
         }
         productService.create(product);
-        return "redirect:/admin/product";
+        return "redirect:/admin/products";
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/edit/{id}")
