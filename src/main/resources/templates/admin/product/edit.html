@@ -18,7 +18,7 @@
             </div>
         </div>
         <!--begin::Form-->
-        <form class="kt-form" th:action="@{/edit/{id}(id=${product.id})}"
+        <form class="kt-form" th:action="@{'/admin/products/edit/'+${product.id}}"
               th:object="${product}"
               method="post">
             <div class="kt-portlet__body">

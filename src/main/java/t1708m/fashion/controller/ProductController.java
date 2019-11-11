@@ -44,7 +44,7 @@ public class ProductController {
     @RequestMapping(method = RequestMethod.GET, value = "/create")
     public String create(Model model) {
         model.addAttribute("product", new Product());
-        return "admin/product/form";
+        return "/admin/product/form";
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/create")
@@ -54,7 +54,7 @@ public class ProductController {
             return "/admin/product/form";
         }
         productService.create(product);
-        return "redirect:/products";
+        return "redirect:/admin/product";
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/edit/{id}")
@@ -74,8 +74,16 @@ public class ProductController {
             return "error/404";
         }
         model.addAttribute("product", product);
+        product.setName(updateProduct.getName());
+        product.setPrice(updateProduct.getPrice());
+        product.setDescription(updateProduct.getDescription());
+        product.setImage(updateProduct.getImage());
+        product.setGender(updateProduct.getGender());
+        product.setSize(updateProduct.getSize());
+        product.setCategory(updateProduct.getCategory());
+        product.setStatus(updateProduct.getStatus());
         productService.update(product);
-        return "redirect:/products";
+        return "redirect:/admin/products";
     }
 
     // viết ajax call.

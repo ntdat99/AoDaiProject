@@ -29,6 +29,7 @@ public class ProductService {
     public Product getById(int id) {
         return productRepository.findById(id).orElse(null);
     }
+
     public Product create(Product product) {
         product.setStatus(1);
         product.setCreatedAt(Calendar.getInstance().getTimeInMillis());
@@ -37,6 +38,8 @@ public class ProductService {
     }
     public Product update(Product product) {
         product.setUpdatedAt(Calendar.getInstance().getTimeInMillis());
+        product.setName(product.getName());
+        product.setStatus(1);
         return productRepository.save(product);
     }
 
