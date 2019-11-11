@@ -55,7 +55,7 @@ public class CategoryController {
             return "admin/category/form";
         }
         categoryService.create(category);
-        return "redirect:/category";
+        return "redirect:admin/category";
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/edit/{id}")
@@ -76,9 +76,8 @@ public class CategoryController {
         }
         category.setName(updateCategory.getName());
         category.setPrice(updateCategory.getPrice());
-
         categoryService.update(category);
-        return "redirect:/category";
+        return "redirect:/admin/category";
     }
 
     // viết ajax call.
