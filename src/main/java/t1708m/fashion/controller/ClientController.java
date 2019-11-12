@@ -14,7 +14,7 @@ public class ClientController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String getClient() {
-        return "client/index";
+        return "client/home";
     }
 
     @GetMapping("/product")
