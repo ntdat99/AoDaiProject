@@ -1,20 +1,27 @@
 package t1708m.fashion.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import t1708m.fashion.entity.Product;
+import t1708m.fashion.service.ProductService;
+
+import java.util.List;
 
 @Controller
 @RequestMapping(value = "/")
 public class ClientController {
-
-
+    @Autowired
+    ProductService productService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String getClient() {
-        return "client/home";
+    public String index(Model model) {
+        List<Product> products = productService.products();
+        model.addAttribute("products", products);
+        return "/client/home";
     }
 
     @GetMapping("/product")
@@ -45,10 +52,7 @@ public class ClientController {
     public String home2() {
         return "client/home-02";
     }
-    @GetMapping("/product-detail")
-    public String productDetail() {
-        return "client/product-detail";
-    }
+
     @GetMapping("/shoping-cart")
     public String shoppingCart() {
         return "client/shoping-cart";

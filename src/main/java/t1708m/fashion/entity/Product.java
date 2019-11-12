@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 import java.util.Set;
 
@@ -23,8 +24,9 @@ public class Product {
     private String name;
     private String price;
     private String description;
+
     private String image;
-    private int size;
+    private String size;
     private int gender;
     private int type; // 1. của cửa hàng 2. của khách hàng.    private long updatedAt;
     private long createdAt;
