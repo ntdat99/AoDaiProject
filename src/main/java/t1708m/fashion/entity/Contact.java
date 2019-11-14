@@ -4,10 +4,7 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Data
 @Getter
@@ -27,5 +24,32 @@ public class Contact {
     private long updateAt;
     private long deletedAt;
     private int status;
+
+    @ManyToOne
+    @JoinColumn(name = "created_by_id")
+    private Account createdBy; // tạo bởi ai.
+
+    @ManyToOne
+    @JoinColumn(name = "updated_by_id")
+    private Account updatedBy; // update bởi ai.
+
+    public enum Status {
+
+        ACTIVE(1), DEACTIVE(0), DELETED(-1);
+
+        private int value;
+
+        Status(int i) {
+            this.value = i;
+        }
+
+        public int getValue() {
+            return value;
+        }
+
+        public void setValue(int value) {
+            this.value = value;
+        }
+    }
 
 }

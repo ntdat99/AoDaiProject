@@ -25,15 +25,15 @@ public class Article {
     private long deletedAt;
     private int status;
 
-    @OneToOne(optional = true)
-    @JoinColumn(name = "created_by_id", referencedColumnName = "id", nullable = true)
+    @ManyToOne
+    @JoinColumn(name = "created_by_id")
     private Account createdBy; // tạo bởi ai.
 
-    @OneToOne(optional = true)
-    @JoinColumn(name = "updated_by_id", referencedColumnName = "id", nullable = true)
+    @ManyToOne
+    @JoinColumn(name = "updated_by_id")
     private Account updatedBy; // update bởi ai.
 
-    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "category_id")
     private ArticleCategory category;
 

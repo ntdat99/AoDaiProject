@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.Set;
 
 @Data
@@ -29,15 +28,26 @@ public class Account {
     private long deletedAt;
     private int status;
 
-    @OneToOne(optional = true)
-    @JoinColumn(name = "updated_by_id", referencedColumnName = "id", nullable = true)
-    private Account updatedBy; // update bởi ai.
+    /**
+     * Tài khoản có thể bị update thông tin bởi admin. Trường này trả lời tài khoản update bởi ai.
+     */
+    @OneToOne
+    @JoinColumn(name = "updated_by")
+    private Account updatedBy;
 
-    @OneToMany(mappedBy = "createdBy", cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    private Set<Order> createdOrders;
+    /**
+     * Tài khoản của người dùng có thể tạo nhiều order, trường này thể hiện những order của người dùng này.
+     */
+    @OneToMany(mappedBy = "createdBy")
+    private Set<HelloOrder> createdOrders;
 
-    @OneToMany(mappedBy = "updatedBy", cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    private Set<Order> updatedOrders;
+    /**
+     * Tài khoản admin có thể update trạng thái order, chuyển các trạng thái thành công, huỷ... Trường này
+     * thể hiện danh sách những order được update bởi tài khoản admin này.
+     * Trường này chỉ tồn tại nếu là admin hệ thống. Role là 99.
+     */
+    @OneToMany(mappedBy = "updatedBy")
+    private Set<HelloOrder> updatedOrders;
 
     public enum Role {
 

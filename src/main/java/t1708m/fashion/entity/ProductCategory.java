@@ -27,11 +27,12 @@ public class ProductCategory {
     private long deletedAt;
     private int status;
 
-    @OneToMany(mappedBy = "category", cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE})
-    private Set<Product> products;
+    @ManyToOne
+    @JoinColumn(name = "created_by_id")
+    private Account createdBy; // tạo bởi ai.
 
-
-    public ProductCategory() {
-    }
+    @ManyToOne
+    @JoinColumn(name = "updated_by_id")
+    private Account updatedBy; // update bởi ai.
 
 }

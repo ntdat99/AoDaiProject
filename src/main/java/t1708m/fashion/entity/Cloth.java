@@ -31,15 +31,15 @@ public class Cloth {
     private long deletedAt;
     private int status;
 
-    @OneToOne(optional = true)
-    @JoinColumn(name = "created_by_id", referencedColumnName = "id", nullable = true)
+    @ManyToOne
+    @JoinColumn(name = "created_by_id")
     private Account createdBy; // tạo bởi ai.
 
-    @OneToOne(optional = true)
-    @JoinColumn(name = "updated_by_id", referencedColumnName = "id", nullable = true)
+    @ManyToOne
+    @JoinColumn(name = "updated_by_id")
     private Account updatedBy; // update bởi ai.
 
-    @OneToMany(mappedBy = "cloth", cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE})
+    @OneToMany(mappedBy = "cloth")
     private Set<Product> products;
 
     public enum Fabric {

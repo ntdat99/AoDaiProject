@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 import java.util.Set;
 
@@ -18,7 +17,6 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @NotNull
     private String name;
     private double price;
     private String description;
@@ -31,24 +29,21 @@ public class Product {
     private long deletedAt;
     private int status;
 
-    @OneToOne(optional = true)
-    @JoinColumn(name = "created_by_id", referencedColumnName = "id", nullable = true)
+    @ManyToOne
+    @JoinColumn(name = "created_by_id")
     private Account createdBy; // tạo bởi ai.
 
-    @OneToOne(optional = true)
-    @JoinColumn(name = "updated_by_id", referencedColumnName = "id", nullable = true)
+    @ManyToOne
+    @JoinColumn(name = "updated_by_id")
     private Account updatedBy; // update bởi ai.
 
-    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "category_id")
-    private ProductCategory category;
+    private ProductCategory category; // kiểu dáng áo dài nào?
 
-    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "cloth_id")
-    private Cloth cloth;
-
-    @OneToMany(mappedBy = "product", cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    private Set<OrderDetail> orderDetails;
+    private Cloth cloth; // dùng mảnh vải nào ?
 
     public enum Gender {
 
@@ -106,9 +101,4 @@ public class Product {
             this.value = value;
         }
     }
-
-    public Product() {
-
-    }
-
 }
