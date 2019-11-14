@@ -5,27 +5,29 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+
+import net.bytebuddy.pool.TypePool;
+
 import java.util.Set;
 
 @Data
 @Getter
 @Setter
 @Entity
-public class Order {
+public class Cloth {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private long totalPrice;
-    private String shipName;
-    private String shipPhone;
-    private String shipEmail;
-    private String shipAddress;
+    private String title;
+    private double pricePerMeter; // giá theo mét.
+    private String description;
+    private String color;
+    private String images;
+    private int fabric;
 
-    private long preferAt;
-    private long deliveryAt;
-    private long createdAt;
     private long updatedAt;
+    private long createdAt;
     private long deletedAt;
     private int status;
 
@@ -37,16 +39,16 @@ public class Order {
     @JoinColumn(name = "updated_by_id", referencedColumnName = "id", nullable = true)
     private Account updatedBy; // update bởi ai.
 
-    @OneToMany(mappedBy = "order", cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    private Set<OrderDetail> orderDetails;
+    @OneToMany(mappedBy = "cloth", cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE})
+    private Set<Product> products;
 
-    public enum Status {
+    public enum Fabric {
 
-        SUCCESS(1), CONFIRMED(2), WAIT_TO_CONFIRM(3), CANCELED(4);
+        COTTON(1), CHIFFON(2), VOAN(3), REN(4), SILK(4);
 
         private int value;
 
-        Status(int i) {
+        Fabric(int i) {
             this.value = i;
         }
 
@@ -58,4 +60,5 @@ public class Order {
             this.value = value;
         }
     }
+
 }

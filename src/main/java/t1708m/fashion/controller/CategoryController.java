@@ -11,10 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import t1708m.fashion.entity.ProductCategory;
-import t1708m.fashion.entity.Product;
-import t1708m.fashion.repository.CategoryRepository;
 import t1708m.fashion.service.CategoryService;
-import t1708m.fashion.service.ProductService;
 
 import javax.validation.Valid;
 import java.util.HashMap;

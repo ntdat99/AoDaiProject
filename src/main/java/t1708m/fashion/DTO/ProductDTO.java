@@ -1,7 +1,6 @@
 package t1708m.fashion.DTO;
 
 import t1708m.fashion.entity.Product;
-import t1708m.fashion.util.DateTimeUtil;
 import t1708m.fashion.util.ObjectUtil;
 
 public class ProductDTO {

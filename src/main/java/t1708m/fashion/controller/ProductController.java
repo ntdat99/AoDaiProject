@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import t1708m.fashion.entity.Product;
 import t1708m.fashion.service.ProductService;
 
-import javax.swing.*;
 import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
@@ -77,7 +76,7 @@ public class ProductController {
         product.setName(updateProduct.getName());
         product.setPrice(updateProduct.getPrice());
         product.setDescription(updateProduct.getDescription());
-        product.setImage(updateProduct.getImage());
+        product.setPhotos(updateProduct.getPhotos());
         product.setGender(updateProduct.getGender());
         product.setSize(updateProduct.getSize());
         product.setCategory(updateProduct.getCategory());
