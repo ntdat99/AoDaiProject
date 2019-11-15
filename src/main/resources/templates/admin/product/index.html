@@ -23,8 +23,6 @@
             <th class="th-sm">Size
             </th>
             </th>
-            <th class="th-sm">Color
-            </th>
             <th></th>
         </tr>
         </thead>
@@ -34,9 +32,9 @@
             <td><span th:text="${pro.name}"></span></td>
             <td><span th:text="${pro.price}"></span></td>
             <td><span th:text="${pro.description}"></span></td>
-            <td><span th:text="${pro.image}"></span></td>
+            <td><span th:text="${pro.photos}"></span></td>
             <td><span th:text="${pro.size}"></span></td>
-            <td><span></span></td>
+
             <td>
 <!--                <button type="button" class="btn btn-simple btn-success btn-icon android-search" th:href="@{products/detail/{id}(id=${pro.id})}"></button>-->
                 <a th:href="@{products/{id}(id=${pro.id})}"><i style='font-size:24px' class='far fa-info-square'>&#xf044;</i></a>

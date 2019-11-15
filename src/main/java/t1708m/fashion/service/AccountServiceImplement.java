@@ -12,14 +12,16 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import t1708m.fashion.DTO.AccountDTO;
 import t1708m.fashion.entity.Account;
+import t1708m.fashion.entity.Product;
 import t1708m.fashion.repository.AccountRepository;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-class AccountServiceImplement implements AccountService {
+public class AccountServiceImplement implements AccountService {
 
     @Autowired
     AccountRepository accountRepository;
@@ -54,6 +56,11 @@ class AccountServiceImplement implements AccountService {
         final val role = register.getRole();
         account.setRole(role);
         return accountRepository.save(account);
+    }
+
+    @Override
+    public List<Account> findAccounts() {
+        return accountRepository.findAll();
     }
 
 }
