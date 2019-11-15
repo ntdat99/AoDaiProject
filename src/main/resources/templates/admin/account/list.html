@@ -1,10 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"  xmlns:th="http://www.thymeleaf.org" layout:decorate="~{admin/admin-layout/layout}">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Index</title>
+
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 </head>
 <body>
+<div layout:fragment="content">
+    <table id="dt-basic-checkbox" class="table table-striped table-bordered" cellspacing="0" width="100%">
+        <thead>
+        <tr>
+            <th class="th-sm">Id
+            </th>
+            <th class="th-sm">Username
+            </th>
+            <th class="th-sm">Email
+            </th>
+            <th class="th-sm">Phone
+            </th>
+            <th class="th-sm">Address
+            </th>
+            <th class="th-sm">Role
+            </th>
+            <th class="th-sm">Status
+            </th>
+            </th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="acc : ${accounts}">
+            <td><span th:text="${acc.id}"></span></td>
+            <td><span th:text="${acc.username}"></span></td>
+            <td><span th:text="${acc.email}"></span></td>
+            <td><span th:text="${acc.phone}"></span></td>
+            <td><span th:text="${acc.address}"></span></td>
+            <td><span th:text="${acc.role}"></span></td>
+            <td><span th:text="${acc.status}"></span></td>
 
+            <td>
+                <!--                <button type="button" class="btn btn-simple btn-success btn-icon android-search" th:href="@{products/detail/{id}(id=${pro.id})}"></button>-->
+                <a><i style='font-size:24px' class='far fa-info-square'>&#xf044;</i></a>
+                <a><i style='font-size:24px' class='far'>&#xf044;</i></a>
+                <a><i class="fas fa-trash"></i></a>
+            </td>
+        </tr>
+
+        </tbody>
+    </table>
+</div>
 </body>
 </html>

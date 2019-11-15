@@ -61,7 +61,7 @@ public class ProductController {
         Product product = productService.getById(id);
         if (product == null) {
             return "error/404";
-        }
+    }
         model.addAttribute("product", product);
         return "admin/product/edit";
     }
