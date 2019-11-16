@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.Set;
 
 @Data
@@ -20,6 +21,7 @@ public class Product {
     private String name;
     private double price;
     private String description;
+    @Lob
     private String photos;
     private int size;
     private int gender;
@@ -100,5 +102,37 @@ public class Product {
         public void setValue(int value) {
             this.value = value;
         }
+    }
+
+    public enum Status {
+
+        ACTIVE(1), DEACTIVE(0), DELETED(-1);
+
+        private int value;
+
+        Status(int i) {
+            this.value = i;
+        }
+
+        public int getValue() {
+            return value;
+        }
+
+        public void setValue(int value) {
+            this.value = value;
+        }
+    }
+
+    public ArrayList<String> getPhotoLinks() {
+        ArrayList<String> photoLinks = new ArrayList<>();
+        if (this.photos != null && this.photos.length() > 0) {
+            String[] photoArrays = this.photos.split(",");
+            for (int i = 0; i < photoArrays.length; i++) {
+                photoLinks.add(photoArrays[i]);
+            }
+        } else {
+            photoLinks.add("");
+        }
+        return photoLinks;
     }
 }

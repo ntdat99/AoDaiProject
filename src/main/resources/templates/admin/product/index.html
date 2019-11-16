@@ -12,13 +12,13 @@
         <tr>
             <th class="th-sm">Id
             </th>
+            <th class="th-sm">Image
+            </th>
             <th class="th-sm">Name
             </th>
             <th class="th-sm">Price
             </th>
             <th class="th-sm">Description
-            </th>
-            <th class="th-sm">Image
             </th>
             <th class="th-sm">Size
             </th>
@@ -29,10 +29,13 @@
         <tbody>
         <tr th:each="pro : ${products}">
             <td><span th:text="${pro.id}"></span></td>
+            <td>
+                <div
+                        th:style="'background: url(' + ${pro.photoLinks.get(0)} + '); width: 100px; height: 100px; background-size: cover'"></div>
+            </td>
             <td><span th:text="${pro.name}"></span></td>
             <td><span th:text="${pro.price}"></span></td>
             <td><span th:text="${pro.description}"></span></td>
-            <td><span th:text="${pro.photos}"></span></td>
             <td><span th:text="${pro.size}"></span></td>
 
             <td>

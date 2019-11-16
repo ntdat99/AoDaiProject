@@ -1,4 +1,4 @@
-package t1708m.fashion.controller;
+package t1708m.fashion.controller.admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;

@@ -13,7 +13,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping(value = "/")
-public class ClientController {
+public class HomeController {
     @Autowired
     ProductService productService;
 

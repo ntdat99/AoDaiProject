@@ -2,7 +2,6 @@
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org" layout:decorate="~{/admin/admin-layout/layout}">
 <head>
     <title>Index</title>
-
 </head>
 <body>
 <div layout:fragment="content" >
@@ -38,37 +37,31 @@
                     <div class="form-group row">
                         <label class="col-lg-2 col-form-label" for="description">Description</label>
                         <div class="col-lg-4">
-                            <input type="text" class="form-control" id="description" th:field="*{description}">
+                            <textarea th:field="*{description}" class="form-control" id="description"></textarea>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-lg-2 col-form-label" for="image">Image</label>
+                        <label class="col-lg-2 col-form-label" for="uploaded-photos">Choose photos</label>
                         <div class="col-lg-4">
-                            <input type="text" class="form-control" id="image" th:field="*{photos}">
+                            <input type="hidden" class="form-control" id="uploaded-photos" th:field="*{photos}">
+                            <div id="preview"></div>
+                            <input type="button" id="upload_widget" class="cloudinary-button" value="Upload files"/>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-lg-2 col-form-label" for="size">Size</label>
                         <div class="col-lg-4">
-                            <input type="text" class="form-control" id="size" th:field="*{size}">
+                            <select th:field="*{size}" name="size" id="size" class="form-control">
+                                <option th:each="size : ${sizes}" th:value="${size.value}" th:text="${size}"></option>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-lg-2 col-form-label" for="gender">Gender</label>
                         <div class="col-lg-4">
-                            <input type="text" class="form-control" id="gender" th:field="*{gender}">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-lg-2 col-form-label" for="type">Type</label>
-                        <div class="col-lg-4">
-                            <input type="text" id="type" class="form-control" th:field="*{accountType}">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-lg-2 col-form-label" for="status">Status</label>
-                        <div class="col-lg-4">
-                            <input type="text" class="form-control" id="status" th:field="*{status}">
+                            <select th:field="*{gender}" id="gender" class="form-control">
+                                <option th:each="gender : ${genders}" th:value="${gender.value}" th:text="${gender}"></option>
+                            </select>
                         </div>
                     </div>
                     <div class="kt-separator kt-separator--border-dashed kt-separator--space-lg"></div>
@@ -89,5 +82,6 @@
         <!--end::Form-->
     </div>
 </div>
+
 </body>
 </html>
