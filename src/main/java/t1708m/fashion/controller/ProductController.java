@@ -57,7 +57,7 @@ public class ProductController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/edit/{id}")
-    public String edit(@PathVariable int id, Model model) {
+    public String edit(@PathVariable long id, Model model) {
         Product product = productService.getById(id);
         if (product == null) {
             return "error/404";

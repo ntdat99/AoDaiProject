@@ -9,7 +9,7 @@ import t1708m.fashion.entity.Product;
 import java.util.List;
 
 
-public interface AccountRepository extends JpaRepository<Account,Integer> {
+public interface AccountRepository extends JpaRepository<Account,Long> {
     Account findByEmail (String email);
 
     List<Account> findAll();

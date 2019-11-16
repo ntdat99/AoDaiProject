@@ -28,7 +28,7 @@ public class ProductService {
         return productRepository.findAll(specification, PageRequest.of(page - 1, limit));
     }
 
-    public Product getById(int id) {
+    public Product getById(long id) {
         return productRepository.findById(id).orElse(null);
     }
 
