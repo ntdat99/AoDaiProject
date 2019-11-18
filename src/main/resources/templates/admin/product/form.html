@@ -1,86 +1,58 @@
 <!DOCTYPE HTML>
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org" layout:decorate="~{/admin/admin-layout/layout}">
 <head>
-    <title>Index</title>
+    <title>Product</title>
 </head>
 <body>
 <div layout:fragment="content" >
 
-    <div class="kt-portlet">
-        <div class="kt-portlet__head">
-            <div class="kt-portlet__head-label">
-            <span class="kt-portlet__head-icon kt-hidden">
-            <i class="la la-gear"></i>
-            </span>
-                <h3 class="kt-portlet__head-title">
-                    Form Repeater Example
-                </h3>
+    <div class="col-lg-10" style="margin-left: 120px">
+        <div class="card">
+            <div class="card-header">
+                <strong>Thêm mới sản phẩm</strong>
             </div>
-        </div>
-        <!--begin::Form-->
-        <form th:action="@{/admin/products/create}" th:object="${product}" th:method="post" class="kt-form">
-            <div class="kt-portlet__body">
-                <div class="kt-form__section kt-form__section--first">
-                    <div class="form-group row">
-                        <label class="col-lg-2 col-form-label" for="name">Name</label>
-                        <div class="col-lg-4">
-                            <input type="text" class="form-control" id="name" th:field="*{name}">
+            <div class="card-body card-block">
+                <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
 
-                        </div>
+                    <div class="row form-group">
+                        <div class="col col-md-3"><label for="text-input" class=" form-control-label">Text Input</label></div>
+                        <div class="col-12 col-md-9"><input type="text" id="text-input" name="text-input" placeholder="Text" class="form-control"><small class="form-text text-muted">This is a help text</small></div>
                     </div>
-                    <div class="form-group row">
-                        <label class="col-lg-2 col-form-label" for="price">Price</label>
-                        <div class="col-lg-4">
-                            <input type="text" class="form-control" id="price" th:field="*{price}">
-                        </div>
+                    <div class="row form-group">
+                        <div class="col col-md-3"><label for="text-input" class=" form-control-label">Text Input</label></div>
+                        <div class="col-12 col-md-9"><input type="text" id="" name="text-input" placeholder="Text" class="form-control"><small class="form-text text-muted">This is a help text</small></div>
                     </div>
-                    <div class="form-group row">
-                        <label class="col-lg-2 col-form-label" for="description">Description</label>
-                        <div class="col-lg-4">
-                            <textarea th:field="*{description}" class="form-control" id="description"></textarea>
-                        </div>
+                    <div class="row form-group">
+                        <div class="col col-md-3"><label for="text-input" class=" form-control-label">Text Input</label></div>
+                        <div class="col-12 col-md-9"><input type="text" id="" name="text-input" placeholder="Text" class="form-control"><small class="form-text text-muted">This is a help text</small></div>
                     </div>
-                    <div class="form-group row">
-                        <label class="col-lg-2 col-form-label" for="uploaded-photos">Choose photos</label>
-                        <div class="col-lg-4">
-                            <input type="hidden" class="form-control" id="uploaded-photos" th:field="*{photos}">
-                            <div id="preview"></div>
-                            <input type="button" id="upload_widget" class="cloudinary-button" value="Upload files"/>
-                        </div>
+                    <div class="row form-group">
+                        <div class="col col-md-3"><label for="text-input" class=" form-control-label">Text Input</label></div>
+                        <div class="col-12 col-md-9"><input type="text" id="" name="text-input" placeholder="Text" class="form-control"><small class="form-text text-muted">This is a help text</small></div>
                     </div>
-                    <div class="form-group row">
-                        <label class="col-lg-2 col-form-label" for="size">Size</label>
-                        <div class="col-lg-4">
-                            <select th:field="*{size}" name="size" id="size" class="form-control">
-                                <option th:each="size : ${sizes}" th:value="${size.value}" th:text="${size}"></option>
-                            </select>
-                        </div>
+                    <div class="row form-group">
+                        <div class="col col-md-3"><label for="text-input" class=" form-control-label">Text Input</label></div>
+                        <div class="col-12 col-md-9"><input type="text" id="" name="text-input" placeholder="Text" class="form-control"><small class="form-text text-muted">This is a help text</small></div>
                     </div>
-                    <div class="form-group row">
-                        <label class="col-lg-2 col-form-label" for="gender">Gender</label>
-                        <div class="col-lg-4">
-                            <select th:field="*{gender}" id="gender" class="form-control">
-                                <option th:each="gender : ${genders}" th:value="${gender.value}" th:text="${gender}"></option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="kt-separator kt-separator--border-dashed kt-separator--space-lg"></div>
-                </div>
+
+
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-primary btn-sm">
+                            <i class="fa fa-dot-circle-o"></i> Submit
+                        </button>
+                        <button type="reset" class="btn btn-danger btn-sm">
+                            <i class="fa fa-ban"></i> Reset
+                        </button>
+
+
+                </form>
             </div>
-            <div class="kt-portlet__foot">
-                <div class="kt-form__actions">
-                    <div class="row">
-                        <div class="col-lg-2"></div>
-                        <div class="col-lg-2">
-                            <button type="submit" class="btn btn-success">Submit</button>
-                            <button type="reset" class="btn btn-secondary">Reset</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form>
-        <!--end::Form-->
+
+        </div>
+
     </div>
+
+</div>
 </div>
 
 </body>
