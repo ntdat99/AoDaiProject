@@ -44,4 +44,8 @@ public class AdminController {
     public String create() {
         return "/admin/account/create";
     }
+    @GetMapping(value = "/list-category")
+    public String category() {
+        return "/admin/category/index";
+    }
 }
