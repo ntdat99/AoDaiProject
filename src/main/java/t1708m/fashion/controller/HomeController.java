@@ -23,11 +23,6 @@ public class HomeController {
         model.addAttribute("products", products);
         return "/client/home";
     }
-
-    @GetMapping("/product")
-    public String product() {
-        return "client/product";
-    }
     @GetMapping("/contact")
     public String contact() {
         return "client/contact";

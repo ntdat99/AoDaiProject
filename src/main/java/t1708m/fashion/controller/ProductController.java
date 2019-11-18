@@ -9,12 +9,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import t1708m.fashion.entity.Product;
 import t1708m.fashion.service.ProductService;
 
+import java.util.List;
+
 @Controller("adminProductController")
-@RequestMapping(value = "/products")
+@RequestMapping(value = "/product")
 public class ProductController {
 
     @Autowired
     ProductService productService;
+
+    @RequestMapping(method = RequestMethod.GET)
+    public String index(Model model) {
+        List<Product> products = productService.products();
+        model.addAttribute("customer", products);
+        return "/client/product";
+    }
 
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     public String detail(@PathVariable int id, Model model) {
