@@ -84,25 +84,24 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr th:each="pro : ${categories}">
-                                                <td><span th:text="${categories.i}"></span></td>
+                                            <tr th:each="cat : ${categories}">
+                                                <td><span th:text="${categories.id}"></span></td>
                                                 <td>
                                                     <div
-                                                            th:style="'background: url(' + ${pro.photoLinks.get(0)} + '); width: 100px; height: 100px; background-size: cover'"></div>
+                                                            th:style="'background: url(' + ${cat.image.get(0)} + '); width: 100px; height: 100px; background-size: cover'"></div>
                                                 </td>
-                                                <td><span th:text="${pro.name}"></span></td>
-                                                <td><span th:text="${pro.price}"></span></td>
-                                                <td><span th:text="${pro.description}"></span></td>
-                                                <td><span th:text="${pro.size}"></span></td>
-                                                <td><span th:text="${pro.gender}"></span></td>
+                                                <td><span th:text="${cat.name}"></span></td>
+                                                <td><span th:text="${cat.price}"></span></td>
+                                                <td><span th:text="${cat.description}"></span></td>
+
 
                                                 <td>
 
-                                                    <a th:href="@{products/{id}(id=${pro.id})}"><i
+                                                    <a th:href="@{categories/{id}(id=${cat.id})}"><i
                                                             class='fas fa-search'></i></a>
-                                                    <a th:href="@{products/edit/{id}(id=${pro.id})}"><i
+                                                    <a th:href="@{categories/edit/{id}(id=${cat.id})}"><i
                                                             class="fas fa-pencil-square-o"></i></a>
-                                                    <a th:href="@{products/delete/{id}(id=${pro.id})}"><i
+                                                    <a th:href="@{categories/delete/{id}(id=${cat.id})}"><i
                                                             class="fas fa-trash"></i></a>
                                                 </td>
                                             </tr>

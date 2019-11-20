@@ -73,6 +73,8 @@ public class CategoryController {
         }
         category.setName(updateCategory.getName());
         category.setPrice(updateCategory.getPrice());
+        category.setDescription(updateCategory.getDescription());
+        category.setImage(updateCategory.getImage());
         categoryService.update(category);
         return "redirect:/admin/category";
     }

@@ -11,8 +11,7 @@
                 <strong>Thêm mới tài khoản</strong>
             </div>
             <div class="card-body card-block" >
-                <form class="form-horizontal" th:action="@{/admin/account/create}" th:object="${account}"
-                      th:method="post">
+                <form class="form-horizontal"th:action="@{/admin/account/create}" th:object="${account}" method="post">
                     <div class="row form-group">
                         <div class="col col-md-3"><label for="username" class=" form-control-label">Username</label></div>
                         <div class="col-12 col-md-9"><input type="text" id="username" name="username" placeholder="Enter username"
