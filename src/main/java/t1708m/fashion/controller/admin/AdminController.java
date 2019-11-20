@@ -48,4 +48,8 @@ public class AdminController {
     public String category() {
         return "/admin/category/index";
     }
+    @GetMapping(value = "/create-category")
+    public String Crecategory() {
+        return "/admin/category/form";
+    }
 }
