@@ -284,8 +284,12 @@
 <!-- Custom js for this page -->
 <script src="/adminn/js/dashboard.js"></script>
 <script src="/adminn/js/todolist.js"></script>
-<!-- End custom js for this page -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="/adminn/assets/jquery.min.js"></script>
+<script src="/adminn/assets/main.js"></script>
+
+<script src="/adminn/vendors/jqvmap/dist/jquery.vmap.min.js"></script>
+<script src="/adminn/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+<script src="/adminn/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
 <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
 <script>
     (function ($) {
@@ -308,6 +312,7 @@
             cloudName: 'toangclup',
             uploadPreset: 'k5p12kk0'
         },
+
         function (error, result) {
             if (!error && result && result.event === "success") {
                 document.getElementById("preview").src = result.info.secure_url;
@@ -315,6 +320,7 @@
                 if (photoValue != null && photoValue.length > 0) {
                     photoValue += ',';
                 }
+                alert('hello');
                 photoValue += result.info.secure_url;
                 document.getElementById('uploaded-photos').value = photoValue;
                 var arrayOfPhoto = photoValue.split(',');
@@ -327,9 +333,10 @@
             }
         }
     )
+
     document.getElementById("upload_widget").addEventListener("click", function () {
         myWidget.open();
     }, false);
-</script>`
+</script>
 </body>
 </html>
