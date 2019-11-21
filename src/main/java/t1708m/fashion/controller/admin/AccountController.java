@@ -5,14 +5,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import t1708m.fashion.DTO.AccountDTO;
 import t1708m.fashion.entity.Account;
-import t1708m.fashion.entity.Product;
+
 import t1708m.fashion.service.AccountService;
 import t1708m.fashion.service.AccountServiceImplement;
-import t1708m.fashion.service.ProductService;
+
 
 import javax.validation.Valid;
 import java.util.List;
@@ -51,6 +52,35 @@ public class AccountController {
         }
 
         accountServiceImplement.save(account);
+        return "redirect:/admin/account";
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/edit/{id}")
+    public String edit(@PathVariable long id, Model model) {
+        Account account = accountServiceImplement.getById(id);
+        if (account == null) {
+            return "error/404";
+        }
+        model.addAttribute("roles", Account.Role.values());
+        model.addAttribute("status", Account.Status.values());
+        model.addAttribute("account", account);
+        return "admin/account/edit";
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/edit/{id}")
+    public String update(@PathVariable int id, Model model, Account updateaccount) {
+        Account account = accountServiceImplement.getById(id);
+        if (account == null) {
+            return "error/404";
+        }
+        model.addAttribute("account", account);
+        account.setUsername(updateaccount.getUsername());
+        account.setEmail(updateaccount.getEmail());
+        account.setAddress(updateaccount.getAddress());
+        account.setPhone(updateaccount.getPhone());
+        account.setRole(updateaccount.getRole());
+        account.setStatus(updateaccount.getStatus());
+        accountServiceImplement.update(account);
         return "redirect:/admin/account";
     }
 }
