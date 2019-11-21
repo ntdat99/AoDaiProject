@@ -16,6 +16,7 @@ import t1708m.fashion.entity.Product;
 import t1708m.fashion.repository.AccountRepository;
 
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -53,14 +54,21 @@ public class AccountServiceImplement implements AccountService {
         account.setPassword(passwordEncoder.encode(register.getPassword()));
         account.setPhone(register.getPhone());
         account.setAddress(register.getAddress());
-        final val role = register.getRole();
-        account.setRole(role);
+        account.setStatus(1);
+        account.setCreatedAt(Calendar.getInstance().getTimeInMillis());
+        account.setRole(register.getRole());
         return accountRepository.save(account);
     }
-
     @Override
     public List<Account> findAccounts() {
         return accountRepository.findAll();
+    }
+    public Account getById(long id) {
+        return accountRepository.findById(id).orElse(null);
+    }
+    public Account update(Account account) {
+        account.setUpdatedAt(Calendar.getInstance().getTimeInMillis());
+        return accountRepository.save(account);
     }
 
 }
