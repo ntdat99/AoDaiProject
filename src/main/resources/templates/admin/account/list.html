@@ -58,11 +58,6 @@
                                                 </th>
                                                 <th class="sorting" tabindex="0"
                                                     aria-controls="bootstrap-data-table-export" rowspan="1" colspan="1"
-                                                    aria-label="Position: activate to sort column ascending"
-                                                    style="width: 154px;">Password
-                                                </th>
-                                                <th class="sorting" tabindex="0"
-                                                    aria-controls="bootstrap-data-table-export" rowspan="1" colspan="1"
                                                     aria-label="Office: activate to sort column ascending"
                                                     style="width: 349px;">Email
                                                 </th>
@@ -79,6 +74,11 @@
                                                 <th class="sorting" tabindex="0"
                                                     aria-controls="bootstrap-data-table-export" rowspan="1" colspan="1"
                                                     aria-label="Salary: activate to sort column ascending"
+                                                    style="width: 122px;">Status
+                                                </th>
+                                                <th class="sorting" tabindex="0"
+                                                    aria-controls="bootstrap-data-table-export" rowspan="1" colspan="1"
+                                                    aria-label="Salary: activate to sort column ascending"
                                                     style="width: 122px;">Thao tác
                                                 </th>
                                             </tr>
@@ -87,11 +87,10 @@
                                             <tr th:each="aco : ${accounts}">
                                                 <td><span th:text="${aco.id}"></span></td>
                                                 <td><span th:text="${aco.username}"></span></td>
-                                                <td><span th:text="${aco.password}"></span></td>
                                                 <td><span th:text="${aco.email}"></span></td>
                                                 <td><span th:text="${aco.phone}"></span></td>
                                                 <td><span th:text="${aco.address}"></span></td>
-
+                                                <td><span th:text="${aco.status}"></span></td>
                                                 <td>
 
                                                     <a th:href="@{accouts/{id}(id=${aco.id})}"><i  class='mdi mdi-binoculars'></i></a>

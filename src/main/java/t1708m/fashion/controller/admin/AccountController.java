@@ -38,6 +38,7 @@ public class AccountController {
     @RequestMapping(method = RequestMethod.GET, value = "/create")
     public String create(Model model) {
         model.addAttribute("account", new AccountDTO());
+        model.addAttribute("roles", Account.Role.values());
         return "/admin/account/create";
     }
 
@@ -45,8 +46,10 @@ public class AccountController {
     public String store(Model model, @Valid AccountDTO account, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("accounts", account);
+
             return "/admin/account/create";
         }
+
         accountServiceImplement.save(account);
         return "redirect:/admin/account";
     }

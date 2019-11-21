@@ -27,6 +27,12 @@
                         </div>
                     </div>
                     <div class="row form-group">
+                        <div class="col col-md-3"><label for="confirmPassword" class=" form-control-label">Confirm Password</label></div>
+                        <div class="col-12 col-md-9"><input type="password" id="confirmPassword" name="password" placeholder="Confirm Password"
+                                                            class="form-control" th:field="*{confirmPassword}">
+                        </div>
+                    </div>
+                    <div class="row form-group">
                         <div class="col col-md-3"><label for="email" class=" form-control-label">Email</label></div>
                         <div class="col-12 col-md-9"><input type="email" id="email" name="email" placeholder="Enter email"
                                                             class="form-control" th:field="*{email}">
@@ -46,6 +52,14 @@
                                                             class="form-control" th:field="*{address}">
 
                         </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col col-md-3"><label for="role" class=" form-control-label">Role</label></div>
+                        <div class="col-12 col-md-9">
+                            <select th:field="*{role}" id="role" class="form-control">
+                                <option th:each="role : ${roles}" th:value="${role.value}"
+                                        th:text="${role}"></option>
+                            </select></div>
                     </div>
 
 
