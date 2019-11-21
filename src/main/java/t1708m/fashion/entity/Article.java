@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 
 @Data
 @Getter
@@ -54,5 +55,17 @@ public class Article {
         public void setValue(int value) {
             this.value = value;
         }
+    }
+    public ArrayList<String> getPhotoLinks() {
+        ArrayList<String> photoLinks = new ArrayList<>();
+        if (this.thumbnail != null && this.thumbnail.length() > 0) {
+            String[] photoArrays = this.thumbnail.split(",");
+            for (int i = 0; i < photoArrays.length; i++) {
+                photoLinks.add(photoArrays[i]);
+            }
+        } else {
+            photoLinks.add("");
+        }
+        return photoLinks;
     }
 }

@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org" layout:decorate="~{admin/admin-layout/layout}">
+<head>
+    <title>Blog</title>
+
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="kt-portlet">
+        <!--begin::Form-->
+        <form class="kt-form" method="get" th:action="@{blog}">
+            <div class="kt-portlet__body">
+                <div class="kt-form__section kt-form__section--first">
+                    <div class="form-group row">
+                        <label class="col-lg-2 col-form-label">Title:</label>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control" th:value="${blog.title}">
+                            <span class="form-text text-muted"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-2 col-form-label">Description:</label>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control" th:value="${blog.description}">
+                            <span class="form-text text-muted"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-2 col-form-label">Content:</label>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control" th:value="${blog.content}">
+                            <span class="form-text text-muted"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-2 col-form-label">Image:</label>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control" th:value="${blog.thumbnail}">
+                            <span class="form-text text-muted"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-2 col-form-label">update At:</label>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control" th:value="${blog.updateAt}">
+                            <span class="form-text text-muted"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-2 col-form-label">Deleted At:</label>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control" th:value="${blog.deletedAt}">
+                            <span class="form-text text-muted"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-2 col-form-label">Status:</label>
+                        <div class="col-lg-4">
+                            <input th:object="${status}" th:field="*{blog.status}"  type="text" th:value="${status.value}" class="form-control" th:text="${status}">
+                            <span class="form-text text-muted"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <!--end::Form-->
+    </div>
+
+</div>
+</body>
+</html>
