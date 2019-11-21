@@ -28,10 +28,6 @@ public class HomeController {
         return "client/contact";
     }
     @GetMapping("/about")
-    public String about() {
-        return "client/about";
-    }
-    @GetMapping("/blog")
     public String blog() {
         return "client/blog";
     }
