@@ -1,5 +1,4 @@
 package t1708m.fashion.controller.admin;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,8 +16,6 @@ import t1708m.fashion.service.AccountServiceImplement;
 
 import javax.validation.Valid;
 import java.util.List;
-
-
 @Controller
 @RequestMapping(value = "/admin/account")
 public class AccountController {

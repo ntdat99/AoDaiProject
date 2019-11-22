@@ -29,7 +29,7 @@ public class HomeController {
     }
     @GetMapping("/about")
     public String blog() {
-        return "client/blog";
+        return "client/about";
     }
     @GetMapping("/blog-detail")
     public String blogDetail() {
