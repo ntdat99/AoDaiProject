@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import t1708m.fashion.entity.Product;
 import t1708m.fashion.service.ProductService;
 
@@ -19,8 +20,10 @@ public class ProductController {
     ProductService productService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String index(Model model) {
+    public String index(Model model, @RequestParam(defaultValue = "") String productName) {
         List<Product> products = productService.products();
+        List<Product> productsByName = productService.getByName(productName);
+        model.addAttribute("list", productsByName);
         model.addAttribute("customer", products);
         return "/client/product";
     }

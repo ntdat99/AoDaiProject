@@ -251,11 +251,17 @@
 			</div>
 		</div>
 
+		<form>
+			<input type="text" name="productName" placeholder="vd: áo dài, váy, ..."/>
+			<br />
+			<input class="btn btn-outline-primary btn-sm" type="submit" value="Tìm kiếm" />
+		<br />
+		<br />
 		<div class="row isotope-grid">
-			<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women" th:each="cus : ${customer}">
+			<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women" th:each="product : ${list}">
 				<div class="block2">
 					<div class="block2-pic hov-img0">
-						<img th:src="${cus.photos}" alt="IMG-PRODUCT">
+						<img th:src="${product.getPhotos()}" alt="IMG-PRODUCT" width="328" height="422">
 
 						<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
 							Quick View
@@ -264,12 +270,12 @@
 
 					<div class="block2-txt flex-w flex-t p-t-14">
 						<div class="block2-txt-child1 flex-col-l ">
-							<a th:href="@{/product/{id}(id=${cus.id})}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-								<span th:text="${cus.name}"></span>
+							<a th:href="@{/product/{id}(id=${product.getId()})}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+								<span th:text="${product.getName()}"></span>
 							</a>
 
 							<span class="stext-105 cl3">
-									<span th:text="${cus.price}">
+									<span th:text="${product.getPrice()}">
 
 									</span>
 								</span>
@@ -282,10 +288,11 @@
 							</a>
 						</div>
 					</div>
+
 				</div>
 			</div>
 		</div>
-
+		</form>
 		<!-- Load more -->
 		<div class="flex-c-m flex-w w-full p-t-45">
 			<a href="#" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
