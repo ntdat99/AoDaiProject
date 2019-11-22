@@ -85,11 +85,7 @@
                                             </thead>
                                             <tbody>
                                             <tr th:each="cat : ${categories}">
-                                                <td><span th:text="${categories.id}"></span></td>
-                                                <td>
-                                                    <div
-                                                            th:style="'background: url(' + ${cat.image.get(0)} + '); width: 100px; height: 100px; background-size: cover'"></div>
-                                                </td>
+                                                <td><span th:text="${cat.id}"></span></td>
                                                 <td><span th:text="${cat.name}"></span></td>
                                                 <td><span th:text="${cat.price}"></span></td>
                                                 <td><span th:text="${cat.description}"></span></td>

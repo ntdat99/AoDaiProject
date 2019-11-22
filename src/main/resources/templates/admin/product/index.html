@@ -123,47 +123,48 @@
                                     </div>
                                     <div class="col-sm-12 col-md-7">
                                         <div class="dataTables_paginate paging_simple_numbers"
-                                             id="bootstrap-data-table-export_paginate">
-                                            <ul class="pagination">
-                                                <li class="paginate_button page-item previous disabled"
-                                                    id="bootstrap-data-table-export_previous"><a href="#"
+                                             id="bootstrap-data-table-export_paginate" th:if="${totalPage > 1}">
+                                            <ul class="pagination" >
+                                                <li class="paginate_button page-item previous "
+                                                    ><a  aria-controls="bootstrap-data-table-export"
+                                                                                                 data-dt-idx="0"
+                                                                                                 tabindex="0"
+                                                                                                 class="page-link" th:href="@{/admin/products(page=${1}, limit=${limit})}">First</a>
+                                                </li>
+                                                <li class="paginate_button page-item previous " th:if="${currentPage > 1}"
+                                                    id="bootstrap-data-table-export_previous"><a
                                                                                                  aria-controls="bootstrap-data-table-export"
                                                                                                  data-dt-idx="0"
                                                                                                  tabindex="0"
-                                                                                                 class="page-link">Previous</a>
+                                                                                                 class="page-link"  th:href="@{/admin/products(page=${currentPage - 1}, limit=${limit})}">Previous</a>
                                                 </li>
-                                                <li class="paginate_button page-item active"><a href="#"
+                                                <li class="paginate_button page-item active"><a
                                                                                                 aria-controls="bootstrap-data-table-export"
                                                                                                 data-dt-idx="1"
                                                                                                 tabindex="0"
-                                                                                                class="page-link">1</a>
+                                                                                                class="page-link" th:href="@{/admin/products(page=${currentPage - 1}, limit=${limit})}">[[${currentPage}]]</a>
                                                 </li>
-                                                <li class="paginate_button page-item "><a href="#"
+                                                <li class="paginate_button page-item " th:if="${currentPage < totalPage}"><a
                                                                                           aria-controls="bootstrap-data-table-export"
                                                                                           data-dt-idx="2" tabindex="0"
-                                                                                          class="page-link">2</a></li>
-                                                <li class="paginate_button page-item "><a href="#"
-                                                                                          aria-controls="bootstrap-data-table-export"
-                                                                                          data-dt-idx="3" tabindex="0"
-                                                                                          class="page-link">3</a></li>
-                                                <li class="paginate_button page-item "><a href="#"
-                                                                                          aria-controls="bootstrap-data-table-export"
-                                                                                          data-dt-idx="4" tabindex="0"
-                                                                                          class="page-link">4</a></li>
-                                                <li class="paginate_button page-item "><a href="#"
+                                                                                          class="page-link" th:href="@{/admin/products(page=${currentPage + 1}, limit=${limit})}">[[${currentPage + 1}]]</a></li>
+                                                <li class="paginate_button page-item " th:if="${currentPage < totalPage}"><a
                                                                                           aria-controls="bootstrap-data-table-export"
                                                                                           data-dt-idx="5" tabindex="0"
-                                                                                          class="page-link">5</a></li>
-                                                <li class="paginate_button page-item "><a href="#"
-                                                                                          aria-controls="bootstrap-data-table-export"
-                                                                                          data-dt-idx="6" tabindex="0"
-                                                                                          class="page-link">6</a></li>
-                                                <li class="paginate_button page-item next"
-                                                    id="bootstrap-data-table-export_next"><a href="#"
+                                                                                          class="page-link" th:href="@{/admin/products(page=${currentPage + 2}, limit=${limit})}">[[${currentPage + 2}]]</a></li>
+
+                                                <li class="paginate_button page-item next" th:if="${currentPage < totalPage}"
+                                                    id="bootstrap-data-table-export_next"><a
                                                                                              aria-controls="bootstrap-data-table-export"
                                                                                              data-dt-idx="7"
                                                                                              tabindex="0"
-                                                                                             class="page-link">Next</a>
+                                                                                             class="page-link" th:href="@{/admin/products(page=${currentPage + 1}, limit=${limit})}">Next</a>
+                                                </li>
+                                                <li class="paginate_button page-item next"><a
+                                                                                             aria-controls="bootstrap-data-table-export"
+                                                                                             data-dt-idx="7"
+                                                                                             tabindex="0"
+                                                                                             class="page-link" th:href="@{/admin/products(page=${totalPage}, limit=${limit})}">Last</a>
                                                 </li>
                                             </ul>
                                         </div>
