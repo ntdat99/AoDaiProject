@@ -13,5 +13,6 @@ public interface ProductRepository  extends JpaRepository<Product, Long>, JpaSpe
     @Query("select h from Product as h where h.status = :status")
     List<Product> findActiveProduct(@Param("status") int status);
 
-    List<Product> findAllByStatus(int status);
+    List<Product> findAll();
+
 }

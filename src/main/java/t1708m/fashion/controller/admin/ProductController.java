@@ -1,16 +1,16 @@
 package t1708m.fashion.controller.admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import t1708m.fashion.entity.Product;
+import t1708m.fashion.repository.ProductRepository;
 import t1708m.fashion.service.ProductService;
 
 import javax.validation.Valid;
@@ -24,10 +24,26 @@ public class ProductController {
     @Autowired
     ProductService productService;
 
+    @Autowired
+    ProductRepository productRepository;
+
+//    @RequestMapping(method = RequestMethod.GET)
+//    public String index(Model model) {
+//        List<Product> products = productService.products();
+//        model.addAttribute("products", products);
+//        return "admin/product/index";
+//    }
+
     @RequestMapping(method = RequestMethod.GET)
-    public String index(Model model) {
-        List<Product> products = productService.products();
-        model.addAttribute("products", products);
+    public String list(
+            @RequestParam(name = "page", defaultValue = "1") int page,
+            @RequestParam(name = "limit", defaultValue = "1") int limit,
+            Model model) {
+        Page<Product> productPage = productRepository.findAll(PageRequest.of(page - 1, limit));
+        model.addAttribute("products", productPage.getContent());
+        model.addAttribute("currentPage", productPage.getPageable().getPageNumber() + 1);
+        model.addAttribute("limit", productPage.getPageable().getPageSize());
+        model.addAttribute("totalPage", productPage.getTotalPages());
         return "admin/product/index";
     }
 
