@@ -1,5 +1,4 @@
 package t1708m.fashion.config;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,19 +10,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import t1708m.fashion.repository.ProductRepository;
 import t1708m.fashion.service.AccountService;
-
-
 @Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-
     @Autowired
     AccountService accountService;
-
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
@@ -31,7 +25,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.setPasswordEncoder(passwordEncoder());
         return auth;
     }
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
