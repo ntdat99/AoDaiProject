@@ -25,6 +25,13 @@ public class ProductController {
         return "/client/product";
     }
 
+//    @RequestMapping(method = RequestMethod.GET, value = "/category/{id}")
+//    public String getByCategory( Model model) {
+//        List<Product> products = productService.products();
+//        model.addAttribute("customer", products);
+//        return "/client/product";
+//    }
+
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     public String detail(@PathVariable int id, Model model) {
         Product product = productService.getById(id);
