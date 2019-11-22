@@ -15,4 +15,7 @@ public interface ProductRepository  extends JpaRepository<Product, Long>, JpaSpe
 
     List<Product> findAll();
 
+    @Query("SELECT p FROM Product as p WHERE p.name LIKE CONCAT('%',:name,'%')")
+    List<Product> findAllByName (String name);
+
 }
