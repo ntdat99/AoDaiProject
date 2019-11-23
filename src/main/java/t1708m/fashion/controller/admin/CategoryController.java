@@ -1,16 +1,17 @@
 package t1708m.fashion.controller.admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import t1708m.fashion.entity.Product;
 import t1708m.fashion.entity.ProductCategory;
+import t1708m.fashion.repository.CategoryRepository;
 import t1708m.fashion.service.CategoryService;
 
 import javax.validation.Valid;
@@ -22,13 +23,23 @@ import java.util.List;
 public class CategoryController {
     @Autowired
     CategoryService categoryService;
+    @Autowired
+    CategoryRepository categoryRepository;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String index(Model model) {
-        List<ProductCategory> categories= categoryService.categories();
-        model.addAttribute("categories", categories);
+    public String list(
+            @RequestParam(name = "page", defaultValue = "1") int page,
+            @RequestParam(name = "limit", defaultValue = "5") int limit,
+            Model model) {
+        Page<ProductCategory> productCategoryPage = categoryRepository.findAll(PageRequest.of(page - 1, limit));
+        model.addAttribute("category", productCategoryPage.getContent());
+        model.addAttribute("currentPage", productCategoryPage.getPageable().getPageNumber() + 1);
+        model.addAttribute("limit", productCategoryPage.getPageable().getPageSize());
+        model.addAttribute("totalPage", productCategoryPage.getTotalPages());
         return "admin/category/index";
     }
+
+
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     public String detail(@PathVariable int id, Model model) {
         ProductCategory category = categoryService.getById(id);
@@ -52,7 +63,7 @@ public class CategoryController {
             return "admin/category/form";
         }
         categoryService.create(category);
-        return "redirect:admin/category";
+        return "redirect:/admin/category";
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/edit/{id}")

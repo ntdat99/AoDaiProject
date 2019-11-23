@@ -1,13 +1,23 @@
 <!DOCTYPE HTML>
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"  xmlns:th="http://www.thymeleaf.org" layout:decorate="~{admin/admin-layout/layout}">
 <head>
-    <title>Index</title>
+    <title>Detail Category</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("input").attr('disabled','disabled');
+        })
+    </script>
 
 </head>
 <body>
 <div layout:fragment="content" >
-    <div class="kt-portlet">
-        <!--begin::Form-->
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <strong>Chi tiết sản phẩm</strong>
+            </div>
+            <div class="card-body card-block" >
         <form class="kt-form" method="get" th:action="@{category}">
             <div class="kt-portlet__body">
                 <div class="kt-form__section kt-form__section--first">
@@ -33,13 +43,6 @@
                         </div>
                     </div>
 
-                    <div class="form-group row">
-                        <label class="col-lg-2 col-form-label">Gender:</label>
-                        <div class="col-lg-4">
-                            <input type="text" class="form-control" th:value="${category.gender}">
-                            <span class="form-text text-muted"></span>
-                        </div>
-                    </div>
 
                     <div class="form-group row">
                         <label class="col-lg-2 col-form-label">Image:</label>
@@ -78,10 +81,19 @@
                     </div>
                 </div>
             </div>
+            <div class="card-footer">
+                <a href="/admin/category" class="btn btn-secondary">Back</a>
+                <a th:href="@{/admin/category/edit/{id}(id=${category.id})}" class="btn btn-danger">Edit</a>
+            </div>
         </form>
-        <!--end::Form-->
+
+            </div>
+        </div>
     </div>
 
+
+
 </div>
+
 </body>
 </html>

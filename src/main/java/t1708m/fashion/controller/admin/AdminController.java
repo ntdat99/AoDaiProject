@@ -19,31 +19,29 @@ public class AdminController {
     public String getAdmin() {
         return "/admin/index";
     }
-
+    //product
     @GetMapping(value = "/list-product")
     public String product() {
         return "/admin/product/index";
     }
-
     @GetMapping(value = "/create-product")
     public String Creproduct() {
         return "/admin/product/form";
     }
-
+   //account
     @GetMapping("/account-edit")
     public String edit() {
         return "/admin/account/edit";
     }
-
     @GetMapping("/account-list")
     public String list() {
         return "/admin/account/list";
     }
-
     @GetMapping("/account-create")
     public String create() {
         return "/admin/account/create";
     }
+//    category
     @GetMapping(value = "/list-category")
     public String category() {
         return "/admin/category/index";
@@ -51,5 +49,14 @@ public class AdminController {
     @GetMapping(value = "/create-category")
     public String Crecategory() {
         return "/admin/category/form";
+    }
+    //blog
+    @GetMapping(value = "/list-blog")
+    public String blog() {
+        return "/admin/blog/index";
+    }
+    @GetMapping(value = "/create-blog")
+    public String CreateBlog() {
+        return "/admin/blog/form";
     }
 }
