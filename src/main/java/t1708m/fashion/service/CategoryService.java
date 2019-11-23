@@ -7,7 +7,6 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import t1708m.fashion.entity.ProductCategory;
 import t1708m.fashion.repository.CategoryRepository;
-
 import java.util.Calendar;
 import java.util.List;
 
@@ -15,8 +14,8 @@ import java.util.List;
 public class CategoryService {
     @Autowired
     CategoryRepository categoryRepository;
+
     public List<ProductCategory> categories() {
-//        categoryRepository.findAll(PageRequest.of(1, 3));
         return categoryRepository.findActiveCategory(1);
     }
 
@@ -24,6 +23,9 @@ public class CategoryService {
         return categoryRepository.findById(id).orElse(null);
     }
 
+    public Page<ProductCategory> categories(Specification specification, int page, int limit) {
+        return categoryRepository.findAll(specification, PageRequest.of(page - 1, limit));
+    }
     public ProductCategory create(ProductCategory category) {
         category.setStatus(1);
         category.setCreatedAt(Calendar.getInstance().getTimeInMillis());

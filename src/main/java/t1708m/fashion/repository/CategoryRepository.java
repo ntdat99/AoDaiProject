@@ -14,5 +14,7 @@ public interface CategoryRepository extends JpaRepository<ProductCategory, Integ
     @Query("select h from ProductCategory as h where h.status = :status")
     List<ProductCategory> findActiveCategory(@Param("status") int status);
 
+    List<ProductCategory> findAll();
+
     List<ProductCategory> findAllByStatus(int status);
 }

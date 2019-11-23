@@ -15,7 +15,6 @@ import t1708m.fashion.service.ProductService;
 
 import javax.validation.Valid;
 import java.util.HashMap;
-import java.util.List;
 
 @Controller("customerProductController")
 @RequestMapping(value = "/admin/products")
@@ -26,13 +25,6 @@ public class ProductController {
 
     @Autowired
     ProductRepository productRepository;
-
-//    @RequestMapping(method = RequestMethod.GET)
-//    public String index(Model model) {
-//        List<Product> products = productService.products();
-//        model.addAttribute("products", products);
-//        return "admin/product/index";
-//    }
 
     @RequestMapping(method = RequestMethod.GET)
     public String list(
@@ -84,6 +76,8 @@ public class ProductController {
             return "error/404";
         }
         model.addAttribute("product", product);
+        model.addAttribute("sizes", Product.Size.values());
+        model.addAttribute("genders", Product.Gender.values());
         return "admin/product/edit";
     }
 

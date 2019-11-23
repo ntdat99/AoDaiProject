@@ -1,21 +1,20 @@
 package t1708m.fashion.controller.admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import t1708m.fashion.entity.Article;
+import t1708m.fashion.entity.ProductCategory;
+import t1708m.fashion.repository.BlogRepository;
 import t1708m.fashion.service.BlogService;
 import javax.validation.Valid;
 import java.util.HashMap;
-import java.util.List;
-
 
 @Controller("customerBlogController")
 @RequestMapping(value = "/admin/blogs")
@@ -24,10 +23,19 @@ public class BlogController {
     @Autowired
     BlogService blogService;
 
+    @Autowired
+    BlogRepository blogRepository;
+
     @RequestMapping(method = RequestMethod.GET)
-    public String index(Model model) {
-        List<Article> blogs = blogService.blog();
-        model.addAttribute("blogs", blogs);
+    public String list(
+            @RequestParam(name = "page", defaultValue = "1") int page,
+            @RequestParam(name = "limit", defaultValue = "1") int limit,
+            Model model) {
+        Page<Article> articlePage = blogRepository.findAll(PageRequest.of(page - 1, limit));
+        model.addAttribute("blog", articlePage.getContent());
+        model.addAttribute("currentPage", articlePage.getPageable().getPageNumber() + 1);
+        model.addAttribute("limit", articlePage.getPageable().getPageSize());
+        model.addAttribute("totalPage", articlePage.getTotalPages());
         return "admin/blog/index";
     }
 

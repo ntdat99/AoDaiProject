@@ -1,7 +1,4 @@
 package t1708m.fashion.service;
-
-/*import javafx.util.converter.IntegerStringConverter;
-import javafx.util.converter.LongStringConverter;*/
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -20,7 +17,6 @@ public class ProductService {
     ProductRepository productRepository;
 
     public List<Product> products() {
-        //heroRepository.findAll(PageRequest.of(1, 3));
         return productRepository.findActiveProduct(1);
     }
 
