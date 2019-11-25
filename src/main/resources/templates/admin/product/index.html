@@ -107,7 +107,8 @@
 
                                                     <a th:href="@{products/{id}(id=${pro.id})}"><i  class='mdi mdi-binoculars'></i></a>
                                                     <a th:href="@{products/edit/{id}(id=${pro.id})}"><i class="mdi mdi-border-color"></i></a>
-                                                    <a th:href="@{products/delete/{id}(id=${pro.id})}"><i class="mdi mdi-archive"></i></a>
+                                                    <a onclick="return confirm('Bạn có chắc muốn xoá tác giả này?')"
+                                                    th:href="@{'/admin/products/delete/' + ${pro.id}}"><i class="mdi mdi-archive deleted-ajax"></i></a>
                                                 </td>
                                             </tr>
 
@@ -179,7 +180,38 @@
             </div>
         </div><!-- .animated -->
     </div>
-
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#select_all").click(function(){
+                $(document).ready(function () {
+                    $("#select_all").click(function () {
+                        var checked_status = this.checked;
+                        $("input[name='select[]']").each(function(){
+                            $("input[name='select[]']").each(function () {
+                                this.checked = checked_status;
+                            });
+                        });
+                        $(".deleted-ajax").click(function () {
+                            var id = $(this).attr("href").replace("#", "");
+                            if (confirm("Bạn có chắc muốn xoá sản phẩm này?")) {
+                                $.ajax({
+                                    url: "/admin/products/ajax-delete/" + id,
+                                    type: "DELETE",
+                                    headers: {
+                                        "X-CSRF-TOKEN": $("meta[name='_csrf']").attr("content")
+                                    },
+                                    success: function (data) {
+                                        alert("Xoá thành công!");
+                                        window.location.reload();
+                                    },
+                                    error: function () {
+                                        alert("Thao tác thất bại, vui lòng thử lại sau!");
+                                    }
+                                });
+                            }
+                            return false;
+                        });
+                    });
 </div>
 </body>
 </html>
