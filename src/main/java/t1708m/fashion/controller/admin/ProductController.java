@@ -1,5 +1,6 @@
 package t1708m.fashion.controller.admin;
 
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -10,11 +11,15 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import t1708m.fashion.entity.Product;
+import t1708m.fashion.entity.ProductCategory;
 import t1708m.fashion.repository.ProductRepository;
+import t1708m.fashion.service.CategoryService;
 import t1708m.fashion.service.ProductService;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.HashMap;
+import java.util.List;
 
 @Controller("customerProductController")
 @RequestMapping(value = "/admin/products")
@@ -25,6 +30,9 @@ public class ProductController {
 
     @Autowired
     ProductRepository productRepository;
+
+    @Autowired
+    CategoryService categoryService;
 
     @RequestMapping(method = RequestMethod.GET)
     public String list(
@@ -51,9 +59,11 @@ public class ProductController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/create")
     public String create(Model model) {
+        List<ProductCategory> categories = categoryService.categories();
         model.addAttribute("product", new Product());
         model.addAttribute("sizes", Product.Size.values());
         model.addAttribute("genders", Product.Gender.values());
+        model.addAttribute("categories", categories);
         return "/admin/product/form";
     }
 
@@ -100,20 +110,44 @@ public class ProductController {
         return "redirect:/admin/products";
     }
 
-    // viết ajax call.
-    @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
-    @ResponseBody
-    public ResponseEntity<Object> delete(@PathVariable int id) {
-        HashMap<String, Object> mapResponse = new HashMap<>();
+//    // viết ajax call.
+//    @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
+//    @ResponseBody
+//    public ResponseEntity<Object> delete(@PathVariable int id) {
+//        HashMap<String, Object> mapResponse = new HashMap<>();
+//        Product product = productService.getById(id);
+//        if (product == null) {
+//            mapResponse.put("status", HttpStatus.NOT_FOUND.value());
+//            mapResponse.put("message", "Product is not found!");
+//            return new ResponseEntity<>(mapResponse, HttpStatus.NOT_FOUND);
+//        }
+//        productService.delete(product);
+//        mapResponse.put("status", HttpStatus.OK.value());
+//        mapResponse.put("message", "Delete success");
+//        return new ResponseEntity<>(mapResponse, HttpStatus.OK);
+//    }
+
+//    @RequestMapping(method = RequestMethod.DELETE, value = "/ajax-delete/{id}")
+//    @ResponseBody
+//    public String deleteWithAjax(@PathVariable(value = "id", required = false) long id, HttpServletResponse response) {
+//        Product product = productService.getById(id);
+//        if (product == null) {
+//            response.setStatus(HttpStatus.NOT_FOUND.value());
+//            return new Gson().toJson("Error");
+//        }
+//        productRepository.delete(id);
+//        response.setStatus(HttpStatus.OK.value());
+//        return new Gson().toJson("Ok");
+//    }
+
+    @RequestMapping(method = RequestMethod.GET,value = "/delete/{id}")
+    public String delete(@PathVariable int id,Product delPro){
         Product product = productService.getById(id);
         if (product == null) {
-            mapResponse.put("status", HttpStatus.NOT_FOUND.value());
-            mapResponse.put("message", "Product is not found!");
-            return new ResponseEntity<>(mapResponse, HttpStatus.NOT_FOUND);
+            return "error/404";
         }
+        product.setStatus(-1);
         productService.delete(product);
-        mapResponse.put("status", HttpStatus.OK.value());
-        mapResponse.put("message", "Delete success");
-        return new ResponseEntity<>(mapResponse, HttpStatus.OK);
+        return "redirect:/admin/products";
     }
 }
