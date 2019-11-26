@@ -33,7 +33,7 @@
                                             </select> entries</label></div>
                                     </div>
                                     <div class="col-sm-12 col-md-6">
-                                        <div id="bootstrap-data-table-export_filter" class="dataTables_filter"><label>Search:<input
+                                        <div id="bootstrap-data-table-export_filter" class="dataTables_filter"><label>Tìm Kiếm:<input
                                                 type="search" class="form-control form-control-sm" placeholder=""
                                                 aria-controls="bootstrap-data-table-export"></label></div>
                                     </div>
@@ -55,37 +55,37 @@
                                                     aria-controls="bootstrap-data-table-export" rowspan="1" colspan="1"
                                                     aria-sort="ascending"
                                                     aria-label="Name: activate to sort column descending"
-                                                    style="width: 122px;">Name
+                                                    style="width: 122px;">Mã Sản Phẩm
                                                 </th>
                                                 <th class="sorting" tabindex="0"
                                                     aria-controls="bootstrap-data-table-export" rowspan="1" colspan="1"
                                                     aria-label="Position: activate to sort column ascending"
-                                                    style="width: 154px;">Price
+                                                    style="width: 154px;">Giá
                                                 </th>
                                                 <th class="sorting" tabindex="0"
                                                     aria-controls="bootstrap-data-table-export" rowspan="1" colspan="1"
                                                     aria-label="Office: activate to sort column ascending"
-                                                    style="width: 349px;">Description
+                                                    style="width: 349px;">Mô Tả
                                                 </th>
                                                 <th class="sorting" tabindex="0"
                                                     aria-controls="bootstrap-data-table-export" rowspan="1" colspan="1"
                                                     aria-label="Salary: activate to sort column ascending"
-                                                    style="width: 209px;">Photos
+                                                    style="width: 209px;">Ảnh
+                                                </th>
+<!--                                                <th class="sorting" tabindex="0"-->
+<!--                                                    aria-controls="bootstrap-data-table-export" rowspan="1" colspan="1"-->
+<!--                                                    aria-label="Salary: activate to sort column ascending"-->
+<!--                                                    style="width: 122px;">Size-->
+<!--                                                </th>-->
+                                                <th class="sorting" tabindex="0"
+                                                    aria-controls="bootstrap-data-table-export" rowspan="1" colspan="1"
+                                                    aria-label="Salary: activate to sort column ascending"
+                                                    style="width: 122px;">Giới Tính
                                                 </th>
                                                 <th class="sorting" tabindex="0"
                                                     aria-controls="bootstrap-data-table-export" rowspan="1" colspan="1"
                                                     aria-label="Salary: activate to sort column ascending"
-                                                    style="width: 122px;">Size
-                                                </th>
-                                                <th class="sorting" tabindex="0"
-                                                    aria-controls="bootstrap-data-table-export" rowspan="1" colspan="1"
-                                                    aria-label="Salary: activate to sort column ascending"
-                                                    style="width: 122px;">Gender
-                                                </th>
-                                                <th class="sorting" tabindex="0"
-                                                    aria-controls="bootstrap-data-table-export" rowspan="1" colspan="1"
-                                                    aria-label="Salary: activate to sort column ascending"
-                                                    style="width: 122px;">Thao tác
+                                                    style="width: 122px;">Thao Tác
                                                 </th>
                                             </tr>
                                             </thead>
@@ -95,19 +95,19 @@
 
                                                 <td><span th:text="${pro.name}"></span></td>
                                                 <td><span th:text="${pro.price}"></span></td>
-                                                <td><span th:text="${pro.description}"></span></td>
+                                                <td style="white-space: normal; line-height: 2"><span th:text="${pro.description}"></span></td>
                                                 <td>
                                                     <div
                                                             th:style="'background: url(' + ${pro.photoLinks.get(0)} + '); width: 100px; height: 100px; background-size: cover'"></div>
                                                 </td>
-                                                <td><span th:text="${pro.size}"></span></td>
+<!--                                                <td><span th:text="${pro.size}"></span></td>-->
                                                 <td><span th:text="${pro.gender}"></span></td>
 
                                                 <td>
 
                                                     <a th:href="@{products/{id}(id=${pro.id})}"><i  class='mdi mdi-binoculars'></i></a>
                                                     <a th:href="@{products/edit/{id}(id=${pro.id})}"><i class="mdi mdi-border-color"></i></a>
-                                                    <a onclick="return confirm('Bạn có chắc muốn xoá tác giả này?')"
+                                                    <a onclick="return confirm('Bạn có chắc muốn xoá sản phẩm này?')"
                                                     th:href="@{'/admin/products/delete/' + ${pro.id}}"><i class="mdi mdi-archive deleted-ajax"></i></a>
                                                 </td>
                                             </tr>
@@ -180,6 +180,7 @@
             </div>
         </div><!-- .animated -->
     </div>
+
     <script type="text/javascript">
         $(document).ready(function(){
             $("#select_all").click(function(){
@@ -212,6 +213,8 @@
                             return false;
                         });
                     });
+    </script>
 </div>
+
 </body>
 </html>

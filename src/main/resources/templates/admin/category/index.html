@@ -17,7 +17,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <strong class="card-title">Danh sách sản phẩm</strong>
+                            <strong class="card-title">Danh mục sản phẩm</strong>
                         </div>
                         <div class="card-body">
                             <div id="bootstrap-data-table-export_wrapper"
@@ -35,7 +35,7 @@
                                             </select> entries</label></div>
                                     </div>
                                     <div class="col-sm-12 col-md-6">
-                                        <div id="bootstrap-data-table-export_filter" class="dataTables_filter"><label>Search:<input
+                                        <div id="bootstrap-data-table-export_filter" class="dataTables_filter"><label>Tìm Kiếm:<input
                                                 type="search" class="form-control form-control-sm" placeholder=""
                                                 aria-controls="bootstrap-data-table-export"></label></div>
                                     </div>
@@ -57,29 +57,29 @@
                                                     aria-controls="bootstrap-data-table-export" rowspan="1" colspan="1"
                                                     aria-sort="ascending"
                                                     aria-label="Name: activate to sort column descending"
-                                                    style="width: 122px;">Name
+                                                    style="width: 122px;">Tên Sản Phẩm
                                                 </th>
                                                 <th class="sorting" tabindex="0"
                                                     aria-controls="bootstrap-data-table-export" rowspan="1" colspan="1"
                                                     aria-label="Position: activate to sort column ascending"
-                                                    style="width: 154px;">Price
+                                                    style="width: 154px;">Giá
                                                 </th>
                                                 <th class="sorting" tabindex="0"
                                                     aria-controls="bootstrap-data-table-export" rowspan="1" colspan="1"
                                                     aria-label="Office: activate to sort column ascending"
-                                                    style="width: 349px;">Description
+                                                    style="width: 349px;">Mô Tả
                                                 </th>
                                                 <th class="sorting" tabindex="0"
                                                     aria-controls="bootstrap-data-table-export" rowspan="1" colspan="1"
                                                     aria-label="Salary: activate to sort column ascending"
-                                                    style="width: 209px;">Image
+                                                    style="width: 209px;">Ảnh
                                                 </th>
 
 
                                                 <th class="sorting" tabindex="0"
                                                     aria-controls="bootstrap-data-table-export" rowspan="1" colspan="1"
                                                     aria-label="Salary: activate to sort column ascending"
-                                                    style="width: 122px;">Thao tác
+                                                    style="width: 122px;">Thao Tác
                                                 </th>
                                             </tr>
                                             </thead>
@@ -95,6 +95,7 @@
 
                                                     <a th:href="@{category/{id}(id=${cat.id})}"><i  class='mdi mdi-binoculars'></i></a>
                                                     <a th:href="@{category/edit/{id}(id=${cat.id})}"><i class="mdi mdi-border-color"></i></a>
+                                                    <a onclick="return confirm('Bạn có chắc muốn xoá sản phẩm này?')"
                                                     <a th:href="@{category/delete/{id}(id=${cat.id})}"><i class="mdi mdi-archive"></i></a>
                                                 </td>
                                             </tr>
@@ -167,7 +168,39 @@
 
     </div>
 
-
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#select_all").click(function(){
+                $(document).ready(function () {
+                    $("#select_all").click(function () {
+                        var checked_status = this.checked;
+                        $("input[name='select[]']").each(function(){
+                            $("input[name='select[]']").each(function () {
+                                this.checked = checked_status;
+                            });
+                        });
+                        $(".deleted-ajax").click(function () {
+                            var id = $(this).attr("href").replace("#", "");
+                            if (confirm("Bạn có chắc muốn xoá sản phẩm này?")) {
+                                $.ajax({
+                                    url: "/admin/category/ajax-delete/" + id,
+                                    type: "DELETE",
+                                    headers: {
+                                        "X-CSRF-TOKEN": $("meta[name='_csrf']").attr("content")
+                                    },
+                                    success: function (data) {
+                                        alert("Xoá thành công!");
+                                        window.location.reload();
+                                    },
+                                    error: function () {
+                                        alert("Thao tác thất bại, vui lòng thử lại sau!");
+                                    }
+                                });
+                            }
+                            return false;
+                        });
+                    });
+    </script>
 </div>
 </body>
 </html>

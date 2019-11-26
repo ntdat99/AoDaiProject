@@ -29,7 +29,7 @@ public class CategoryController {
     @RequestMapping(method = RequestMethod.GET)
     public String list(
             @RequestParam(name = "page", defaultValue = "1") int page,
-            @RequestParam(name = "limit", defaultValue = "5") int limit,
+            @RequestParam(name = "limit", defaultValue = "2") int limit,
             Model model) {
         Page<ProductCategory> productCategoryPage = categoryRepository.findAll(PageRequest.of(page - 1, limit));
         model.addAttribute("category", productCategoryPage.getContent());
@@ -90,20 +90,15 @@ public class CategoryController {
         return "redirect:/admin/category";
     }
 
-    // viết ajax call.
-    @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
-    @ResponseBody
-    public ResponseEntity<Object> update(@PathVariable long id) {
-        HashMap<String, Object> mapResponse = new HashMap<>();
-        ProductCategory category = categoryService.getById(id);
-        if (category == null) {
-            mapResponse.put("status", HttpStatus.NOT_FOUND.value());
-            mapResponse.put("message", "product Category is not found!");
-            return new ResponseEntity<>(mapResponse, HttpStatus.NOT_FOUND);
+    @RequestMapping(method = RequestMethod.GET, value = "/delete/{id}")
+    public String delete(@PathVariable long id, ProductCategory delProCa) {
+        ProductCategory productCategory = categoryService.getById(id);
+        if (productCategory == null) {
+            return "error/404";
+
         }
-        categoryService.delete(category);
-        mapResponse.put("status", HttpStatus.OK.value());
-        mapResponse.put("message", "Delete success");
-        return new ResponseEntity<>(mapResponse, HttpStatus.OK);
+        productCategory.setStatus(-1);
+        categoryService.delete(productCategory);
+        return "redirect:/admin/category";
     }
 }

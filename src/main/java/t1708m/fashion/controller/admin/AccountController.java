@@ -63,6 +63,15 @@ public class AccountController {
         model.addAttribute("account", account);
         return "admin/account/edit";
     }
+    @RequestMapping(method = RequestMethod.GET, value = "/{id}")
+    public String detail(@PathVariable int id, Model model) {
+        Account account = accountServiceImplement.getById(id);
+        if (account == null) {
+            return "error/404";
+        }
+        model.addAttribute("account", account);
+        return "admin/account/detail";
+    }
 
     @RequestMapping(method = RequestMethod.POST, value = "/edit/{id}")
     public String update(@PathVariable int id, Model model, Account updateaccount) {

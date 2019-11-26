@@ -13,48 +13,48 @@
             <div class="card-body card-block" >
                 <form class="form-horizontal"th:action="@{/admin/account/create}" th:object="${account}" method="post">
                     <div class="row form-group">
-                        <div class="col col-md-3"><label for="username" class=" form-control-label">Username</label></div>
-                        <div class="col-12 col-md-9"><input type="text" id="username" name="username" placeholder="Enter username"
+                        <div class="col col-md-3"><label for="username" class=" form-control-label">Tên Người Dùng</label></div>
+                        <div class="col-12 col-md-9"><input type="text" id="username" name="username" placeholder="Nhập tên người dùng"
                                                             class="form-control" th:field="*{username}">
 
                         </div>
                     </div>
                     <div class="row form-group">
-                        <div class="col col-md-3"><label for="password" class=" form-control-label">Password</label></div>
-                        <div class="col-12 col-md-9"><input type="password" id="password" name="password" placeholder="Password"
+                        <div class="col col-md-3"><label for="password" class=" form-control-label">Mật Khẩu</label></div>
+                        <div class="col-12 col-md-9"><input type="password" id="password" name="password" placeholder="Nhập mật khẩu"
                                                             class="form-control" th:field="*{password}">
 
                         </div>
                     </div>
                     <div class="row form-group">
-                        <div class="col col-md-3"><label for="confirmPassword" class=" form-control-label">Confirm Password</label></div>
-                        <div class="col-12 col-md-9"><input type="password" id="confirmPassword" name="password" placeholder="Confirm Password"
+                        <div class="col col-md-3"><label for="confirmPassword" class=" form-control-label">Nhập Lại Mật Khẩu</label></div>
+                        <div class="col-12 col-md-9"><input type="password" id="confirmPassword" name="password" placeholder="Nhập lại mật khẩu"
                                                             class="form-control" th:field="*{confirmPassword}">
                         </div>
                     </div>
                     <div class="row form-group">
                         <div class="col col-md-3"><label for="email" class=" form-control-label">Email</label></div>
-                        <div class="col-12 col-md-9"><input type="email" id="email" name="email" placeholder="Enter email"
+                        <div class="col-12 col-md-9"><input type="email" id="email" name="email" placeholder="Nhập email"
                                                             class="form-control" th:field="*{email}">
 
                         </div>
                     </div>
                     <div class="row form-group">
-                        <div class="col col-md-3"><label for="phone" class=" form-control-label">Phone</label></div>
-                        <div class="col-12 col-md-9"><input type="text" id="phone" name="phone" placeholder="Phone"
+                        <div class="col col-md-3"><label for="phone" class=" form-control-label">Số Điện Thoại</label></div>
+                        <div class="col-12 col-md-9"><input type="text" id="phone" name="phone" placeholder="Nhập số điện thoại"
                                                             class="form-control" th:field="*{phone}">
 
                         </div>
                     </div>
                     <div class="row form-group">
-                        <div class="col col-md-3"><label for="address" class=" form-control-label">Address</label></div>
-                        <div class="col-12 col-md-9"><input type="text" id="address" name="address" placeholder="Address"
+                        <div class="col col-md-3"><label for="address" class=" form-control-label">Đại Chỉ</label></div>
+                        <div class="col-12 col-md-9"><input type="text" id="address" name="address" placeholder="Nhập địa chỉ"
                                                             class="form-control" th:field="*{address}">
 
                         </div>
                     </div>
                     <div class="row form-group">
-                        <div class="col col-md-3"><label for="role" class=" form-control-label">Role</label></div>
+                        <div class="col col-md-3"><label for="role" class=" form-control-label">Vai trò</label></div>
                         <div class="col-12 col-md-9">
                             <select th:field="*{role}" id="role" class="form-control">
                                 <option th:each="role : ${roles}" th:value="${role.value}"
@@ -65,8 +65,8 @@
 
 
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-success">Submit</button>
-                        <button type="reset" class="btn btn-danger">Reset</button>
+                        <button type="submit" class="btn btn-success">Lưu</button>
+                        <button type="reset" class="btn btn-danger">Làm Lại</button>
                     </div>
 
                 </form>
