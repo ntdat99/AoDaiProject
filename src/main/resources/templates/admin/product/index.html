@@ -37,12 +37,12 @@
                                         <div class="dataTables_length" id="bootstrap-data-table-export_length"><label>Show
                                             <select name="bootstrap-data-table-export_length"
                                                     aria-controls="bootstrap-data-table-export"
-                                                    class="custom-select custom-select-sm form-control form-control-sm">
-                                                <option value="10">10</option>
-                                                <option value="25">25</option>
-                                                <option value="50">50</option>
-                                                <option value="-1">All</option>
-                                            </select> entries</label></div>
+                                                    class="custom-select custom-select-sm form-control form-control-sm" onChange="window.location.href=this.value">
+                                                <option value="?limit=10">10</option>
+                                                <option value="?limit=25">25</option>
+                                                <option value="?limit=50">50</option>
+
+                                            </select> products</label></div>
                                     </div>
                                     <div class="col-sm-12 col-md-6">
                                         <form th:action="@{/admin/products}" id="form-search" method="get" class="form-inline">
@@ -143,11 +143,11 @@
                                     </div>
                                 </div>
                                 <div class="row" style="margin-top: 20px">
-                                    <div class="col-sm-12 col-md-5">
-                                        <div class="dataTables_info" id="bootstrap-data-table-export_info" role="status"
-                                             aria-live="polite">Showing 1 to 10 of 57 entries
-                                        </div>
-                                    </div>
+<!--                                    <div class="col-sm-12 col-md-5">-->
+<!--                                        <div class="dataTables_info" id="bootstrap-data-table-export_info" role="status"-->
+<!--                                             aria-live="polite">Showing 1 to 10 of 57 entries-->
+<!--                                        </div>-->
+<!--                                    </div>-->
                                     <div class="col-sm-12 col-md-7">
                                         <div class="dataTables_paginate paging_simple_numbers"
                                              id="bootstrap-data-table-export_paginate" th:if="${totalPage > 1}">

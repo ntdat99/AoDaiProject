@@ -88,6 +88,7 @@ public class ProductController {
             return "error/404";
         }
         model.addAttribute("productdetail", product);
+        model.addAttribute("sizes", Product.Size.values());
         return "client/product-detail";
     }
 

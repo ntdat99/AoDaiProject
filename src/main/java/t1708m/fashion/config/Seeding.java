@@ -48,6 +48,7 @@ public class Seeding implements ApplicationListener<ApplicationReadyEvent>{
         productCategory.setName("Áo dài cưới");
         productCategory.setPrice(1200000);
         productCategory.setDescription("Áo dài cưới");
+        productCategory.setStatus(1);
         productCategoryList.add(productCategory);
         //nhân thêm 4 cái
 
@@ -55,24 +56,28 @@ public class Seeding implements ApplicationListener<ApplicationReadyEvent>{
         productCategory.setName("Áo dài truyền thống");
         productCategory.setPrice(1200000);
         productCategory.setDescription("Áo dài truyền thống");
+        productCategory.setStatus(1);
         productCategoryList.add(productCategory);
 
         productCategory = new ProductCategory();
         productCategory.setName("Áo dài trung niên");
         productCategory.setPrice(1500000);
         productCategory.setDescription("Áo dài trung niên");
+        productCategory.setStatus(1);
         productCategoryList.add(productCategory);
 
         productCategory = new ProductCategory();
         productCategory.setName("Áo dài thêu");
         productCategory.setPrice(1000000);
         productCategory.setDescription("Áo dài thêu");
+        productCategory.setStatus(1);
         productCategoryList.add(productCategory);
 
         productCategory = new ProductCategory();
         productCategory.setName("Áo dài cách tân");
         productCategory.setPrice(1000000);
         productCategory.setDescription("Áo dài cách tân");
+        productCategory.setStatus(1);
         productCategoryList.add(productCategory);
 
         categoryRepository.saveAll(productCategoryList);
