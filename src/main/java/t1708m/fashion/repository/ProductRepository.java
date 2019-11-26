@@ -20,7 +20,6 @@ public interface ProductRepository  extends JpaRepository<Product, Long>, JpaSpe
     @Query("SELECT p FROM Product as p WHERE p.name LIKE CONCAT('%',:name,'%')")
     List<Product> findAllByName (String name);
 
-
     @Transactional
     @Modifying
     @Query(nativeQuery = true, value = "SET FOREIGN_KEY_CHECKS=0;")
@@ -35,4 +34,5 @@ public interface ProductRepository  extends JpaRepository<Product, Long>, JpaSpe
     @Modifying
     @Query(nativeQuery = true, value = "alter table product AUTO_INCREMENT = 1")
     void resetIncrement();
+
 }

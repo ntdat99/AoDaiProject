@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" >
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org" >
 <head>
     <title>Home</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -56,8 +56,8 @@
                         Help & FAQs
                     </a>
 
-                    <a href="/login" class="flex-c-m trans-04 p-lr-25">
-                        My Account
+                    <a href="/login" class="flex-c-m trans-04 p-lr-25" id="account-display">
+                        My account
                     </a>
 
                     <a href="#" class="flex-c-m trans-04 p-lr-25">
@@ -550,6 +550,15 @@
             ps.update();
         })
     });
+</script>
+
+<script th:inline="javascript">
+    var element = document.getElementById("account-display");
+    if ([[${#request.getRemoteUser()}]] != null) {
+        element.innerHTML = [[${#request.getUserPrincipal().getName().toString()}]];
+        element.href = "/account/detail/" + [[${#request.getUserPrincipal().getName()}]];
+    } else
+        element.innerHTML = "My account";
 </script>
 <!--===============================================================================================-->
 <script src="/customer/js/main.js"></script>
