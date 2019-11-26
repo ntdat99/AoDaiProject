@@ -55,7 +55,7 @@ public class HomeController extends ArticleCategory {
                     .and(new ProductSpecification(new SearchCriteria("keyword", "join", keyword)));
             model.addAttribute("keyword", keyword);
         }
-        Page<Product> productPage = productRepository.findAll(specification, PageRequest.of(page - 1, limit));
+        Page<Product> productPage = productService.findAllActive(specification, PageRequest.of(page - 1, limit));
 
         model.addAttribute("list", productPage.getContent());
         model.addAttribute("category", categoryRepository.findAll());

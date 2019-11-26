@@ -10,6 +10,9 @@ import t1708m.fashion.Specification.SearchCriteria;
 import t1708m.fashion.entity.Product;
 import t1708m.fashion.repository.ProductRepository;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import java.util.Calendar;
 import java.util.List;
 
@@ -20,12 +23,6 @@ public class ProductService {
     ProductRepository productRepository;
 
 
-
-    public Page<Product> findAllActive(Specification specification, Pageable pageable) {
-        specification = specification
-                .and(new ProductSpecification(new SearchCriteria("status", "!=", Product.Status.DELETED.getValue())));
-        return productRepository.findAll(specification, pageable);
-    }
 
 
     public List<Product> products() {
@@ -39,7 +36,13 @@ public class ProductService {
     public Page<Product> products(Specification specification, int page, int limit) {
         return productRepository.findAll(specification, PageRequest.of(page - 1, limit));
     }
+    public Page<Product> findAllActive(Specification specification, Pageable pageable) {
 
+        specification = specification
+                .and(new ProductSpecification(new SearchCriteria("status", "!=", Product.Status.DELETED.getValue())));
+
+        return productRepository.findAll(specification, pageable);
+    }
     public Product getById(long id) {
         return productRepository.findById(id).orElse(null);
     }
