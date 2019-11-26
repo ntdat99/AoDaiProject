@@ -72,9 +72,9 @@ public class ProductController {
         Page<Product> productPage = productRepository.findAll(specification, PageRequest.of(page - 1, limit));
         List<Product> products = productService.products();
         List<Product> productsByName = productService.getByName(productName);
-        model.addAttribute("list", productsByName);
+//        model.addAttribute("list", productsByName);
         model.addAttribute("customer", products);
-        model.addAttribute("products", productPage.getContent());
+        model.addAttribute("list", productPage.getContent());
         model.addAttribute("category", categoryRepository.findAll());
         model.addAttribute("currentPage", productPage.getPageable().getPageNumber() + 1);
         model.addAttribute("limit", productPage.getPageable().getPageSize());
