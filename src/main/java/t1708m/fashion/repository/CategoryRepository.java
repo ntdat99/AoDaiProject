@@ -9,7 +9,7 @@ import t1708m.fashion.entity.ProductCategory;
 import java.util.List;
 
 
-public interface CategoryRepository extends JpaRepository<ProductCategory, Integer>, JpaSpecificationExecutor<ProductCategory> {
+public interface CategoryRepository extends JpaRepository<ProductCategory, Long>, JpaSpecificationExecutor<ProductCategory> {
 
     @Query("select h from ProductCategory as h where h.status = :status")
     List<ProductCategory> findActiveCategory(@Param("status") int status);

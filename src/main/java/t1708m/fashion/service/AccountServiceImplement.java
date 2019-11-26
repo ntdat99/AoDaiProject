@@ -41,6 +41,7 @@ public class AccountServiceImplement implements AccountService {
                         .username(account.getEmail())
                         .password(account.getPassword())
                         .roles(account.getRole() == 1 ? "CUSTOMER" : (account.getRole() == 99 ? "ADMIN" : ""))
+
                         .build();
         return user;
     }
