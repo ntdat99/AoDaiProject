@@ -13,4 +13,5 @@ public interface AccountService extends UserDetailsService {
     Account save(AccountDTO register);
 
     List<Account> findAccounts();
+
 }

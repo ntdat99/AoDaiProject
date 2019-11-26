@@ -12,48 +12,48 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
-                <strong>Thêm mới sản phẩm</strong>
+                <strong>Tạo mới danh mục sản phẩm</strong>
             </div>
             <div class="card-body card-block" >
                 <form class="form-horizontal" th:action="@{/admin/category/create}" th:object="${category}"
                       th:method="post">
                     <div class="row form-group">
-                        <div class="col col-md-3"><label for="name" class=" form-control-label">Name</label></div>
-                        <div class="col-12 col-md-9"><input type="text" id="name" name="name" placeholder="Enter name"
+                        <div class="col col-md-3"><label for="name" class=" form-control-label">Tên Sản Phẩm</label></div>
+                        <div class="col-12 col-md-9"><input type="text" id="name" name="name" placeholder="Nhập tên sản phẩm"
                                                             class="form-control" th:field="*{name}">
 
                         </div>
                     </div>
                     <div class="row form-group">
-                        <div class="col col-md-3"><label for="price" class=" form-control-label">Price</label></div>
-                        <div class="col-12 col-md-9"><input type="text" id="price" name="price" placeholder="Text"
+                        <div class="col col-md-3"><label for="price" class=" form-control-label">Giá</label></div>
+                        <div class="col-12 col-md-9"><input type="text" id="price" name="price" placeholder="Nhập giá"
                                                             class="form-control" th:field="*{price}">
 
                         </div>
                     </div>
                     <div class="row form-group">
                         <div class="col col-md-3"><label for="description"
-                                                         class=" form-control-label">Description</label></div>
+                                                         class=" form-control-label">Mô Tả</label></div>
                         <div class="col-12 col-md-9"><textarea th:field="*{description}" type="text" id="description"
                                                                name="description"
-                                                               placeholder="Text" class="form-control"></textarea>
+                                                               placeholder="Mô tả" class="form-control"></textarea>
 
                         </div>
                     </div>
                     <div class="row form-group">
-                        <div class="col col-md-3"><label for="uploaded-photos" class=" form-control-label">Choose
-                            photos</label></div>
+                        <div class="col col-md-3"><label for="uploaded-photos" class=" form-control-label">
+                            Chọn Ảnh</label></div>
                         <div class="col-12 col-md-9">
                             <input type="hidden" class="form-control" id="uploaded-photos" th:field="*{image}">
-                            <div id="preview"></div>
+                            <img id="preview" class="mb-2" style="width: 150px;" src="" alt=""><br>
                             <input type="button" id="upload_widget" class="cloudinary-button" value="Upload files"/>
                         </div>
                     </div>
 
 
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-success">Submit</button>
-                        <button type="reset" class="btn btn-secondary">Reset</button>
+                        <button type="submit" class="btn btn-success">Lưu</button>
+                        <button type="reset" class="btn btn-secondary">Làm Lại</button>
                     </div>
 
                 </form>

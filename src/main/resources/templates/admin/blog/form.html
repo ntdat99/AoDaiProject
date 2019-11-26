@@ -9,45 +9,45 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
-                <strong>Thêm mới blog</strong>
+                <strong>Thêm mới bài viết</strong>
             </div>
             <div class="card-body card-block">
                 <form class="form-horizontal" th:action="@{/admin/blogs/create}" th:object="${blog}"
                       th:method="post">
                     <div class="row form-group">
-                        <div class="col col-md-3"><label for="title" class=" form-control-label">Title</label></div>
-                        <div class="col-12 col-md-9"><input type="text" id="title" name="title" placeholder="Enter name"
+                        <div class="col col-md-3"><label for="title" class=" form-control-label">Tiêu đề bài viết</label></div>
+                        <div class="col-12 col-md-9"><input type="text" id="title" name="title" placeholder="Nhập tiêu đề bài viết"
                                                             class="form-control" th:field="*{title}">
                         </div>
                     </div>
                     <div class="row form-group">
                         <div class="col col-md-3"><label for="description"
-                                                         class=" form-control-label">Description</label></div>
+                                                         class=" form-control-label">Mô Tả</label></div>
                         <div class="col-12 col-md-9"><textarea th:field="*{description}" type="text" id="description"
-                                                               name="description"
+                                                               name="Thêm mô tả"
                                                                placeholder="Text" class="form-control"></textarea>
                         </div>
                     </div>
                     <div class="row form-group">
                         <div class="col col-md-3"><label for="description"
-                                                         class=" form-control-label">Content</label></div>
+                                                         class=" form-control-label">Nội dung bài viết </label></div>
                         <div class="col-12 col-md-9"><textarea th:field="*{content}" type="text" id="content"
-                                                               name="content"
+                                                               name="Nhập nội dung bài viết"
                                                                placeholder="Text" class="form-control"></textarea>
                         </div>
                     </div>
                     <div class="row form-group">
-                        <div class="col col-md-3"><label for="uploaded-photos" class=" form-control-label">Choose
-                            photos</label></div>
+                        <div class="col col-md-3"><label for="uploaded-photos" class=" form-control-label">
+                            Chọn ảnh</label></div>
                         <div class="col-12 col-md-9">
                             <input type="hidden" class="form-control" id="uploaded-photos" th:field="*{thumbnail}">
-                            <div id="preview"></div>
+                            <img id="preview" class="mb-2" style="width: 150px;" src="" alt=""><br>
                             <input type="button" id="upload_widget" class="cloudinary-button" value="Upload files"/>
                         </div>
                     </div>
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-success">Submit</button>
-                        <button type="reset" class="btn btn-danger">Reset</button>
+                        <button type="submit" class="btn btn-success">Lưu</button>
+                        <button type="reset" class="btn btn-danger">Làm Lại</button>
                     </div>
 
                 </form>

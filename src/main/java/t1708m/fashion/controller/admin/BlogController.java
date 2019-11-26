@@ -96,20 +96,14 @@ public class BlogController {
         return "redirect:/admin/blogs";
     }
 
-    // viết ajax call.
-    @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
-    @ResponseBody
-    public ResponseEntity<Object> delete(@PathVariable int id) {
-        HashMap<String, Object> mapResponse = new HashMap<>();
-        Article blog = blogService.getById(id);
-        if (blog == null) {
-            mapResponse.put("status", HttpStatus.NOT_FOUND.value());
-            mapResponse.put("message", "Blog is not found!");
-            return new ResponseEntity<>(mapResponse, HttpStatus.NOT_FOUND);
+    @RequestMapping(method = RequestMethod.GET, value = "/delete/{id}")
+    public String delete(@PathVariable int id, Article delBlog) {
+        Article article = blogService.getById(id);
+        if (article == null) {
+            return "error/404";
         }
-        blogService.delete(blog);
-        mapResponse.put("status", HttpStatus.OK.value());
-        mapResponse.put("message", "Delete success");
-        return new ResponseEntity<>(mapResponse, HttpStatus.OK);
+        article.setStatus(-1);
+        blogService.delete(article);
+        return "redirect:/admin/blogs";
     }
 }
