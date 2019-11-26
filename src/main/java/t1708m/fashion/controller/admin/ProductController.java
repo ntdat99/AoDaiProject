@@ -21,7 +21,7 @@ import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 
-@Controller("customerProductController")
+@Controller("   customerProductController")
 @RequestMapping(value = "/admin/products")
 public class ProductController {
 
