@@ -54,7 +54,7 @@ public class ProductController {
             @RequestParam(name = "categoryId", required = false) Long categoryId,
             @RequestParam(name = "keyword", required = false) String keyword,
             @RequestParam(name = "page", defaultValue = "1") int page,
-            @RequestParam(name = "limit", defaultValue = "5") int limit,
+            @RequestParam(name = "limit", defaultValue = "12") int limit,
             Model model, @RequestParam(defaultValue = "") String productName) {
         Specification specification = Specification.where(null);
 
@@ -72,9 +72,9 @@ public class ProductController {
         Page<Product> productPage = productRepository.findAll(specification, PageRequest.of(page - 1, limit));
         List<Product> products = productService.products();
         List<Product> productsByName = productService.getByName(productName);
-        model.addAttribute("list", productsByName);
+//        model.addAttribute("list", productsByName);
         model.addAttribute("customer", products);
-        model.addAttribute("products", productPage.getContent());
+        model.addAttribute("list", productPage.getContent());
         model.addAttribute("category", categoryRepository.findAll());
         model.addAttribute("currentPage", productPage.getPageable().getPageNumber() + 1);
         model.addAttribute("limit", productPage.getPageable().getPageSize());
