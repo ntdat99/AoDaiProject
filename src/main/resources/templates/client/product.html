@@ -11,8 +11,9 @@
 	<div class="container">
 		<div class="flex-w flex-sb-m p-b-52">
 			<div class="flex-w flex-l-m filter-tope-group m-tb-10" >
-
-				<a class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1"  th:action="@{/product/category}" method="get" th:each="category : ${category}" th:href="@{/product/{id}(id=${category.id})}" th:text="${category.name}"></a>
+				<a class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1"  th:action="@{/product/category}"
+				   method="get" th:each="category : ${category}" href="#"
+				   th:text="${category.name}"></a>
 				<div class="col-sm-3">
 					<select id="category" name="categoryId" class="form-control" onchange="this.form.submit()">
 						<option th:each="category : ${category}"
@@ -23,7 +24,6 @@
 					</select>
 				</div>
 			</div>
-
 			<div class="flex-w flex-c-m m-tb-10">
 				<div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
 					<i class="icon-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-filter-list"></i>
