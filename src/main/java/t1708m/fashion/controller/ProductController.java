@@ -54,7 +54,7 @@ public class ProductController {
             @RequestParam(name = "categoryId", required = false) Long categoryId,
             @RequestParam(name = "keyword", required = false) String keyword,
             @RequestParam(name = "page", defaultValue = "1") int page,
-            @RequestParam(name = "limit", defaultValue = "5") int limit,
+            @RequestParam(name = "limit", defaultValue = "12") int limit,
             Model model, @RequestParam(defaultValue = "") String productName) {
         Specification specification = Specification.where(null);
 
