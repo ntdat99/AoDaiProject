@@ -41,7 +41,7 @@
                             Chọn ảnh</label></div>
                         <div class="col-12 col-md-9">
                             <input type="hidden" class="form-control" id="uploaded-photos" th:field="*{photos}">
-                            <img id="preview" class="mb-2" style="width: 150px;" src="" alt=""><br>
+                            <img id="preview" class="mb-2" style="width: 150px;" th:src="*{photos}" alt=""><br>
 
                             <input type="button" id="upload_widget" class="cloudinary-button" value="Upload files"/>
                         </div>

@@ -86,13 +86,13 @@ public class BlogController {
         model.addAttribute("blog", blog);
         blog.setTitle(updateBlog.getTitle());
         blog.setDescription(updateBlog.getDescription());
-        blog.setDescription(updateBlog.getDescription());
         blog.setContent(updateBlog.getContent());
         blog.setThumbnail(updateBlog.getThumbnail());
         blog.setUpdateAt(updateBlog.getUpdateAt());
         blog.setDeletedAt(updateBlog.getDeletedAt());
         blog.setCategory(updateBlog.getCategory());
         blog.setStatus(updateBlog.getStatus());
+        blogService.update(blog);
         return "redirect:/admin/blogs";
     }
 
