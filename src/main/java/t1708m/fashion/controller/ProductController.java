@@ -70,6 +70,7 @@ public class ProductController {
             model.addAttribute("keyword", keyword);
         }
         Page<Product> productPage = productService.findAllActive(specification, PageRequest.of(page - 1, limit));
+
         model.addAttribute("list", productPage.getContent());
         model.addAttribute("category", categoryRepository.findAll());
         model.addAttribute("currentPage", productPage.getPageable().getPageNumber() + 1);
@@ -85,6 +86,7 @@ public class ProductController {
             return "error/404";
         }
         model.addAttribute("productdetail", product);
+        model.addAttribute("sizes", Product.Size.values());
         return "client/product-detail";
     }
 

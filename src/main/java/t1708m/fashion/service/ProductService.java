@@ -42,13 +42,7 @@ public class ProductService {
     public Page<Product> products(Specification specification, int page, int limit) {
         return productRepository.findAll(specification, PageRequest.of(page - 1, limit));
     }
-    public Page<Product> findAllActive(Specification specification, Pageable pageable) {
 
-        specification = specification
-                .and(new ProductSpecification(new SearchCriteria("status", "!=", Product.Status.DELETED.getValue())));
-        System.out.println(specification);
-        return productRepository.findAll(specification, pageable);
-    }
     public Product getById(long id) {
         return productRepository.findById(id).orElse(null);
     }

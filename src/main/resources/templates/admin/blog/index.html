@@ -25,12 +25,12 @@
                                         <div class="dataTables_length" id="bootstrap-data-table-export_length"><label>Show
                                             <select name="bootstrap-data-table-export_length"
                                                     aria-controls="bootstrap-data-table-export"
-                                                    class="custom-select custom-select-sm form-control form-control-sm">
-                                                <option value="10">10</option>
-                                                <option value="25">25</option>
-                                                <option value="50">50</option>
-                                                <option value="-1">All</option>
-                                            </select> entries</label></div>
+                                                    class="custom-select custom-select-sm form-control form-control-sm" onChange="window.location.href=this.value">
+                                                <option value="?limit=10">10</option>
+                                                <option value="?limit=25">25</option>
+                                                <option value="?limit=50">50</option>
+
+                                            </select> blogs</label></div>
                                     </div>
                                     <div class="col-sm-12 col-md-6">
                                         <div id="bootstrap-data-table-export_filter" class="dataTables_filter"><label>Tìm Kiếm:<input
