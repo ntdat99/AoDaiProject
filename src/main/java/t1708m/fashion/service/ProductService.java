@@ -2,6 +2,7 @@ package t1708m.fashion.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import t1708m.fashion.Specification.ProductSpecification;
@@ -20,6 +21,15 @@ public class ProductService {
 
     @Autowired
     ProductRepository productRepository;
+
+
+
+    public Page<Product> findAllActive(Specification specification, Pageable pageable) {
+        specification = specification
+                .and(new ProductSpecification(new SearchCriteria("status", "!=", Product.Status.DELETED.getValue())));
+        return productRepository.findAll(specification, pageable);
+    }
+
 
     public List<Product> products() {
         return productRepository.findActiveProduct(1);
