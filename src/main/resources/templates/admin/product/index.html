@@ -72,11 +72,11 @@
                                                     aria-label="Salary: activate to sort column ascending"
                                                     style="width: 209px;">Photos
                                                 </th>
-                                                <th class="sorting" tabindex="0"
-                                                    aria-controls="bootstrap-data-table-export" rowspan="1" colspan="1"
-                                                    aria-label="Salary: activate to sort column ascending"
-                                                    style="width: 122px;">Size
-                                                </th>
+<!--                                                <th class="sorting" tabindex="0"-->
+<!--                                                    aria-controls="bootstrap-data-table-export" rowspan="1" colspan="1"-->
+<!--                                                    aria-label="Salary: activate to sort column ascending"-->
+<!--                                                    style="width: 122px;">Size-->
+<!--                                                </th>-->
                                                 <th class="sorting" tabindex="0"
                                                     aria-controls="bootstrap-data-table-export" rowspan="1" colspan="1"
                                                     aria-label="Salary: activate to sort column ascending"
@@ -95,19 +95,19 @@
 
                                                 <td><span th:text="${pro.name}"></span></td>
                                                 <td><span th:text="${pro.price}"></span></td>
-                                                <td><span th:text="${pro.description}"></span></td>
+                                                <td style="white-space: normal; line-height: 2"><span th:text="${pro.description}"></span></td>
                                                 <td>
                                                     <div
                                                             th:style="'background: url(' + ${pro.photoLinks.get(0)} + '); width: 100px; height: 100px; background-size: cover'"></div>
                                                 </td>
-                                                <td><span th:text="${pro.size}"></span></td>
+<!--                                                <td><span th:text="${pro.size}"></span></td>-->
                                                 <td><span th:text="${pro.gender}"></span></td>
 
                                                 <td>
 
                                                     <a th:href="@{products/{id}(id=${pro.id})}"><i  class='mdi mdi-binoculars'></i></a>
                                                     <a th:href="@{products/edit/{id}(id=${pro.id})}"><i class="mdi mdi-border-color"></i></a>
-                                                    <a onclick="return confirm('Bạn có chắc muốn xoá tác giả này?')"
+                                                    <a onclick="return confirm('Bạn có chắc muốn xoá sản phẩm này?')"
                                                     th:href="@{'/admin/products/delete/' + ${pro.id}}"><i class="mdi mdi-archive deleted-ajax"></i></a>
                                                 </td>
                                             </tr>

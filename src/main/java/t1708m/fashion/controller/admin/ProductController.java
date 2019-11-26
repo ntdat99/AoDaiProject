@@ -61,7 +61,6 @@ public class ProductController {
     public String create(Model model) {
         List<ProductCategory> categories = categoryService.categories();
         model.addAttribute("product", new Product());
-        model.addAttribute("sizes", Product.Size.values());
         model.addAttribute("genders", Product.Gender.values());
         model.addAttribute("categories", categories);
         return "/admin/product/form";
@@ -86,7 +85,6 @@ public class ProductController {
             return "error/404";
         }
         model.addAttribute("product", product);
-        model.addAttribute("sizes", Product.Size.values());
         model.addAttribute("genders", Product.Gender.values());
         return "admin/product/edit";
     }
@@ -103,7 +101,6 @@ public class ProductController {
         product.setDescription(updateProduct.getDescription());
         product.setPhotos(updateProduct.getPhotos());
         product.setGender(updateProduct.getGender());
-        product.setSize(updateProduct.getSize());
         product.setCategory(updateProduct.getCategory());
         product.setStatus(updateProduct.getStatus());
         productService.update(product);
