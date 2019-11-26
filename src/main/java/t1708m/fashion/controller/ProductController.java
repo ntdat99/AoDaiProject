@@ -55,21 +55,24 @@ public class ProductController {
             @RequestParam(name = "keyword", required = false) String keyword,
             @RequestParam(name = "page", defaultValue = "1") int page,
             @RequestParam(name = "limit", defaultValue = "12") int limit,
-            Model model, @RequestParam(defaultValue = "") String productName) {
+            Model model) {
         Specification specification = Specification.where(null);
-        System.out.println("AAAAAA: " +categoryId);
+
+
         if (categoryId != null && categoryId > 0) {
             specification = specification
             .and(new ProductSpecification(new SearchCriteria("categoryId", "joinProductCategory", categoryId)));
 
             model.addAttribute("categoryId", categoryId);
         }
+
         if (keyword != null && keyword.length() > 0) {
             specification = specification
                     .and(new ProductSpecification(new SearchCriteria("keyword", "join", keyword)));
             model.addAttribute("keyword", keyword);
         }
         Page<Product> productPage = productService.findAllActive(specification, PageRequest.of(page - 1, limit));
+
         model.addAttribute("list", productPage.getContent());
         model.addAttribute("category", categoryRepository.findAll());
         model.addAttribute("currentPage", productPage.getPageable().getPageNumber() + 1);

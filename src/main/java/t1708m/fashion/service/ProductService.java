@@ -24,12 +24,6 @@ public class ProductService {
 
 
 
-    public Page<Product> findAllActive(Specification specification, Pageable pageable) {
-        specification = specification
-                .and(new ProductSpecification(new SearchCriteria("status", "!=", Product.Status.DELETED.getValue())));
-        return productRepository.findAll(specification, pageable);
-    }
-
 
     public List<Product> products() {
         return productRepository.findActiveProduct(1);
@@ -46,7 +40,7 @@ public class ProductService {
 
         specification = specification
                 .and(new ProductSpecification(new SearchCriteria("status", "!=", Product.Status.DELETED.getValue())));
-        System.out.println(specification);
+
         return productRepository.findAll(specification, pageable);
     }
     public Product getById(long id) {

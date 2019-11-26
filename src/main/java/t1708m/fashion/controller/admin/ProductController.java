@@ -45,6 +45,7 @@ public class ProductController {
             @RequestParam(name = "limit", defaultValue = "10") int limit,
             Model model) {
         Specification specification = Specification.where(null);
+
         if(keyword != null && keyword.length() > 0){
             specification = specification
                     .and(new ProductSpecification(new SearchCriteria("keyword", "join", keyword )));
