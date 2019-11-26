@@ -32,7 +32,7 @@
                                             </select> entries</label></div>
                                     </div>
                                     <div class="col-sm-12 col-md-6">
-                                        <div id="bootstrap-data-table-export_filter" class="dataTables_filter"><label>Search:<input
+                                        <div id="bootstrap-data-table-export_filter" class="dataTables_filter"><label>Tìm Kiếm:<input
                                                 type="search" class="form-control form-control-sm" placeholder=""
                                                 aria-controls="bootstrap-data-table-export"></label></div>
                                     </div>
@@ -54,7 +54,7 @@
                                                     aria-controls="bootstrap-data-table-export" rowspan="1" colspan="1"
                                                     aria-sort="ascending"
                                                     aria-label="Name: activate to sort column descending"
-                                                    style="width: 122px;">Username
+                                                    style="width: 122px;">Tên Người Dùng
                                                 </th>
                                                 <th class="sorting" tabindex="0"
                                                     aria-controls="bootstrap-data-table-export" rowspan="1" colspan="1"
@@ -64,22 +64,22 @@
                                                 <th class="sorting" tabindex="0"
                                                     aria-controls="bootstrap-data-table-export" rowspan="1" colspan="1"
                                                     aria-label="Salary: activate to sort column ascending"
-                                                    style="width: 209px;">Phone
+                                                    style="width: 209px;">Số Điện Thoại
                                                 </th>
                                                 <th class="sorting" tabindex="0"
                                                     aria-controls="bootstrap-data-table-export" rowspan="1" colspan="1"
                                                     aria-label="Salary: activate to sort column ascending"
-                                                    style="width: 122px;">Address
+                                                    style="width: 122px;">Địa Chỉ
                                                 </th>
                                                 <th class="sorting" tabindex="0"
                                                     aria-controls="bootstrap-data-table-export" rowspan="1" colspan="1"
                                                     aria-label="Salary: activate to sort column ascending"
-                                                    style="width: 122px;">Status
+                                                    style="width: 122px;">Trạng Thái
                                                 </th>
                                                 <th class="sorting" tabindex="0"
                                                     aria-controls="bootstrap-data-table-export" rowspan="1" colspan="1"
                                                     aria-label="Salary: activate to sort column ascending"
-                                                    style="width: 122px;">Thao tác
+                                                    style="width: 122px;">Thao Tác
                                                 </th>
                                             </tr>
                                             </thead>
@@ -93,7 +93,7 @@
                                                 <td><span th:text="${aco.status}"></span></td>
                                                 <td>
 
-                                                    <a th:href="@{accout/{id}(id=${aco.id})}"><i  class='mdi mdi-binoculars'></i></a>
+                                                    <a th:href="@{account/{id}(id=${aco.id})}"><i  class='mdi mdi-binoculars'></i></a>
                                                     <a th:href="@{account/edit/{id}(id=${aco.id})}"><i class="mdi mdi-border-color"></i></a>
                                                     <a th:href="@{account/delete/{id}(id=${aco.id})}"><i class="mdi mdi-archive"></i></a>
                                                 </td>
@@ -103,61 +103,7 @@
                                         </table>
                                     </div>
                                 </div>
-                                <div class="row" style="margin-top: 20px">
-                                    <div class="col-sm-12 col-md-5">
-                                        <div class="dataTables_info" id="bootstrap-data-table-export_info" role="status"
-                                             aria-live="polite">Showing 1 to 10 of 57 entries
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12 col-md-7">
-                                        <div class="dataTables_paginate paging_simple_numbers"
-                                             id="bootstrap-data-table-export_paginate" th:if="${totalPage > 1}">
-                                            <ul class="pagination" >
-                                                <li class="paginate_button page-item previous "
-                                                ><a  aria-controls="bootstrap-data-table-export"
-                                                     data-dt-idx="0"
-                                                     tabindex="0"
-                                                     class="page-link" th:href="@{/admin/products(page=${1}, limit=${limit})}">First</a>
-                                                </li>
-                                                <li class="paginate_button page-item previous " th:if="${currentPage > 1}"
-                                                    id="bootstrap-data-table-export_previous"><a
-                                                        aria-controls="bootstrap-data-table-export"
-                                                        data-dt-idx="0"
-                                                        tabindex="0"
-                                                        class="page-link"  th:href="@{/admin/products(page=${currentPage - 1}, limit=${limit})}">Previous</a>
-                                                </li>
-                                                <li class="paginate_button page-item active"><a
-                                                        aria-controls="bootstrap-data-table-export"
-                                                        data-dt-idx="1"
-                                                        tabindex="0"
-                                                        class="page-link" th:href="@{/admin/products(page=${currentPage - 1}, limit=${limit})}">[[${currentPage}]]</a>
-                                                </li>
-                                                <li class="paginate_button page-item " th:if="${currentPage < totalPage}"><a
-                                                        aria-controls="bootstrap-data-table-export"
-                                                        data-dt-idx="2" tabindex="0"
-                                                        class="page-link" th:href="@{/admin/products(page=${currentPage + 1}, limit=${limit})}">[[${currentPage + 1}]]</a></li>
-                                                <li class="paginate_button page-item " th:if="${currentPage < totalPage}"><a
-                                                        aria-controls="bootstrap-data-table-export"
-                                                        data-dt-idx="5" tabindex="0"
-                                                        class="page-link" th:href="@{/admin/products(page=${currentPage + 2}, limit=${limit})}">[[${currentPage + 2}]]</a></li>
 
-                                                <li class="paginate_button page-item next" th:if="${currentPage < totalPage}"
-                                                    id="bootstrap-data-table-export_next"><a
-                                                        aria-controls="bootstrap-data-table-export"
-                                                        data-dt-idx="7"
-                                                        tabindex="0"
-                                                        class="page-link" th:href="@{/admin/products(page=${currentPage + 1}, limit=${limit})}">Next</a>
-                                                </li>
-                                                <li class="paginate_button page-item next"><a
-                                                        aria-controls="bootstrap-data-table-export"
-                                                        data-dt-idx="7"
-                                                        tabindex="0"
-                                                        class="page-link" th:href="@{/admin/products(page=${totalPage}, limit=${limit})}">Last</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>

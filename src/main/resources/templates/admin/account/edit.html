@@ -14,7 +14,7 @@
             <div class="card-body card-block" >
                 <form class="form-horizontal" th:action="@{'/admin/account/edit/'+${account.id}}" th:object="${account}" method="post">
                     <div class="row form-group">
-                        <div class="col col-md-3"><label for="username" class=" form-control-label">Username</label></div>
+                        <div class="col col-md-3"><label for="username" class=" form-control-label">Tên Người Dùng</label></div>
                         <div class="col-12 col-md-9"><input type="text" id="username" name="username" placeholder="Enter username"
                                                             class="form-control" th:field="*{username}">
 
@@ -28,14 +28,14 @@
                         </div>
                     </div>
                     <div class="row form-group">
-                        <div class="col col-md-3"><label for="phone" class=" form-control-label">Phone</label></div>
+                        <div class="col col-md-3"><label for="phone" class=" form-control-label">Số Điện Thoại</label></div>
                         <div class="col-12 col-md-9"><input type="text" id="phone" name="phone" placeholder="Phone"
                                                             class="form-control" th:field="*{phone}">
 
                         </div>
                     </div>
                     <div class="row form-group">
-                        <div class="col col-md-3"><label for="address" class=" form-control-label">Address</label></div>
+                        <div class="col col-md-3"><label for="address" class=" form-control-label">Địa Chỉ</label></div>
                         <div class="col-12 col-md-9"><input type="text" id="address" name="address" placeholder="Address"
                                                             class="form-control" th:field="*{address}">
 
@@ -50,7 +50,7 @@
                             </select></div>
                     </div>
                     <div class="row form-group">
-                        <div class="col col-md-3"><label for="status" class=" form-control-label">Status</label></div>
+                        <div class="col col-md-3"><label for="status" class=" form-control-label">Trạng thái</label></div>
                         <div class="col-12 col-md-9">
                             <select th:field="*{status}" id="status" class="form-control">
                                 <option th:each="status : ${status}" th:value="${status.value}"
@@ -61,8 +61,9 @@
 
 
                     <div class="card-footer">
-                        < <button type="submit" class="btn btn-success">Submit</button>
-                        <button type="reset" class="btn btn-danger">Reset</button>
+                         <button type="submit" class="btn btn-success">Lưu</button>
+                        <button type="reset" class="btn btn-danger">Làm Lại</button>
+                        <a href="/admin/account" class="btn btn-secondary">Quay Lại</a>
                     </div>
 
                 </form>
