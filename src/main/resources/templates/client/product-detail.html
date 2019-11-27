@@ -765,10 +765,12 @@
 		$(document).ready(function () {
 			$('.add-cart').click(function () {
 				var productId = $(this).attr('id');
+				var quantity = $('.num-product').val();
 				$.ajax({
-					url: '/cart/add?productId=' + productId + '&quantity=1',
+					url: '/cart/add?productId=' + productId + '&quantity='+quantity,
 					type: 'POST',
 					success: function (data) {
+						alert(quantity)
 						alert(data);
 					},
 					error: function () {

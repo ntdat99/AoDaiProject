@@ -41,12 +41,13 @@
 							<tr class="table_row" th:each="item : ${cart.items}">
 								<td class="column-1">
 									<div class="how-itemcart1">
-										<img src="customer/images/item-cart-04.jpg" alt="IMG">
+<!--										<img th:src="${item.product.photoLink[0]}" alt="IMG">-->
 									</div>
 								</td>
 								<td class="column-2" th:text="${item.product.name}"></td>
 								<td class="column-3" th:text="${item.product.price}"></td>
 								<td class="column-3" th:text="${item.quantity}"></td>
+<!--								<td class="column-3" th:text="${item.product.size.value}"></td>-->
 								<td class="column-4">
 									<div class="wrap-num-product flex-w m-l-auto m-r-0">
 										<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">

@@ -50,6 +50,7 @@ public class ShopingCart {
         for (HelloOrderDetail item :
                 items.values()) {
             this.totalPrice += item.getUnitPrice() * item.getQuantity();
+
         }
         return this.totalPrice;
     }
