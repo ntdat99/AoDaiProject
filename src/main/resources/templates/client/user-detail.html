@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <title>Account detail</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="shortcut icon" href="/loginn/images/icons/favicon.ico"/>
+    <!--===============================================================================================-->
+    <link rel="stylesheet"  href="/loginn/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet"  href="/loginn/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet"  href="/loginn/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" href="/loginn/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet"  href="/loginn/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet"  href="/loginn/vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet"  href="/loginn/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" href="/loginn/vendor/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet"  href="/loginn/css/util.css">
+    <link rel="stylesheet" href="/loginn/css/main.css">
+
+    <style>
+        .myBtn-custom{
+            font-family: Muli-bold;
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100">
+
+                <div class="login100-form-title" style="background-image: url(/loginn/images/bg-01.jpg);">
+					<span class="login100-form-title-1">
+						Account detail
+					</span>
+                </div>
+
+                <form class="login100-form validate-form">
+                    <div class="wrap-input100 validate-input m-b-26">
+                        <span class="label-input100">Email</span>
+                        <input class="input100 font-weight-bold" type="text" th:value="${userAccount.email}" readonly />
+                    </div>
+
+                    <div class="wrap-input100 validate-input m-b-26">
+                       <span class="label-input100">Tên</span>
+                        <input class="input100" type="text" th:value="${userAccount.username}" readonly />
+                       <span class="focus-input100"></span>
+                    </div>
+
+                    <div class="wrap-input100 validate-input m-b-26">
+                        <span class="label-input100">Điện thoại:</span>
+                        <input class="input100" type="text" th:value="${userAccount.phone}" readonly />
+                        <span class="focus-input100"></span>
+                    </div>
+
+
+                    <div class="wrap-input100 validate-input m-b-26">
+                        <span class="label-input100">Địa chỉ</span>
+                        <input class="input100" type="text" th:value="${userAccount.address}" readonly />
+                        <span class="focus-input100"></span>
+                    </div>
+
+                    <div class="form-inline">
+                         <div class="container-login100-form-btn">
+                             <a th:href="@{'/account/edit/' + ${userAccount.email}}" class="login100-form-btn font-weight-bold myBtn-custom">
+                                 Sửa thông tin
+                             </a>
+                         </div>
+
+                        <div class="container-login100-form-btn">
+                            <a th:href="@{'/account/changePassword1'}" class="login100-form-btn font-weight-bold myBtn-custom">
+                                Đổi mật khẩu
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="/loginn/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <script src="/loginn/vendor/animsition/js/animsition.min.js"></script>
+    <script src="/loginn/vendor/bootstrap/js/popper.js"></script>
+    <script src="/loginn/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/loginn/vendor/select2/select2.min.js"></script>
+    <script src="/loginn/vendor/daterangepicker/moment.min.js"></script>
+    <script src="/loginn/vendor/daterangepicker/daterangepicker.js"></script>
+    <script src="/loginn/vendor/countdowntime/countdowntime.js"></script>
+    <script src="/loginn/js/main.js"></script>
+
+
+
+</body>
+</html>

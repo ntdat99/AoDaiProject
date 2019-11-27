@@ -13,5 +13,7 @@ public interface AccountService extends UserDetailsService {
     Account save(AccountDTO register);
 
     List<Account> findAccounts();
+    Account update(Account account);
 
+    int updatePassword (String password, String email);
 }

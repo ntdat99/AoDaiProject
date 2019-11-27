@@ -12,14 +12,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import t1708m.fashion.Specification.ProductSpecification;
 import t1708m.fashion.Specification.SearchCriteria;
+import t1708m.fashion.entity.Account;
 import t1708m.fashion.entity.Product;
 import t1708m.fashion.entity.ProductCategory;
+import t1708m.fashion.repository.AccountRepository;
 import t1708m.fashion.repository.CategoryRepository;
 import t1708m.fashion.repository.ProductRepository;
+import t1708m.fashion.service.AccountServiceImplement;
 import t1708m.fashion.service.CategoryService;
 import t1708m.fashion.service.ProductService;
 
 
+import java.util.Calendar;
 import java.util.List;
 
 @Controller("adminProductController")
@@ -32,6 +36,8 @@ public class ProductController {
     @Autowired
     CategoryService categoryService;
 
+    @Autowired
+    AccountRepository accountRepository;
 
     @Autowired
     ProductRepository productRepository;
@@ -92,4 +98,8 @@ public class ProductController {
         return "client/product-detail";
     }
 
+    public Account update(Account accountToUpdate){
+        accountToUpdate.setUpdatedAt(Calendar.getInstance().getTimeInMillis());
+        return accountRepository.save(accountToUpdate);
+    }
 }
