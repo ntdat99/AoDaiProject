@@ -65,31 +65,6 @@ public class HomeController extends ArticleCategory {
         return "/client/home";
     }
 
-    @GetMapping("/contact")
-    public String contact() {
-        return "client/contact";
-    }
-    @GetMapping("/about")
-    public String blog() {
-        return "client/about";
-    }
-    @GetMapping("/blog-detail")
-    public String blogDetail() {
-        return "client/blog-detail";
-    }
-    @GetMapping("/home-03")
-    public String home3() {
-        return "client/home-03";
-    }
-    @GetMapping("/home-02")
-    public String home2() {
-        return "client/home-02";
-    }
-
-    @GetMapping("/shoping-cart")
-    public String shoppingCart() {
-        return "client/shoping-cart";
-    }
     @GetMapping("/login")
     public String login(Model model) {
         return "login";

@@ -5,8 +5,8 @@
 
 
 </head>
-<body>
-<!--<body class="animsition">-->
+
+<body class="animsition">
 <div layout:fragment="client-content">
 	<!-- breadcrumb -->
 	<div class="container">
@@ -760,26 +760,7 @@
 		</div>
 	</div>
 </div>
-	<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-	<script>
-		$(document).ready(function () {
-			$('.add-cart').click(function () {
-				var productId = $(this).attr('id');
-				var quantity = $('.num-product').val();
-				$.ajax({
-					url: '/cart/add?productId=' + productId + '&quantity='+quantity,
-					type: 'POST',
-					success: function (data) {
-						alert(quantity)
-						alert(data);
-					},
-					error: function () {
-						alert('Not okie.');
-					}
-				});
-			});
-		})
-	</script>
+
 </div>
 </body>
 
