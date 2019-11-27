@@ -8,7 +8,6 @@ import t1708m.fashion.entity.Product;
 import t1708m.fashion.entity.ProductCategory;
 import t1708m.fashion.repository.CategoryRepository;
 import t1708m.fashion.repository.ProductRepository;
-
 import java.util.logging.Level;
 
 import java.util.ArrayList;
@@ -240,8 +239,6 @@ public class Seeding implements ApplicationListener<ApplicationReadyEvent>{
         product.setStatus(Product.Status.ACTIVE.getValue());
         product.setCategory(productCategoryList.get(new Random().nextInt(productCategoryList.size())));
         productList.add(product);
-
-
         productRepository.saveAll(productList);
     }
 }

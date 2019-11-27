@@ -41,7 +41,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/loginn/**",
                         "client/product",
                         "templates/**",
-                        "/**",
+                        "/",
+                        "/contact/**",
+                        "/blog/**",
                         "/product/**"
                 ).permitAll()
                 .antMatchers("/admin**").hasAnyRole("ADMIN")
@@ -56,7 +58,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .invalidateHttpSession(true)
                 .clearAuthentication(true)
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login?logout")
+                .logoutSuccessUrl("/")
                 .permitAll();
     }
 
