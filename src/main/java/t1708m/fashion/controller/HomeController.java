@@ -14,11 +14,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import t1708m.fashion.Specification.ProductSpecification;
 import t1708m.fashion.Specification.SearchCriteria;
 import t1708m.fashion.entity.Account;
+import t1708m.fashion.entity.Article;
 import t1708m.fashion.entity.ArticleCategory;
 import t1708m.fashion.entity.Product;
 import t1708m.fashion.repository.AccountRepository;
 import t1708m.fashion.repository.CategoryRepository;
 import t1708m.fashion.repository.ProductRepository;
+import t1708m.fashion.service.BlogService;
 import t1708m.fashion.service.ProductService;
 
 import java.awt.*;
@@ -34,6 +36,9 @@ public class HomeController extends ArticleCategory {
 
     @Autowired
     ProductRepository productRepository;
+
+    @Autowired
+    BlogService blogService;
 
     @RequestMapping(method = RequestMethod.GET)
     public String category(
@@ -56,7 +61,8 @@ public class HomeController extends ArticleCategory {
             model.addAttribute("keyword", keyword);
         }
         Page<Product> productPage = productService.findAllActive(specification, PageRequest.of(page - 1, limit));
-
+        List<Article> blog = blogService.blog();
+        model.addAttribute("blogs", blog);
         model.addAttribute("list", productPage.getContent());
         model.addAttribute("category", categoryRepository.findAll());
         model.addAttribute("currentPage", productPage.getPageable().getPageNumber() + 1);
