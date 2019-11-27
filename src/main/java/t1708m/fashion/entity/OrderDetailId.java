@@ -22,4 +22,7 @@ public class OrderDetailId implements Serializable {
         this.orderId = orderId;
         this.productId = productId;
     }
+
+    public OrderDetailId() {
+    }
 }
