@@ -1,16 +1,31 @@
 package t1708m.fashion.controller.admin;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import t1708m.fashion.entity.Account;
+import t1708m.fashion.service.AccountService;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
+
+    @Autowired
+    AccountService accountService;
+
     @RequestMapping(method = RequestMethod.GET)
-    public String getAdmin() {
-        return "/admin/index";
+    public String getAdmin(@AuthenticationPrincipal UserDetails userDetails) {
+        Account accountToCheck = accountService.findByEmail(userDetails.getUsername());
+        int role = accountToCheck.getRole();
+        if(role == 99)
+            return "admin/index";
+        else {
+            return "redirect:/login";
+        }
     }
     //product
     @GetMapping(value = "/list-product")

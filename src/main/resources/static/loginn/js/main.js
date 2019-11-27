@@ -70,7 +70,7 @@
     function validatePassword(){
 
         if(password.value != confirm_password.value) {
-            confirm_password.setCustomValidity("Password doesn't match!")
+            confirm_password.setCustomValidity("Nhập lại!")
         } else {
             confirm_password.setCustomValidity('')
         }

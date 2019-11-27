@@ -45,6 +45,7 @@ public class AccountServiceImplement implements AccountService {
                         .build();
         return user;
     }
+
     public Account findByEmail(String email) {
         return accountRepository.findByEmail(email);
     }
@@ -60,6 +61,7 @@ public class AccountServiceImplement implements AccountService {
         account.setRole(register.getRole());
         return accountRepository.save(account);
     }
+
     @Override
     public List<Account> findAccounts() {
         return accountRepository.findAll();
@@ -72,4 +74,8 @@ public class AccountServiceImplement implements AccountService {
         return accountRepository.save(account);
     }
 
+    @Override
+    public int updatePassword(String password, String email) {
+        return 1;
+    }
 }

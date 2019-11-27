@@ -4,12 +4,16 @@ import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import t1708m.fashion.Specification.ProductSpecification;
+import t1708m.fashion.Specification.SearchCriteria;
 import t1708m.fashion.entity.Product;
 import t1708m.fashion.entity.ProductCategory;
 import t1708m.fashion.repository.ProductRepository;
@@ -21,7 +25,7 @@ import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 
-@Controller("customerProductController")
+@Controller("   customerProductController")
 @RequestMapping(value = "/admin/products")
 public class ProductController {
 
@@ -36,10 +40,18 @@ public class ProductController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String list(
+            @RequestParam(name = "keyword", required = false) String keyword,
             @RequestParam(name = "page", defaultValue = "1") int page,
-            @RequestParam(name = "limit", defaultValue = "1") int limit,
+            @RequestParam(name = "limit", defaultValue = "10") int limit,
             Model model) {
-        Page<Product> productPage = productRepository.findAll(PageRequest.of(page - 1, limit));
+        Specification specification = Specification.where(null);
+
+        if(keyword != null && keyword.length() > 0){
+            specification = specification
+                    .and(new ProductSpecification(new SearchCriteria("keyword", "join", keyword )));
+            model.addAttribute("keyword", keyword);
+        }
+        Page<Product> productPage = productService.findAllActive(specification, PageRequest.of(page - 1, limit));
         model.addAttribute("products", productPage.getContent());
         model.addAttribute("currentPage", productPage.getPageable().getPageNumber() + 1);
         model.addAttribute("limit", productPage.getPageable().getPageSize());

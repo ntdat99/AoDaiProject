@@ -12,14 +12,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import t1708m.fashion.Specification.ProductSpecification;
 import t1708m.fashion.Specification.SearchCriteria;
+import t1708m.fashion.entity.Account;
 import t1708m.fashion.entity.Product;
 import t1708m.fashion.entity.ProductCategory;
+import t1708m.fashion.repository.AccountRepository;
 import t1708m.fashion.repository.CategoryRepository;
 import t1708m.fashion.repository.ProductRepository;
+import t1708m.fashion.service.AccountServiceImplement;
 import t1708m.fashion.service.CategoryService;
 import t1708m.fashion.service.ProductService;
 
 
+import java.util.Calendar;
 import java.util.List;
 
 @Controller("adminProductController")
@@ -32,6 +36,8 @@ public class ProductController {
     @Autowired
     CategoryService categoryService;
 
+    @Autowired
+    AccountRepository accountRepository;
 
     @Autowired
     ProductRepository productRepository;
@@ -54,13 +60,15 @@ public class ProductController {
             @RequestParam(name = "categoryId", required = false) Long categoryId,
             @RequestParam(name = "keyword", required = false) String keyword,
             @RequestParam(name = "page", defaultValue = "1") int page,
-            @RequestParam(name = "limit", defaultValue = "5") int limit,
-            Model model, @RequestParam(defaultValue = "") String productName) {
+            @RequestParam(name = "limit", defaultValue = "12") int limit,
+            Model model) {
         Specification specification = Specification.where(null);
+
 
         if (categoryId != null && categoryId > 0) {
             specification = specification
-                    .and(new ProductSpecification(new SearchCriteria("categoryId", "joinProductCategory", categoryId)));
+            .and(new ProductSpecification(new SearchCriteria("categoryId", "joinProductCategory", categoryId)));
+
             model.addAttribute("categoryId", categoryId);
         }
 
@@ -69,11 +77,8 @@ public class ProductController {
                     .and(new ProductSpecification(new SearchCriteria("keyword", "join", keyword)));
             model.addAttribute("keyword", keyword);
         }
-        Page<Product> productPage = productRepository.findAll(specification, PageRequest.of(page - 1, limit));
-        List<Product> products = productService.products();
-        List<Product> productsByName = productService.getByName(productName);
-//        model.addAttribute("list", productsByName);
-        model.addAttribute("customer", products);
+        Page<Product> productPage = productService.findAllActive(specification, PageRequest.of(page - 1, limit));
+
         model.addAttribute("list", productPage.getContent());
         model.addAttribute("category", categoryRepository.findAll());
         model.addAttribute("currentPage", productPage.getPageable().getPageNumber() + 1);
@@ -89,7 +94,12 @@ public class ProductController {
             return "error/404";
         }
         model.addAttribute("productdetail", product);
+        model.addAttribute("sizes", Product.Size.values());
         return "client/product-detail";
     }
 
+    public Account update(Account accountToUpdate){
+        accountToUpdate.setUpdatedAt(Calendar.getInstance().getTimeInMillis());
+        return accountRepository.save(accountToUpdate);
+    }
 }

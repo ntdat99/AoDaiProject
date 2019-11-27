@@ -5,6 +5,18 @@
     <title>Product</title>
 
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <style>
+        #search-bar {
+            width: 60%;
+        }
+
+        #btn-search {
+            width: 20%;
+            padding-left: 25px;
+            margin-left: 14px;
+            height: 40px;
+        }
+    </style>
 </head>
 <body>
 <div layout:fragment="content">
@@ -25,18 +37,32 @@
                                         <div class="dataTables_length" id="bootstrap-data-table-export_length"><label>Show
                                             <select name="bootstrap-data-table-export_length"
                                                     aria-controls="bootstrap-data-table-export"
-                                                    class="custom-select custom-select-sm form-control form-control-sm">
-                                                <option value="10">10</option>
-                                                <option value="25">25</option>
-                                                <option value="50">50</option>
-                                                <option value="-1">All</option>
-                                            </select> entries</label></div>
+                                                    class="custom-select custom-select-sm form-control form-control-sm" onChange="window.location.href=this.value">
+                                                <option value="?limit=10">10</option>
+                                                <option value="?limit=25">25</option>
+                                                <option value="?limit=50">50</option>
+
+                                            </select> products</label></div>
                                     </div>
                                     <div class="col-sm-12 col-md-6">
-                                        <div id="bootstrap-data-table-export_filter" class="dataTables_filter"><label>Tìm Kiếm:<input
-                                                type="search" class="form-control form-control-sm" placeholder=""
-                                                aria-controls="bootstrap-data-table-export"></label></div>
+                                        <form th:action="@{/admin/products}" id="form-search" method="get" class="form-inline">
+                                            <div class="col-sm-12 col-md-12">
+                                                <div id="bootstrap-data-table-export_filter" class="dataTables_filter">
+                                                    <div class="form-group">
+                                                        <input id="search-bar" type="search" class="form-control form-control-sm form-inline" aria-controls="bootstrap-data-table-export"
+                                                               placeholder="vd: áo dài trung niên" th:value="${keyword}" name="keyword" />
+                                                        <input id="btn-search" type="submit" value="Tìm kiếm" class="btn btn-success form-control  "/>
+                                                    </div>
+                                                    <!--                                            <div class="form-group">-->
+                                                    <!--                                                 <input type="submit" value="Tìm kiếm" class="btn btn-success form-control  "/>-->
+                                                    <!--                                            </div>-->
+                                                    <input type="hidden" th:value="${limit}" name="limit" />
+                                                    <input type="hidden" th:value="${currentPage}" name="page" />
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
+
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-12">
@@ -91,7 +117,7 @@
                                             </thead>
                                             <tbody>
                                             <tr th:each="pro : ${products}">
-                                                <td><span th:text="${pro.id}"></span></td>
+                                                <td><span th:text="${pro.getId()}"></span></td>
 
                                                 <td><span th:text="${pro.name}"></span></td>
                                                 <td><span th:text="${pro.price}"></span></td>
@@ -117,11 +143,11 @@
                                     </div>
                                 </div>
                                 <div class="row" style="margin-top: 20px">
-                                    <div class="col-sm-12 col-md-5">
-                                        <div class="dataTables_info" id="bootstrap-data-table-export_info" role="status"
-                                             aria-live="polite">Showing 1 to 10 of 57 entries
-                                        </div>
-                                    </div>
+<!--                                    <div class="col-sm-12 col-md-5">-->
+<!--                                        <div class="dataTables_info" id="bootstrap-data-table-export_info" role="status"-->
+<!--                                             aria-live="polite">Showing 1 to 10 of 57 entries-->
+<!--                                        </div>-->
+<!--                                    </div>-->
                                     <div class="col-sm-12 col-md-7">
                                         <div class="dataTables_paginate paging_simple_numbers"
                                              id="bootstrap-data-table-export_paginate" th:if="${totalPage > 1}">
