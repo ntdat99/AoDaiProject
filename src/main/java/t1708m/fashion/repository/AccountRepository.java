@@ -14,4 +14,6 @@ public interface AccountRepository extends JpaRepository<Account,Long> {
 
     List<Account> findAll();
 
+    @Query("update Account a set a.password = :password where a.email = :email")
+    int updatePassword(@Param("password") String password, @Param("email") String email);
 }
