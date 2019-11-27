@@ -19,7 +19,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Controller
-@RequestMapping(value = "/cart")
+@RequestMapping(value = "/shoping-cart")
 public class CartController {
 
     private static final String SHOPPING_CART_ATTRIBUTE = "SHOPPING_CART";
@@ -56,12 +56,14 @@ public class CartController {
         return "Okie";
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/get")
+    @RequestMapping(method = RequestMethod.GET)
     public String getCart(HttpSession session, Model model) {
         ShopingCart cart = loadCart(session);
         model.addAttribute("cart", cart);
+        model.addAttribute("sizes", Product.Size.values());
         return "/client/shoping-cart";
     }
+
 
     private ShopingCart loadCart(HttpSession session) {
         ShopingCart cart = null;

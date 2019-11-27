@@ -276,7 +276,28 @@
     $('.js-hide-modal1').on('click',function(){
         $('.js-modal1').removeClass('show-modal1');
     });
+    $('.add-cart').click(function () {
 
+        var productId = $(this).attr('id');
+        var quantity = $('.num-product').val();
+        $.ajax({
+            url: '/shoping-cart/add?productId=' + productId + '&quantity='+quantity,
+            type: 'POST',
+            success: function (data) {
+                swal("Sản phẩm","đã thêm vào giỏ hàng", "success");
+            },
+            error: function () {
+                alert('Not okie.');
+            }
+        });
+    });
+
+    // $('.js-addcart-detail').each(function(){
+    //     var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
+    //     $(this).on('click', function(){
+    //         swal(nameProduct, "is added to cart !", "success");
+    //     });
+    // });
 
 
 })(jQuery);

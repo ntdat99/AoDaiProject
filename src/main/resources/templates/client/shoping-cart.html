@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>-->
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"  xmlns:th="http://www.thymeleaf.org" layout:decorate="~{client/client-layout/master-layout}">
 <head>
 	<title>Shoping Cart</title>
 
 </head>
-<body class="">
+<body class="animsition">
 <div layout:fragment="client-content">
 <!-- breadcrumb -->
 <div class="container">
@@ -30,38 +30,48 @@
 					<div class="wrap-table-shopping-cart">
 						<table class="table-shopping-cart">
 							<tr class="table_head">
-								<th class="column-1">Product</th>
-								<th class="column-2"></th>
-								<th class="column-2"></th>
-								<th class="column-3">Price</th>
-								<th class="column-4">Quantity</th>
-								<th class="column-5">Total</th>
+
+								<th class="column-2" style="padding-left: 40px;">Product</th>
+								<th class="column-2" style="text-align: center;">Price</th>
+								<th class="column-3" style="text-align: center;">Quantity</th>
+								<th class="column-1">Size</th>
+<!--								<th class="column-5">Total</th>-->
 							</tr>
 
 							<tr class="table_row" th:each="item : ${cart.items}">
-								<td class="column-1">
-									<div class="how-itemcart1">
-<!--										<img th:src="${item.product.photoLink[0]}" alt="IMG">-->
-									</div>
-								</td>
-								<td class="column-2" th:text="${item.product.name}"></td>
-								<td class="column-3" th:text="${item.product.price}"></td>
-								<td class="column-3" th:text="${item.quantity}"></td>
+<!--								<td class="column-1">-->
+<!--									<div class="how-itemcart1">-->
+<!--&lt;!&ndash;										<img th:src="${item.product.photoLink[0]}" alt="IMG">&ndash;&gt;-->
+<!--									</div>-->
+<!--								</td>-->
+
+								<td class="column-2" style="padding-left: 20px;" th:text="${item.product.name}"></td>
+
+								<td class="column-2" style="text-align: center;" th:text="${item.product.price}"></td>
+<!--								<td class="column-3" th:text="${item.quantity}"></td>-->
 <!--								<td class="column-3" th:text="${item.product.size.value}"></td>-->
-								<td class="column-4">
+								<td class="column-3" >
 									<div class="wrap-num-product flex-w m-l-auto m-r-0">
 										<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
 											<i class="fs-16 zmdi zmdi-minus"></i>
 										</div>
 
-										<input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product1" value="1">
+										<input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product1" th:value="${item.quantity}">
 
 										<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
 											<i class="fs-16 zmdi zmdi-plus"></i>
 										</div>
 									</div>
+
 								</td>
-								<td class="column-5" th:text="${cart.totalPrice}"></td>
+								<td class="column-1" th:text="${item.product.size}"></td>
+<!--								<td class="column-5">-->
+<!--									<select id="size" name="size" class="js-select2" th:field="*{item.product.size}">-->
+<!--										<option th:each="size : ${sizes}" th:value="${item.product.size.value}" th:text="${size}"></option>-->
+
+<!--									</select>-->
+<!--								</td>-->
+
 							</tr>
 
 
