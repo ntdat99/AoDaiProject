@@ -29,7 +29,9 @@
     <link rel="stylesheet" href="/loginn/css/main.css">
 
     <style>
-
+        .myBtn-custom{
+            font-family: Muli-bold;
+        }
     </style>
 
 </head>
@@ -63,22 +65,25 @@
                         <span class="focus-input100"></span>
                     </div>
 
+
                     <div class="wrap-input100 validate-input m-b-26">
                         <span class="label-input100">Địa chỉ</span>
                         <input class="input100" type="text" th:value="${userAccount.address}" readonly />
                         <span class="focus-input100"></span>
                     </div>
 
-                     <div class="container-login100-form-btn">
-                         <a th:href="@{'/account/edit/' + ${userAccount.email}}" class="login100-form-btn">
-                             Sửa thông tin
-                         </a>
-                     </div>
+                    <div class="form-inline">
+                         <div class="container-login100-form-btn">
+                             <a th:href="@{'/account/edit/' + ${userAccount.email}}" class="login100-form-btn font-weight-bold myBtn-custom">
+                                 Sửa thông tin
+                             </a>
+                         </div>
 
-                    <div class="container-login100-form-btn">
-                        <a th:href="@{'/account/changePassword1'}" class="login100-form-btn">
-                            Đổi mật khẩu
-                        </a>
+                        <div class="container-login100-form-btn">
+                            <a th:href="@{'/account/changePassword1'}" class="login100-form-btn font-weight-bold myBtn-custom">
+                                Đổi mật khẩu
+                            </a>
+                        </div>
                     </div>
                 </form>
             </div>
