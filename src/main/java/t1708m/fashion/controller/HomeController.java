@@ -77,26 +77,5 @@ public class HomeController extends ArticleCategory {
     CategoryRepository categoryRepository;
 
 
-//    @GetMapping("/seed/account")
-//    public String account(){
-//        Random random = new Random();
-//        List<String> names = Arrays.asList("khoa","phuc","hoang anh","long","dat");
-//        List<Integer> numbers = Arrays.asList(1,2,3,4,5,6,7);
-//        List<Integer> roleNumbers = Arrays.asList(1,99);
-//        List<Integer> statusNumbers = Arrays.asList(-1,1,2);
-//        for (int i =0; i<=15 ;i++){
-//            Account account = new Account();
-//            account.setAddress("ha noi");
-//            account.setEmail(names.get(random.nextInt(names.size())) + numbers.get(random.nextInt(numbers.size())));
-//            account.setPassword(passwordEncoder.encode("123"));
-//            account.setPhone("097547541");
-//            account.setRole(roleNumbers.get(random.nextInt(roleNumbers.size())));
-//            account.setStatus(statusNumbers.get(random.nextInt(statusNumbers.size())));
-//            account.setUsername(names.get(random.nextInt(names.size())));
-//            accountRepository.save(account);
-//        }
-//        return "seed/seed";
-//
-//    }
 
 }
