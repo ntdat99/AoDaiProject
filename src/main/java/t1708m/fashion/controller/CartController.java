@@ -87,6 +87,16 @@ public class CartController {
         return "/client/shoping-cart";
     }
 
+    @RequestMapping(method = RequestMethod.POST)
+    public String saveOrder(HttpSession session, Model model) {
+        // tạo order từ thông tin shopping cart,
+        // mỗi cart item thì tạo ra một order detail
+        ShopingCart cart = loadCart(session);
+        model.addAttribute("cart", cart);
+        model.addAttribute("sizes", Product.Size.values());
+        return "redirect:/";
+    }
+
 
     private ShopingCart loadCart(HttpSession session) {
         ShopingCart cart = null;
