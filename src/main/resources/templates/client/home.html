@@ -402,7 +402,7 @@
 									<span th:text="${pro.name}"></span>
 								</a>
 								<span class="stext-105 cl3">
-									<span th:text="${pro.price}"></span>
+									<span th:text="${#numbers.formatDecimal(pro.price, 0, 'COMMA', 0, 'POINT')}" ></span>VND
 								</span>
 							</div>
 

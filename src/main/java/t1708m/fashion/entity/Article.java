@@ -16,7 +16,9 @@ public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Lob
     private String title;
+    @Lob
     private String description;
     @Lob
     private String content;
