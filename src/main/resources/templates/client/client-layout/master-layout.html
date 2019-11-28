@@ -527,17 +527,17 @@
 
 <!--===============================================================================================-->
 <script src="/customer/js/main.js"></script>
-<script th:inline="javascript">
-    var element = document.getElementById("account-display");
-    var logout = document.getElementById("logout-display");
-    if ([[${#request.getRemoteUser()}]] != null) {
-        element.innerHTML = [[${#request.getUserPrincipal().getName().toString()}]];
-        element.href = "/account/detail/" + [[${#request.getUserPrincipal().getName()}]];
-        logout.href = "/logout";
-        logout.innerHTML = "Đăng xuất";
-    } else
-        element.innerHTML = "My account";
+<!--<script th:inline="javascript">-->
+<!--    var element = document.getElementById("account-display");-->
+<!--    var logout = document.getElementById("logout-display");-->
+<!--    if ([[${#request.getRemoteUser()}]] != null) {-->
+<!--        element.innerHTML = [[${#request.getUserPrincipal().getName().toString()}]];-->
+<!--        element.href = "/account/detail/" + [[${#request.getUserPrincipal().getName()}]];-->
+<!--        logout.href = "/logout";-->
+<!--        logout.innerHTML = "Đăng xuất";-->
+<!--    } else-->
+<!--        element.innerHTML = "My account";-->
 
-</script>
+<!--</script>-->
 </body>
 </html>
