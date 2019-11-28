@@ -60,8 +60,8 @@ public class ProductController {
             @RequestParam(name = "categoryId", required = false) Long categoryId,
             @RequestParam(name = "keyword", required = false) String keyword,
             @RequestParam(name = "page", defaultValue = "1") int page,
-            @RequestParam(name = "limit", defaultValue = "12") int limit,
-            Model model) {
+        @RequestParam(name = "limit", defaultValue = "12") int limit,
+        Model model) {
         Specification specification = Specification.where(null);
 
 
@@ -87,16 +87,36 @@ public class ProductController {
         return "/client/product";
     }
 
+//    @RequestMapping(method = RequestMethod.GET, value = "/details/{id}")
+//    public String detail(@PathVariable int id, Model model) {
+//        Product product = productService.getById(id);
+//        if (product == null) {
+//            return "error/404";
+//        }
+//
+//        model.addAttribute("productdetail", product);
+//        model.addAttribute("sizes", Product.Size.values());
+//        return "client/product-detail";
+//    }
     @RequestMapping(method = RequestMethod.GET, value = "/details/{id}")
-    public String detail(@PathVariable int id, Model model) {
+    public String category(
+            @PathVariable int id,
+            @RequestParam(name = "page", defaultValue = "1") int page,
+            @RequestParam(name = "limit", defaultValue = "4") int limit,
+            Model model) {
         Product product = productService.getById(id);
-        if (product == null) {
-            return "error/404";
-        }
+        Specification specification = Specification.where(null);
+        Page<Product> productPage = productService.findAllActive(specification, PageRequest.of(page - 1, limit));
+
+        model.addAttribute("lists", productPage.getContent());
         model.addAttribute("productdetail", product);
-        model.addAttribute("sizes", Product.Size.values());
-        return "client/product-detail";
+        model.addAttribute("currentPage", productPage.getPageable().getPageNumber() + 1);
+        model.addAttribute("limit", productPage.getPageable().getPageSize());
+        model.addAttribute("totalPage", productPage.getTotalPages());
+        return "/client/product-detail";
     }
+
+
 
     public Account update(Account accountToUpdate){
         accountToUpdate.setUpdatedAt(Calendar.getInstance().getTimeInMillis());

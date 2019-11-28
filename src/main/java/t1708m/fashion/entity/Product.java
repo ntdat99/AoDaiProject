@@ -20,6 +20,7 @@ public class Product {
     private long id;
     private String name;
     private double price;
+    @Lob
     private String description;
     @Lob
     private String photos;
