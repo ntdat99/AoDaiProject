@@ -3,9 +3,13 @@ package t1708m.fashion.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import t1708m.fashion.Specification.ProductSpecification;
+import t1708m.fashion.Specification.SearchCriteria;
 import t1708m.fashion.entity.Article;
+import t1708m.fashion.entity.Product;
 import t1708m.fashion.repository.BlogRepository;
 import java.util.Calendar;
 import java.util.List;
@@ -19,9 +23,10 @@ public class BlogService {
         return blogRepository.findActiveBlog(1);
     }
 
-    public Page<Article> articles(Specification specification, int page, int limit) {
-        return blogRepository.findAll(specification, PageRequest.of(page - 1, limit));
+    public Page<Article> articles(Specification specification, Pageable pageable) {
+        return blogRepository.findAll(specification,pageable);
     }
+
 
     public Article getById(long id) {
         return blogRepository.findById(id).orElse(null);

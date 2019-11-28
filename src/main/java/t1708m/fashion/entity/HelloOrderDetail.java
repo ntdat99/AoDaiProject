@@ -58,4 +58,9 @@ public class HelloOrderDetail {
         this.order = order;
         this.product = product;
     }
+
+    public HelloOrderDetail(int quantity) {
+        this.quantity = quantity;
+        this.unitPrice = product.getPrice();
+    }
 }

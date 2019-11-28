@@ -8,6 +8,15 @@ public class ShopingCart {
 
     private HashMap<Long, HelloOrderDetail> items;
     private double totalPrice;
+    private int quantity;
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 
     public ShopingCart() {
         this.items = new HashMap<>();
@@ -44,7 +53,19 @@ public class ShopingCart {
         }
         items.put(product.getId(), item);
     }
+    public void updateProduct(long productId,int quantity){
+        if (items == null) {
+            System.out.println("cant update product");
+        }
+        HelloOrderDetail item = new HelloOrderDetail( quantity);
+        if (items.containsKey(productId)) {
+            HelloOrderDetail existItem = items.get(productId);
+            item.addQuantity(existItem.getQuantity());
+            item.getTotalPrice();
+        }
+        items.put(productId, item);
 
+    }
     public double getTotalPrice() {
         this.totalPrice = 0;
         for (HelloOrderDetail item :
