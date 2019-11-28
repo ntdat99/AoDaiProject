@@ -23,7 +23,7 @@ public class AdminController {
         int role = accountToCheck.getRole();
         if(role == 99)
             return "admin/index";
-        else {
+        else{
             return "redirect:/login";
         }
     }
