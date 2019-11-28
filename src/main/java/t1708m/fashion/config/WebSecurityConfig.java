@@ -41,14 +41,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/loginn/**",
                         "client/product",
                         "templates/**",
-                        "/**",
+                        "/",
                         "/contact/**",
                         "/blog/**",
                         "/product/**"
                 ).permitAll()
-                .antMatchers("/admin**").hasAnyRole("ADMIN")
+                .antMatchers("/admin").hasAnyRole("ADMIN")
                 .antMatchers("/customer*").hasAnyRole("CUSTOMER")
-
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
