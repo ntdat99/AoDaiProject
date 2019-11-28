@@ -216,12 +216,50 @@
     [ +/- num product ]*/
     $('.btn-num-product-down').on('click', function(){
         var numProduct = Number($(this).next().val());
-        if(numProduct > 0) $(this).next().val(numProduct - 1);
+        if(numProduct > 0) {
+            $(this).next().val(numProduct - 1);
+            var productId = $(this).attr('id').replace('minus-', '');
+            $.ajax({
+                url: '/shoping-cart/update?productId=' + productId + '&quantity='+(numProduct - 1),
+                type: 'PUT',
+                success: function (data) {
+                    swal("Thao tác thành công","", "success");
+                    if(!window.location.href.includes('product/details')){
+                        setTimeout(
+                            function()
+                            {
+                                window.location.reload();
+                            }, 1500);
+                    }
+                },
+                error: function () {
+                    alert('Not okie.');
+                }
+            });
+        }
     });
 
     $('.btn-num-product-up').on('click', function(){
         var numProduct = Number($(this).prev().val());
         $(this).prev().val(numProduct + 1);
+        var productId = $(this).attr('id').replace('plus-', '');
+        $.ajax({
+            url: '/shoping-cart/update?productId=' + productId + '&quantity=' + (numProduct + 1),
+            type: 'PUT',
+            success: function (data) {
+                swal("Thao tác thành công","", "success");
+                if(!window.location.href.includes('product/details')){
+                    setTimeout(
+                        function()
+                        {
+                            window.location.reload();
+                        }, 1500);
+                }
+            },
+            error: function () {
+                alert('Not okie.');
+            }
+        });
     });
 
     /*==================================================================
@@ -276,8 +314,8 @@
     $('.js-hide-modal1').on('click',function(){
         $('.js-modal1').removeClass('show-modal1');
     });
-    $('.add-cart').click(function () {
 
+    $('.add-cart').click(function () {
         var productId = $(this).attr('id');
         var quantity = $('.num-product').val();
         $.ajax({

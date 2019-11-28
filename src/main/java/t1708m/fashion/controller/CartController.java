@@ -40,30 +40,22 @@ public class CartController {
             return "NOT FOUND";
         }
         ShopingCart cart = loadCart(session);
-        LOGGER.log(Level.SEVERE, ("Cart null: " + (cart == null)));
         cart.addProduct(product, quantity);
-        session.setAttribute(SHOPPING_CART_ATTRIBUTE, cart);
+        saveCart(session, cart);
         return "Okie";
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/update/{id}")
-    public String updateCart(HttpSession session,Model model){
-        ShopingCart cart = loadCart(session);
-        model.addAttribute("cart", cart);
-        session.setAttribute("cart", cart);
-        for (HelloOrderDetail orderDetail : cart.getItems()) {
-            System.out.println("ID: " + orderDetail.getId());
-        }
-        System.out.println("Price: " + cart.getTotalPrice());
-        return "/client/shoping-cart";
+    private void saveCart(HttpSession session, ShopingCart cart) {
+        session.setAttribute(SHOPPING_CART_ATTRIBUTE, cart);
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/update")
-    public String updateCart1(HttpSession session,
-                         HttpServletResponse response,
-                         @RequestParam(name = "productId") long productId,
-                         @RequestParam(name = "quantity", defaultValue = "1") int quantity){
-        if (quantity <0 ){
+    @RequestMapping(method = RequestMethod.PUT, value = "/update")
+    @ResponseBody
+    public String updateCart(HttpSession session,
+                              HttpServletResponse response,
+                              @RequestParam(name = "productId") long productId,
+                              @RequestParam(name = "quantity", defaultValue = "1") int quantity) {
+        if (quantity < 0) {
             return "NOT FOUND";
         }
         Product product = productService.getById(productId);
@@ -72,11 +64,10 @@ public class CartController {
             return "NOT FOUND";
         }
         ShopingCart cart = loadCart(session);
-        cart.updateProduct(productId,quantity);
-        session.setAttribute(SHOPPING_CART_ATTRIBUTE, cart);
-        return "redirect:/client/shoping-cart";
+        cart.updateProduct(product, quantity);
+        saveCart(session, cart);
+        return "Okie";
     }
-
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/remove")
     @ResponseBody
@@ -84,6 +75,7 @@ public class CartController {
                              @RequestParam(name = "productId") long id) {
         ShopingCart cart = loadCart(session);
         cart.removeProduct(id);
+        saveCart(session, cart);
         return "Okie";
     }
 

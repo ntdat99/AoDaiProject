@@ -3,25 +3,34 @@ package t1708m.fashion.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
+import t1708m.fashion.entity.Account;
 import t1708m.fashion.entity.Product;
 import t1708m.fashion.entity.ProductCategory;
+import t1708m.fashion.repository.AccountRepository;
 import t1708m.fashion.repository.CategoryRepository;
 import t1708m.fashion.repository.ProductRepository;
+
 import java.util.logging.Level;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.logging.Logger;
+
 @Component
-public class Seeding implements ApplicationListener<ApplicationReadyEvent>{
+public class Seeding implements ApplicationListener<ApplicationReadyEvent> {
     private static final Logger LOGGER = Logger.getLogger(Seeding.class.getSimpleName());
 
     @Autowired
     ProductRepository productRepository;
     @Autowired
     CategoryRepository categoryRepository;
+    @Autowired
+    AccountRepository accountRepository;
+
+    private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     private List<Product> productList = new ArrayList<>();
     private List<ProductCategory> productCategoryList = new ArrayList<>();
@@ -31,14 +40,42 @@ public class Seeding implements ApplicationListener<ApplicationReadyEvent>{
     public void onApplicationEvent(final ApplicationReadyEvent event) {
         LOGGER.log(Level.INFO, String.format("Start seeding..."));
         categoryRepository.disableForeignKeyCheck();
+        seedingAccount();
         seedingCategory();
         seedingProduct();
         categoryRepository.enableForeignKeyCheck();
         LOGGER.log(Level.INFO, String.format("Seeding success!"));
     }
 
+    void seedingAccount() {
+        accountRepository.deleteAll();
+        accountRepository.resetIncrement();
+
+        Account account = new Account();
+        account.setRole(Account.Role.ADMIN.getValue());
+        account.setAddress("Hà Nội");
+        account.setPhone("091234567");
+        account.setUsername("admin");
+        account.setEmail("admin@gmail.com");
+        account.setStatus(Account.Status.ACTIVE.getValue());
+        account.setPassword(passwordEncoder.encode("admin"));
+
+        accountRepository.save(account);
+
+        account = new Account();
+        account.setRole(Account.Role.CUSTOMER.getValue());
+        account.setAddress("Hồ Chí Minh");
+        account.setPhone("091564567");
+        account.setUsername("user");
+        account.setEmail("user@gmail.com");
+        account.setStatus(Account.Status.ACTIVE.getValue());
+        account.setPassword(passwordEncoder.encode("user"));
+
+        accountRepository.save(account);
+    }
+
     void seedingCategory() {
-       categoryRepository.deleteAll();
+        categoryRepository.deleteAll();
         categoryRepository.resetIncrement();
 
         ProductCategory productCategory = new ProductCategory();
@@ -81,11 +118,12 @@ public class Seeding implements ApplicationListener<ApplicationReadyEvent>{
 
         categoryRepository.saveAll(productCategoryList);
     }
-    void seedingProduct() {
-            productRepository.deleteAll();
-            productRepository.resetIncrement();
 
-            Product product = new Product();
+    void seedingProduct() {
+        productRepository.deleteAll();
+        productRepository.resetIncrement();
+
+        Product product = new Product();
 
         product.setName("Áo dài cưới MV501");
         product.setPrice(100000);
