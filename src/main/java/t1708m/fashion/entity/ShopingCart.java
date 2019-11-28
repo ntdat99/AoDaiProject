@@ -6,21 +6,27 @@ import java.util.List;
 
 public class ShopingCart {
 
-    private HashMap<Long, HelloOrderDetail> items;
+    private HashMap<Long, CartItem> items = new HashMap<>();
     private double totalPrice;
+    private int quantity;
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 
     public ShopingCart() {
         this.items = new HashMap<>();
     }
 
-    public List<HelloOrderDetail> getItems() {
-        if (items == null) {
-            items = new HashMap<>();
-        }
+    public List<CartItem> getItems() {
         return new ArrayList<>(items.values());
     }
 
-    public void setItems(HashMap<Long, HelloOrderDetail> items) {
+    public void setItems(HashMap<Long, CartItem> items) {
         this.items = items;
     }
 
@@ -34,28 +40,31 @@ public class ShopingCart {
     }
 
     public void addProduct(Product product, int quantity) {
-        if (items == null) {
-            items = new HashMap<>();
-        }
-        HelloOrderDetail item = new HelloOrderDetail(product, quantity);
         if (items.containsKey(product.getId())) {
-            HelloOrderDetail existItem = items.get(product.getId());
-            item.addQuantity(existItem.getQuantity());
+            CartItem existItem = items.get(product.getId());
+            existItem.addQuantity(quantity);
+            return;
         }
-        items.put(product.getId(), item);
+        CartItem existItem = new CartItem(product, quantity);
+        items.put(product.getId(), existItem);
+    }
+
+    public void updateProduct(Product product, int quantity) {
+        if (items.containsKey(product.getId())) {
+            CartItem existItem = items.get(product.getId());
+            existItem.setQuantity(quantity);
+            items.put(product.getId(), existItem);
+        }
+        CartItem existItem = new CartItem(product, quantity);
+        items.put(product.getId(), existItem);
     }
 
     public double getTotalPrice() {
         this.totalPrice = 0;
-        for (HelloOrderDetail item :
+        for (CartItem item :
                 items.values()) {
             this.totalPrice += item.getUnitPrice() * item.getQuantity();
-
         }
         return this.totalPrice;
-    }
-
-    public void setTotalPrice(double totalPrice) {
-        this.totalPrice = totalPrice;
     }
 }

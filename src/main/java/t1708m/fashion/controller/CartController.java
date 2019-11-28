@@ -3,18 +3,18 @@ package t1708m.fashion.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import t1708m.fashion.entity.HelloOrder;
 import t1708m.fashion.entity.HelloOrderDetail;
 import t1708m.fashion.entity.Product;
 import t1708m.fashion.entity.ShopingCart;
 import t1708m.fashion.service.ProductService;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -40,12 +40,34 @@ public class CartController {
             return "NOT FOUND";
         }
         ShopingCart cart = loadCart(session);
-        LOGGER.log(Level.SEVERE, ("Cart null: " + (cart == null)));
         cart.addProduct(product, quantity);
-        session.setAttribute(SHOPPING_CART_ATTRIBUTE, cart);
+        saveCart(session, cart);
         return "Okie";
     }
 
+    private void saveCart(HttpSession session, ShopingCart cart) {
+        session.setAttribute(SHOPPING_CART_ATTRIBUTE, cart);
+    }
+
+    @RequestMapping(method = RequestMethod.PUT, value = "/update")
+    @ResponseBody
+    public String updateCart(HttpSession session,
+                              HttpServletResponse response,
+                              @RequestParam(name = "productId") long productId,
+                              @RequestParam(name = "quantity", defaultValue = "1") int quantity) {
+        if (quantity < 0) {
+            return "NOT FOUND";
+        }
+        Product product = productService.getById(productId);
+        if (product == null) {
+            response.setStatus(404);
+            return "NOT FOUND";
+        }
+        ShopingCart cart = loadCart(session);
+        cart.updateProduct(product, quantity);
+        saveCart(session, cart);
+        return "Okie";
+    }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/remove")
     @ResponseBody
@@ -53,6 +75,7 @@ public class CartController {
                              @RequestParam(name = "productId") long id) {
         ShopingCart cart = loadCart(session);
         cart.removeProduct(id);
+        saveCart(session, cart);
         return "Okie";
     }
 
@@ -62,6 +85,16 @@ public class CartController {
         model.addAttribute("cart", cart);
         model.addAttribute("sizes", Product.Size.values());
         return "/client/shoping-cart";
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public String saveOrder(HttpSession session, Model model) {
+        // tạo order từ thông tin shopping cart,
+        // mỗi cart item thì tạo ra một order detail
+        ShopingCart cart = loadCart(session);
+        model.addAttribute("cart", cart);
+        model.addAttribute("sizes", Product.Size.values());
+        return "redirect:/";
     }
 
 
