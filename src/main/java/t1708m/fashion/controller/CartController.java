@@ -37,7 +37,7 @@ public class CartController {
         Product product = productService.getById(id);
         if (product == null) {
             response.setStatus(404);
-            return "NOT FOUND";
+            return "error/404";
         }
         ShopingCart cart = loadCart(session);
         cart.addProduct(product, quantity);
@@ -56,12 +56,12 @@ public class CartController {
                               @RequestParam(name = "productId") long productId,
                               @RequestParam(name = "quantity", defaultValue = "1") int quantity) {
         if (quantity < 0) {
-            return "NOT FOUND";
+            return "error/404";
         }
         Product product = productService.getById(productId);
         if (product == null) {
             response.setStatus(404);
-            return "NOT FOUND";
+            return "error/404";
         }
         ShopingCart cart = loadCart(session);
         cart.updateProduct(product, quantity);

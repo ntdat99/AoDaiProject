@@ -61,7 +61,7 @@ public class HomeController extends ArticleCategory {
             model.addAttribute("keyword", keyword);
         }
         Page<Product> productPage = productService.findAllActive(specification, PageRequest.of(page - 1, limit));
-        List<Article> blog = blogService.blog();
+        Page<Article> blog = blogService.articles(specification, PageRequest.of(page - 1, 3));
         model.addAttribute("blogs", blog);
         model.addAttribute("list", productPage.getContent());
         model.addAttribute("category", categoryRepository.findAll());

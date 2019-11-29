@@ -40,18 +40,19 @@ public class Seeding implements ApplicationListener<ApplicationReadyEvent> {
 
     private List<Product> productList = new ArrayList<>();
     private List<ProductCategory> productCategoryList = new ArrayList<>();
-    private List<Article> blogList = new ArrayList<>();
 
     @Override
     public void onApplicationEvent(final ApplicationReadyEvent event) {
         LOGGER.log(Level.INFO, String.format("Start seeding..."));
         categoryRepository.disableForeignKeyCheck();
         seedingAccount();
+        sendingBlog();
         seedingCategory();
         seedingProduct();
         categoryRepository.enableForeignKeyCheck();
         LOGGER.log(Level.INFO, String.format("Seeding success!"));
     }
+
 
     void seedingAccount() {
         accountRepository.deleteAll();
@@ -78,6 +79,67 @@ public class Seeding implements ApplicationListener<ApplicationReadyEvent> {
         account.setPassword(passwordEncoder.encode("user"));
 
         accountRepository.save(account);
+    }
+
+    void sendingBlog() {
+        blogRepository.deleteAll();
+        blogRepository.resetIncrement();
+
+        Article article = new Article();
+
+        article = new Article();
+        article.setTitle("Cả thế giới đều biết áo dài là quốc phục Việt Nam .");
+        article.setContent("Thông tin về một thương hiệu thời trang Trung Quốc đưa lên sàn diễn thời trang bộ sưu tập được gọi là \"cách tân\" những kiểu áo dài Việt Nam đã khiến dư luận đặc biệt quan tâm và bàn luận.");
+        article.setThumbnail("https://image.plo.vn/w653/Uploaded/2019/cqjwqcdwp/2019_11_22/12-ao-dai_sdjr.jpg");
+        article.setDescription("Câu chuyện này đặt ra bài học về việc xây dựng thương hiệu cho áo dài Việt Nam nói riêng và các thương hiệu văn hóa Việt Nam nói chung, để từ đó không chỉ giúp các sản phẩm văn hóa - nghệ thuật Việt Nam tạo ra những giá trị kinh tế cho đất nước, mà còn khẳng định giá trị văn hóa Việt Nam trên thế giới và tránh được tình trạng đánh cắp bản quyền. Tuổi Trẻ giới thiệu đến bạn đọc ý kiến của chuyên gia văn hóa và các nhà thiết kế xoay quanh vấn đề này.\n" +
+                "\n" +
+                "* Nhà thiết kế Minh Hạnh:\n" +
+                "\n" +
+                "Sự chiếm dụng văn hóa rất nguy hiểm\n" +
+                "\n" +
+                "Việc thương hiệu thời trang Ne-Tiger của Trung Quốc giới thiệu bộ sưu tập giống hệt các mẫu áo dài của Việt Nam là sự chiếm dụng văn hóa rất nguy hiểm, như một dạng \"đường lưỡi bò\" trong văn hóa.\n" +
+                "\n Theo tôi, Việt Nam không thể đem áo dài lên Tổ chức Sở hữu trí tuệ thế giới (WIPO) đi đăng ký sở hữu trí tuệ, bởi việc đăng ký sở hữu trí tuệ thuộc về một cá nhân cụ thể. Vì vậy, để giải quyết vấn đề, phía Việt Nam phải công bố áo dài là quốc phục. Nếu chúng ta không làm vậy, một lần nữa chúng ta bị \"việt vị\" như những lần phát hiện bản đồ có \"đường lưỡi bò\" trong GPS xe hơi, trong phim ảnh...\n" +
+                "\n" +
+                "Thương hiệu thời trang Ne-Tiger là một trong những thương hiệu hàng đầu và có tầm ảnh hưởng lớn trong lĩnh vực thời trang ở Trung Quốc. Với tầm ảnh hưởng của mình, Ne-Tiger hoàn toàn có thể biến áo dài của Việt Nam trở thành thường phục của người dân một tỉnh nào đó ở Trung Quốc nếu chúng ta không đăng ký sở hữu trí tuệ.");
+        article.setStatus(Article.Status.ACTIVE.getValue());
+
+        blogRepository.save(article);
+
+        article = new Article();
+        article.setTitle("Xôn xao áo dài Việt Nam sẽ trở thành xu hướng thời trang thế giới");
+        article.setContent("Áo dài Việt Nam, thiết kế \"nửa kín nửa hở\" tôn lên sự quyến rũ của cơ thể người phụ nữ, đã tạo nên nhiều nguồn cảm hứng sáng tạo cho các nhà thiết kế danh giá trên thế giới. ");
+      article.setDescription("Trong quá khứ, giới mộ điệu cũng không ít lần chiêm ngưỡng sự hiện diện của các thiết kế mang cảm hứng trang phục truyền thống Việt Nam trên sàn diễn quốc tế. Điều đó được thể hiện rõ nét qua một số BST thuộc khuôn khổ Tuần lễ thời trang.\n" +
+              "\n" +
+              "Đầu tiên không thể không nhắc đến nhà thiết kế (NTK) Kelly Bui. Tại tuần lễ thời trang Thượng Hải 2016, cô đã giới thiệu đến bạn bè quốc tế BST lấy cảm hứng từ mũ quai thao, mấn, tà áo dài... đặc trưng của vùng núi cao. Bằng chất liệu nhung và da nền đen càng thể hiện được tinh thần huyền bí của các bộ trang phục. Tà áo dài tiếp tục được \"chiêu đãi\" tại tuần lễ thời trang Seoul Xuân - Hè 2019 bởi thương hiệu thời trang BNB 12. Nhà mốt này còn thể hiện nét hiện đại cho áo dài với kiểu tay phồng \"công chúa\" cùng chất liệu sequin lấp lánh. Một điểm đặc biệt trong BST của thương hiệu Emilio Pucci năm 2013 là chiếc áo khoác bomber được thêu tiếng Việt \"yêu hòa bình\" bên tay trái đã làm giới mộ điệu \"mắt chữ A, miệng chữ O\" bên cạnh những chi tiết đặc trưng của trang phục truyền thống xuyên suốt.\n" +
+              "\n" +
+              "Giám đốc sáng tạo Peter Dundas đã chia sẻ rằng: \"Tôi có một vài người bạn ở Việt Nam và trang phục của họ đã cuốn hút tôi. Sau đó, tôi đã bắt đầu nghiên cứu và cảm thấy rất thích thú\". Ngay từ điểm nhìn đầu tiên, bộ trang phục trong chất liệu xuyên thấu gợi cảm của thương hiệu Leonard Paris đã gợi sự liên tưởng đến áo dài nhờ vào chi tiết cổ đứng cùng phần thân có đường chiết eo tôn dáng.");
+        article.setThumbnail("https://image2.tin247.com/pictures/2019/06/07/aqh1559881525.jpg");
+        article.setStatus(Article.Status.ACTIVE.getValue());
+
+        blogRepository.save(article);
+
+        article = new Article();
+        article.setTitle("Cả thế giới đều biết áo dài là quốc phục Việt Nam .");
+        article.setContent("Thông tin về một thương hiệu thời trang Trung Quốc đưa lên sàn diễn thời trang bộ sưu tập được gọi là \"cách tân\" những kiểu áo dài Việt Nam đã khiến dư luận đặc biệt quan tâm và bàn luận.");
+        article.setThumbnail("https://cdn.tuoitre.vn/thumb_w/586/2019/10/21/ao-dai-1571631364337486293694.jpg");
+        article.setDescription("Áo dài Việt Nam vừa truyền thống vừa hiện đại. Trang phục dành cho nữ này có thể mặc mọi nơi, dùng làm trang phục công sở, đồng phục đi học, mặc đi chơi hay mặc để tiếp khách một cách trang trọng ở nhà. Việc mặc loại trang phục này không hề rườm rà hay cầu kỳ, những thứ mặc kèm đơn giản: mặc với quần lụa hay vải mềm, dưới chân đi hài, guốc, hay giày gì đều được; nếu cần trang trọng (như trang phục cô dâu) thì thêm áo choàng và khăn đóng truyền thống đội đầu, hoặc vương miện Tây phương tùy thích.\n" +
+                "\n" +
+                "Trước năm 1975, áo dài trắng từng là đồng phục bắt buộc của nữ sinh trung học tại miền Nam Việt Nam. Sau ngày thống nhất, một số trường đã thay áo dài bằng đồng phục riêng của trường, và tại miền Bắc hầu hết các trường, nữ sinh chỉ còn phải mặc áo dài vào ngày thứ hai chào cờ đầu tuần.\n" +
+                "\n" +
+                "Chiếc áo dài tân thời (tức áo dài hiện đại) hình như có cách riêng để tôn vinh mọi thân hình. Phần trên ôm sát thân nhưng hai vạt buông thật mềm mại trên đôi ống quần rộng. Hai tà xẻ trên vòng eo khiến cho cử chỉ người mặc thật thoải mái, lại tạo dáng thướt tha, tôn vẻ nữ tính, vừa kín kẽ vì toàn thân được bao bọc bởi lụa mềm, lại cũng vừa khêu gợi vì chiếc áo làm lộ ra sống eo.\n" +
+                "\n" +
+                "Chiếc áo dài hiện đại vì vậy mang tính cá nhân hóa rất cao: mỗi chiếc chỉ may riêng cho một người, dành cho riêng người đó. Người đi may được lấy số đo thật kỹ. Khi may xong phải qua một lần mặc thử để sửa nhỏ nữa mới hoàn thiện.");
+        article.setStatus(Article.Status.ACTIVE.getValue());
+        blogRepository.save(article);
+
+        article = new Article();
+        article.setTitle("Cả thế giới đều công nhận áo dài là quốc phục Việt Nam .");
+        article.setContent("Thông tin về một thương hiệu thời trang Trung Quốc đưa lên sàn diễn thời trang bộ sưu tập được gọi là \"cách tân\" những kiểu áo dài Việt Nam đã khiến dư luận đặc biệt quan tâm và bàn luận.");
+        article.setThumbnail("https://1.bp.blogspot.com/-KGhNlWw4UP8/XUxEuEvacfI/AAAAAAAAStA/EEBdQ9TOVx0bH8uB3ywbzyuxUBBX4_ZmgCLcBGAs/s640/ntk-minh-chau-bst-ao-dai-mua-vu-lan.jpg");
+        article.setDescription("Câu chuyện này đặt ra bài học về việc xây dựng thương hiệu cho áo dài Việt Nam nói riêng và các thương hiệu văn hóa Việt Nam nói chung, để từ đó không chỉ giúp các sản phẩm văn hóa - nghệ thuật Việt Nam tạo ra những giá trị kinh tế cho đất nước, mà còn khẳng định giá trị văn hóa Việt Nam trên thế giới và tránh được tình trạng đánh cắp bản quyền.  ");
+        article.setStatus(Article.Status.ACTIVE.getValue());
+
+        blogRepository.save(article);
     }
 
     void seedingCategory() {
