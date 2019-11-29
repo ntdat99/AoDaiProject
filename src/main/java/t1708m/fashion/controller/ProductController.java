@@ -44,17 +44,6 @@ public class ProductController {
 
     @Autowired
     CategoryRepository categoryRepository;
-
-//    @RequestMapping(method = RequestMethod.GET)
-//    public String index(Model model, @RequestParam(defaultValue = "") String productName) {
-//        List<Product> products = productService.products();
-//        List<Product> productsByName = productService.getByName(productName);
-//        model.addAttribute("list", productsByName);
-//        model.addAttribute("customer", products);
-//
-//        return "/client/product";
-//    }
-
     @RequestMapping(method = RequestMethod.GET)
     public String category(
             @RequestParam(name = "categoryId", required = false) Long categoryId,
@@ -87,17 +76,6 @@ public class ProductController {
         return "/client/product";
     }
 
-//    @RequestMapping(method = RequestMethod.GET, value = "/details/{id}")
-//    public String detail(@PathVariable int id, Model model) {
-//        Product product = productService.getById(id);
-//        if (product == null) {
-//            return "error/404";
-//        }
-//
-//        model.addAttribute("productdetail", product);
-//        model.addAttribute("sizes", Product.Size.values());
-//        return "client/product-detail";
-//    }
     @RequestMapping(method = RequestMethod.GET, value = "/details/{id}")
     public String category(
             @PathVariable int id,
@@ -105,11 +83,15 @@ public class ProductController {
             @RequestParam(name = "limit", defaultValue = "4") int limit,
             Model model) {
         Product product = productService.getById(id);
+        if (product == null) {
+            return "error/404";
+        }
         Specification specification = Specification.where(null);
         Page<Product> productPage = productService.findAllActive(specification, PageRequest.of(page - 1, limit));
 
         model.addAttribute("lists", productPage.getContent());
         model.addAttribute("productdetail", product);
+        model.addAttribute("sizes", Product.Size.values());
         model.addAttribute("currentPage", productPage.getPageable().getPageNumber() + 1);
         model.addAttribute("limit", productPage.getPageable().getPageSize());
         model.addAttribute("totalPage", productPage.getTotalPages());

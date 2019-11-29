@@ -29,7 +29,7 @@ public class BlogController {
     @RequestMapping(method = RequestMethod.GET)
     public String list(
             @RequestParam(name = "page", defaultValue = "1") int page,
-            @RequestParam(name = "limit", defaultValue = "1") int limit,
+            @RequestParam(name = "limit", defaultValue = "3") int limit,
             Model model) {
         Page<Article> articlePage = blogRepository.findAll(PageRequest.of(page - 1, limit));
         model.addAttribute("blog", articlePage.getContent());

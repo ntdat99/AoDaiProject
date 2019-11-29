@@ -46,7 +46,7 @@
         <div class="top-bar">
             <div class="content-topbar flex-sb-m h-full container">
                 <div class="left-top-bar">
-                    Free shipping for standard order over $100
+                    Liên hệ : 0932216375
                 </div>
 
                 <div class="right-top-bar flex-w h-full">
@@ -188,9 +188,6 @@
 						<i class="fa fa-angle-right" aria-hidden="true"></i>
 					</span>
             </li>
-<!--            <li>-->
-<!--                <a href="/product">Hàng bán chạy</a>-->
-<!--            </li>-->
             <li>
                 <a href="blog">Blog</a>
             </li>
@@ -319,7 +316,7 @@
                     Danh mục sản phẩm
                 </h4>
 
-                < <ul>
+                <ul>
                 <li class="p-b-10">
                     <a href="/product" class="stext-107 cl7 hov-cl1 trans-04">
                         Áo Dài Nam
@@ -331,6 +328,7 @@
                         Áo Dài Nữ
                     </a>
                 </li>
+            </ul>
             </div>
 
             <div class="col-sm-6 col-lg-3 p-b-50">
@@ -358,26 +356,6 @@
 
             <div class="col-sm-6 col-lg-3 p-b-50">	<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.0951822985944!2d105.77955771440737!3d21.02887719315135!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x313454b3260b1a8b%3A0x862052392e3f478e!2zOCBUw7RuIFRo4bqldCBUaHV54bq_dCwgTeG7uSDEkMOsbmgsIFThu6sgTGnDqm0sIEjDoCBO4buZaSAxMDAwMCwgVmlldG5hbQ!5e0!3m2!1sen!2s!4v1574322354553!5m2!1sen!2s" width="650" height="350" frameborder="0" style="border:0;" allowfullscreen=""></iframe></div>
 
-            <div class="col-sm-6 col-lg-3 p-b-50">
-                <h4 class="stext-301 cl0 p-b-30">
-                    Newsletter
-                </h4>
-
-                <form>
-                    <div class="wrap-input1 w-full p-b-4">
-                        <input class="input1 bg-none plh1 stext-107 cl7" type="text" name="email" placeholder="email@example.com">
-                        <div class="focus-input1 trans-04"></div>
-                    </div>
-
-                    <div class="p-t-18">
-                        <button class="flex-c-m stext-101 cl0 size-103 bg1 bor1 hov-btn2 p-lr-15 trans-04">
-                            Subscribe
-                        </button>
-                    </div>
-                </form>
-            </div>
-
-            <div class="col-sm-6 col-lg-3 p-b-50"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.0951822985944!2d105.77955771440737!3d21.02887719315135!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x313454b3260b1a8b%3A0x862052392e3f478e!2zOCBUw7RuIFRo4bqldCBUaHV54bq_dCwgTeG7uSDEkMOsbmgsIFThu6sgTGnDqm0sIEjDoCBO4buZaSAxMDAwMCwgVmlldG5hbQ!5e0!3m2!1sen!2s!4v1574322354553!5m2!1sen!2s" width="300" height="250" frameborder="0" style="border:0;" allowfullscreen=""></iframe></div>
         </div>
 
         <div class="p-t-40">
@@ -478,5 +456,18 @@
 </script>
 <!--===============================================================================================-->
 <script src="/customer/js/main.js"></script>
+
+<script th:inline="javascript">
+    var element = document.getElementById("account-display");
+    var logout = document.getElementById("logout-display");
+    if ([[${#request.getRemoteUser()}]] != null) {
+        element.innerHTML = [[${#request.getUserPrincipal().getName().toString()}]];
+        element.href = "/account/detail/" + [[${#request.getUserPrincipal().getName()}]];
+        logout.href = "/logout";
+        logout.innerHTML = "Đăng xuất";
+    } else
+        element.innerHTML = "Đăng nhập";
+
+</script>
 </body>
 </html>

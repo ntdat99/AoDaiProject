@@ -60,135 +60,62 @@
 								</span>
 							</span>
 
-						<h4 class="ltext-109 cl2 p-b-28" th:text="${blogdetail.title}">
+						<h4 class="ltext-109 cl2 p-b-28" th:text="${blogdetail.content}">
 
 						</h4>
 
-						<p class="stext-117 cl6 p-b-26" th:text="${blogdetail.content}">
+						<p class="stext-117 cl6 p-b-26" th:text="${blogdetail.description}">
 
 						</p>
 
 					</div>
 
-					<div class="flex-w flex-t p-t-16">
-							<span class="size-216 stext-116 cl8 p-t-4">
-								Tags
-							</span>
-
-						<div class="flex-w size-217">
-							<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-								Streetstyle
-							</a>
-
-							<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-								Crafts
-							</a>
-						</div>
-					</div>
 				</div>
 			</div>
 
 			<div class="col-md-4 col-lg-3 p-b-80">
 				<div class="side-menu">
-					<div class="bor17 of-hidden pos-relative">
-						<input class="stext-103 cl2 plh4 size-116 p-l-28 p-r-55" type="text" name="search" placeholder="Search">
-
-						<button class="flex-c-m size-122 ab-t-r fs-18 cl4 hov-cl1 trans-04">
-							<i class="zmdi zmdi-search"></i>
-						</button>
-					</div>
 
 					<div class="p-t-55">
 						<h4 class="mtext-112 cl2 p-b-33">
-							Categories
-						</h4>
+								Danh mục áo dài
+							</h4>
 
 						<ul>
 							<li class="bor18">
-								<a href="#" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
-									Fashion
-								</a>
-							</li>
+								<form th:action="@{/blog}" method="get">
 
-							<li class="bor18">
-								<a href="#" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
-									Beauty
+								<a href="#" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4" name="categoryId"
+								   th:each="category : ${categories}" th:href="'/product?categoryId=' + ${category.id}"
+								   th:text="${category.name}">
 								</a>
+								</form>
 							</li>
-
-							<li class="bor18">
-								<a href="#" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
-									Street Style
-								</a>
-							</li>
-
-							<li class="bor18">
-								<a href="#" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
-									Life Style
-								</a>
-							</li>
-
-							<li class="bor18">
-								<a href="#" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
-									DIY & Crafts
-								</a>
-							</li>
-						</ul>
+					</ul>
 					</div>
 
 					<div class="p-t-65">
 						<h4 class="mtext-112 cl2 p-b-33">
-							Featured Products
+							Sản phẩm nổi bật
 						</h4>
 
 						<ul>
-							<li class="flex-w flex-t p-b-30">
-								<a href="#" class="wrao-pic-w size-214 hov-ovelay1 m-r-20">
-									<img src="customer/images/product-min-01.jpg" alt="PRODUCT">
+							<li class="flex-w flex-t p-b-30" th:each="pro :${products}">
+								<a th:href="@{/product/details/{id}(id=${pro.id})}" class="wrao-pic-w size-214 hov-ovelay1 m-r-20">
+									<img th:src="${pro.photoLinks[0]}" alt="PRODUCT" style="width: 100%">
 								</a>
 
 								<div class="size-215 flex-col-t p-t-8">
-									<a href="#" class="stext-116 cl8 hov-cl1 trans-04">
-										White Shirt With Pleat Detail Back
+									<a th:href="@{/product/details/{id}(id=${pro.id})}" class="stext-116 cl8 hov-cl1 trans-04" th:text="${pro.name}">
+
 									</a>
 
 									<span class="stext-116 cl6 p-t-20">
-											$19.00
+											<span th:text="${#numbers.formatDecimal(pro.price, 0, 'COMMA', 0, 'POINT')}" ></span>VND
 										</span>
 								</div>
 							</li>
 
-							<li class="flex-w flex-t p-b-30">
-								<a href="#" class="wrao-pic-w size-214 hov-ovelay1 m-r-20">
-									<img src="customer/images/product-min-02.jpg" alt="PRODUCT">
-								</a>
-
-								<div class="size-215 flex-col-t p-t-8">
-									<a href="#" class="stext-116 cl8 hov-cl1 trans-04">
-										Converse All Star Hi Black Canvas
-									</a>
-
-									<span class="stext-116 cl6 p-t-20">
-											$39.00
-										</span>
-								</div>
-							</li>
-
-							<li class="flex-w flex-t p-b-30">
-								<a href="#" class="wrao-pic-w size-214 hov-ovelay1 m-r-20">
-									<img src="customer/images/product-min-03.jpg" alt="PRODUCT">
-								</a>
-
-								<div class="size-215 flex-col-t p-t-8">
-									<a href="#" class="stext-116 cl8 hov-cl1 trans-04">
-										Nixon Porter Leather Watch In Tan
-									</a>
-
-									<span class="stext-116 cl6 p-t-20">
-											$17.00
-										</span>
-								</div>
-							</li>
 						</ul>
 					</div>
 

@@ -7,6 +7,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import t1708m.fashion.Specification.ProductSpecification;
 import t1708m.fashion.Specification.SearchCriteria;
+import t1708m.fashion.entity.Article;
 import t1708m.fashion.entity.Product;
 import t1708m.fashion.repository.ProductRepository;
 
@@ -24,10 +25,10 @@ public class ProductService {
 
 
 
-
-    public List<Product> products() {
-        return productRepository.findActiveProduct(1);
-    }
+//
+//    public List<Product> products() {
+//        return productRepository.findActiveProduct(1);
+//    }
 
     public List<Product> getByName(String name) {
         return productRepository.findAllByName(name);
@@ -42,6 +43,10 @@ public class ProductService {
                 .and(new ProductSpecification(new SearchCriteria("status", "!=", Product.Status.DELETED.getValue())));
 
         return productRepository.findAll(specification, pageable);
+    }
+
+    public Page<Product> productBlogShow(Specification specification, Pageable pageable) {
+        return productRepository.findAll(specification,pageable);
     }
     public Product getById(long id) {
         return productRepository.findById(id).orElse(null);
